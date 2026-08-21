@@ -1,0 +1,23 @@
+# Python virtual environment
+.venv/
+
+# Environment variables / API keys
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Market data
+data/
+
+# Generated exports / reports
+exports/
