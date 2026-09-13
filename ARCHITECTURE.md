@@ -33,7 +33,7 @@ Kommentarer om parity-verifiering är därför inte bevis på fullständig parit
 ### 1.1 Planerad utvecklingsordning
 
 Följande visar både den redan implementerade analyskedjan och planerade nästa
-steg. Komponenter efter Opportunity / setup events är ännu inte implementerade
+steg. Komponenter efter Opportunity → signal conversion är ännu inte implementerade
 om inget annat uttryckligen anges senare i dokumentet.
 
 ```text
@@ -85,7 +85,7 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/trust_me_core.py` | Matematiska primitiver, kontext, entrymoduler, scoring och slutfilter. Importerar bara numpy och pandas |
 | `src/diagnostics_context.py` | `context_diagnostics(data, **parametrar)` bygger OHLCV, läge, session, indikatorer och kontinuerliga marginaler: 81 explicit skrivna unika kolumner |
 | `src/diagnostics_signals.py` | `signal_diagnostics(df, **parametrar)` återanvänder context och lägger till 110 kolumner för pullback, moduler, signaler och förklaringar; totalt avsett schema 191 kolumner |
-| `src/diagnostics_analysis.py` | Tar signaldiagnostikens schema och returnerar åtta analystabeller via `analyze_signals()`; hämtar ingen data och beräknar inga indikatorer |
+| `src/diagnostics_analysis.py` | Tar signaldiagnostikens schema och returnerar elva analystabeller via `analyze_signals()`; hämtar ingen data och beräknar inga indikatorer |
 | `src/parity_test.py` | Manuellt körprogram: jämför två hårdkodade MU-bars med aggregerad 45m-data, visar Daily→45m-trend och skriver swingindikatorer |
 | `src/backtest.py` | Tom platshållare |
 | `src/live_scanner.py` | Tom platshållare |
@@ -94,7 +94,7 @@ positionstillstånd, kostnader och kapitalrisk.
 | `tests/test_market_data.py` | Tom; OHLCV-validering testas i `test_core.py` |
 | `tests/diagnostics_context_test.py` | Manuellt `main()`: hämtar MU Daily, kontrollerar kontext på 2026-08-21 och skriver värden |
 | `tests/diagnostics_signals_test.py` | Manuellt `main()`: samma datatyp/datum; hårdkodade förväntningar på moduler, masks, signaler och streaks |
-| `tests/diagnostics_analysis_test.py` | Manuellt `main()`: två års MU Daily, åtta tabeller, eventsammanställningar och konsistensassertions |
+| `tests/diagnostics_analysis_test.py` | Manuellt `main()`: två års MU Daily, elva tabeller, eventsammanställningar och konsistensassertions |
 | `requirements.txt` | Nio beroenden, utan versionslåsning |
 | `README.md` | Tom |
 | `.gitignore` | Ignorerar bland annat `.venv`, `.env`, Python-cache, `data/`, `exports/` |
@@ -170,7 +170,7 @@ flowchart TD
     SC --> FS[entry_signal_context: slutfilter]
     CT --> FS
     FS --> SD[signal_diagnostics: signaler, fail masks, near misses, väntan]
-    SD --> AN[analyze_signals: åtta DataFrames]
+    SD --> AN[analyze_signals: elva DataFrames]
     AN --> OUT[Manuell sortering, assertions och terminalutskrift]
 ```
 
@@ -295,6 +295,9 @@ streaks återställs inte uttryckligen vid datum- eller sessionsgränser.
 | `module_activation_summary` | Aktiveringar per modul/riktning före slutfilter |
 | `module_conditional_analysis` | Kumulativ funnel i angiven kravordning samt sole blockers när övriga krav passerar |
 | `module_opportunity_events` | Start/slut, längd i bars och blockerarsekvens för sammanhängande modultillfällen |
+| `opportunity_signal_conversion` | Första efterföljande aktivering av samma modul/riktning inom valt barfönster |
+| `opportunity_conversion_summary` | Antal, observerade konverteringar, fullföljda kohorter, procent och väntetider per riktning/modul |
+| `opportunity_conversion_by_blocker` | Samma statistik per dominant blocker, normalt minst fem events |
 
 `_rate` returnerar procent 0–100 och 0 när nämnaren är 0. Near-miss-streakens
 medelvärde är medel av löpande räknare, inte medellängd av avslutade events.
@@ -335,8 +338,8 @@ definitionstabeller. Alla tre behöver granskas vid en ändring av ett entrykrav
    komplett session avser tillgängligheten barens stängning, inte dess startstämpel.
 6. Ingen generell validering av sortering/unikhet eller warm-up finns i alla
    lager. Multi-ticker-input stöds inte uttryckligen trots yfinance-normalisering.
-7. `module_opportunity_events` returnerar en kolumnlös DataFrame om inga events
-   finns; rapportprogrammet sorterar efter eventkolumner utan föregående tomkontroll.
+7. Event- och konverteringstabeller samt final failure combinations har nu explicit
+   schema även vid tomt resultat. Konverteringen kräver unikt stigande DatetimeIndex.
 8. Manuella baselinekontroller använder ett fast datum men rullande nedladdade
    historikfönster. Data och indikatorseed kan ändras mellan körningar.
 9. Versionslåsning, CI och frysta nätverksoberoende regressionstester saknas.
@@ -416,3 +419,79 @@ Framtida exits/risk/backtest bör först få ett gemensamt beslut om positioner,
 order/fill-tid, kostnader och resultatformat. Därefter kan ett separat
 simuleringsansvar införas. ML bör vänta tills labels, tidsmässig split och
 läckagekontroller är definierade. Ingen sådan implementation ingår idag.
+
+
+## 9. Opportunity → signal conversion (implementerat 2026-09-13)
+
+`analyze_signals(diagnostics, max_followup_bars=5, blocker_min_events=5)`
+returnerar de åtta tidigare tabellerna plus tre nya. Strategin, context,
+signals och eventgränserna är oförändrade. Behavior change: YES avser utökade
+analysresultat, validering och stabila tomma scheman, inte ändrade entryvillkor.
+
+`opportunity_signal_conversion` återanvänder `module_opportunity_events` och
+läser `pullback_*`, `breakout_*`, `squeeze_*`, `mean_rev_*` direkt från
+signaldiagnostiken. Ingen alternativ beräkning av modulkraven införs.
+Konvertering är första True på samma modul och riktning strikt efter eventslut,
+inom H observerade rader (heltal H >= 5). Slutfilter krävs inte;
+`final_signal_at_conversion` anger om riktningens slutsignal också var True på
+just den baren. Den söker inte en senare slutsignal separat.
+
+Varje event följs självständigt. Ett nytt event eller flera fallerande krav
+stoppar inte uppföljningen; samma aktivering kan räknas för flera events.
+Detta beskriver efterföljd, inte orsakssamband eller en bestående setup.
+Inga kalenderbars skapas, inga sessioner återställs, och luckor räknas inte som
+bars. Input måste avse ett instrument, ha unikt stigande DatetimeIndex utan NaT
+och icke-saknade booleska modul-/slutsignaler. Tidszon och barstämplar bevaras.
+Befintlig warm-up och opportunitylagrets behandling av fail-NaN ändras inte.
+
+Eventtabellens nio kolumner bevaras. Konverteringstabellen lägger till:
+
+| Kolumner | Typ / betydelse |
+| --- | --- |
+| `max_followup_bars`, `observed_followup_bars` | int64; avsett respektive observerat fönster |
+| `followup_complete`, `event_open_at_data_end` | bool; H rader observerade respektive event på sista raden |
+| `converted` | nullable boolean; True, False efter fullt fönster, annars NA |
+| `conversion_time` | samma datetime-typ/tidszon som index, annars NaT |
+| `conversion_bar_position`, `bars_to_conversion` | nullable Int64; nollbaserad inputposition respektive avstånd från eventslut |
+| `final_signal_at_conversion` | nullable boolean; NA utan konvertering |
+| `converted_within_1_bar`, `converted_within_3_bars`, `converted_within_5_bars` | nullable boolean; True vid observerad träff, False efter fullt delfönster, annars NA |
+| `status` | converted / not_converted_within_window / censored |
+| `blocker_transition_path` | blocker_sequence med endast intilliggande upprepningar komprimerade |
+
+Konvertering är tillgänglig vid konverteringsbarens stängning
+(`available_at = conversion bar close`). Negativt resultat kräver H framtida
+barstängningar. Eventets slut kan först bekräftas när nästa bar inte är en
+opportunity. Inputstämpeln kan avse barens öppning och är därför inte en exakt
+available_at-tidsstämpel. Ett öppet event vid dataslut får preliminärt slut och
+censored-status. Endast stängda inputbars ska skickas in; signals kontrollerar
+fortfarande inte faktisk stängning. Framtidsinformationen stannar i analysen
+och får inte användas som samtidiga features/signaler.
+
+Sammanställningen visar alla åtta riktning/modul-par även utan events.
+`opportunity_events` räknar alla events, `converted_events` alla observerade
+träffar och `censored_events` okända resultat. `eligible_events` och
+`eligible_converted_events` räknar endast events med H observerade följdbars;
+`conversion_rate` = 100 * eligible_converted_events / eligible_events.
+Även tidiga träffar med ofullständigt fönster utesluts ur denna kvot.
+För h=1/3/5 används motsvarande fulla delfönster: `eligible_events_h`,
+`converted_events_within_h`, `conversion_rate_within_h`. Olika nämnare betyder
+att aggregerade 1/3/5-procent inte nödvändigtvis är monotona.
+Noll nämnare ger NaN. Median/medel `*_bars_to_conversion` avser alla observerade
+konverteringar och är NaN utan träffar. Detta är inte en överlevnadsanalys.
+
+`opportunity_conversion_summary(..., by_blocker=True, min_events=5)` grupperar
+även på dominant_blocker och filtrerar på eventantal. Tröskeln är en enkel
+rapportgräns, inte statistisk signifikans. Schemat bevaras även om alla grupper
+filtreras bort. Dominant blocker och dess befintliga tie-hantering bevaras.
+
+Blockertransitioner har konkret värde för att skilja upprepad väntan
+(Reclaim → Reclaim) från växlande krav (Price → Volume). En kompakt väg och
+befintligt blocker_changed räcker för inspektion tillsammans med status.
+Ingen separat transitionsmodell införs. Utebliven träff inom fönstret kallas
+inte ”avbruten setup”: någon sådan invalideringsregel finns ännu inte.
+
+Deterministiska pytest-tester finns nu även i `tests/diagnostics_analysis_test.py`.
+De omfattar alla fyra moduler i båda riktningarna, 1/3/5-gränser, längre fönster,
+censurering, öppna events, scheman, blockerbyten, delade aktiveringar och
+syntetiskt OHLCV → context → signals → analys med prefixkontroll av kausalitet.
+Yahoo-main-programmen och Pine-paritet är separata verifieringsnivåer.

@@ -388,7 +388,10 @@ def final_failure_combinations(
                 }
             )
 
-    return pd.DataFrame(rows)
+    return _typed_table(rows, {
+        "direction": "object", "fail_mask": "int64", "count": "int64",
+        "pct_of_all_bars": "float64",
+    })
 
 
 # ============================================================
@@ -1003,6 +1006,33 @@ def module_conditional_analysis(
 # MODULE OPPORTUNITY EVENTS
 # ============================================================
 
+EVENT_SCHEMA = {
+    "direction": "object", "module": "object",
+    "event_start": "datetime64[ns]", "event_end": "datetime64[ns]",
+    "duration_bars": "int64", "dominant_blocker": "object",
+    "blocker_changed": "bool", "unique_blocker_count": "int64",
+    "blocker_sequence": "object",
+}
+
+MODULE_ACTIVATION_COLUMNS = {
+    "Pullback": "pullback", "Breakout": "breakout",
+    "Squeeze": "squeeze", "Mean Reversion": "mean_rev",
+}
+
+
+def _typed_table(rows, schema, timestamp_dtype=None):
+    """Keep column order and dtypes, including timezone, on empty results."""
+    columns = {}
+    for column, dtype in schema.items():
+        if dtype == "datetime64[ns]" and timestamp_dtype is not None:
+            dtype = timestamp_dtype
+        elif dtype == "object":
+            # Match the existing pandas string inference across pandas versions.
+            dtype = pd.Series([""]).dtype
+        columns[column] = pd.Series([row[column] for row in rows], dtype=dtype)
+    return pd.DataFrame(columns)
+
+
 def module_opportunity_events(
     diagnostics: pd.DataFrame,
 ) -> pd.DataFrame:
@@ -1236,14 +1266,169 @@ def module_opportunity_events(
                     }
                 )
 
-    return pd.DataFrame(rows)
+    return _typed_table(rows, EVENT_SCHEMA, diagnostics.index.dtype)
 
 # ============================================================
 # FULL SIGNAL ANALYSIS
 # ============================================================
 
+CONVERSION_SCHEMA = {
+    **EVENT_SCHEMA,
+    "max_followup_bars": "int64", "observed_followup_bars": "int64",
+    "followup_complete": "bool", "event_open_at_data_end": "bool",
+    "converted": "boolean", "conversion_time": "datetime64[ns]",
+    "conversion_bar_position": "Int64", "bars_to_conversion": "Int64",
+    "final_signal_at_conversion": "boolean", "status": "object",
+    "converted_within_1_bar": "boolean",
+    "converted_within_3_bars": "boolean",
+    "converted_within_5_bars": "boolean",
+    "blocker_transition_path": "object",
+}
+
+
+def opportunity_signal_conversion(
+    diagnostics: pd.DataFrame, *, max_followup_bars: int = 5,
+) -> pd.DataFrame:
+    """Retrospective first same-module activation in bars end+1 .. end+H.
+
+    H is an integer >= 5. Each event is followed independently, even across
+    later events/sessions; one activation may convert multiple events. Bars
+    are observed rows, not elapsed clock time. Input must contain closed bars
+    for one instrument, a unique increasing DatetimeIndex, and nonmissing
+    boolean activation/signal columns. No sorting, filling or signal recomputing.
+
+    converted is NA when no activation is observed and follow-up is incomplete.
+    Horizon flags use the same three-state convention. An event reaching the
+    last row is still open. Timestamp values retain the input bar labels and
+    timezone; activation is available_at = conversion bar close, not label time
+    if the source labels bar opens. Negative outcomes require H bar closes.
+    This table must never be used as contemporaneous signal input.
+    """
+    if type(max_followup_bars) is not int or max_followup_bars < 5:
+        raise ValueError("max_followup_bars must be an integer >= 5")
+    index = diagnostics.index
+    if (not isinstance(index, pd.DatetimeIndex) or index.hasnans
+            or not index.is_unique or not index.is_monotonic_increasing):
+        raise ValueError("diagnostics requires a unique increasing DatetimeIndex")
+    for direction in ("long", "short"):
+        for prefix in MODULE_ACTIVATION_COLUMNS.values():
+            column = f"{prefix}_{direction}"
+            if (not pd.api.types.is_bool_dtype(diagnostics[column])
+                    or diagnostics[column].isna().any()):
+                raise ValueError(f"{column} must contain nonmissing booleans")
+        column = f"{direction}_signal"
+        if (not pd.api.types.is_bool_dtype(diagnostics[column])
+                or diagnostics[column].isna().any()):
+            raise ValueError(f"{column} must contain nonmissing booleans")
+
+    events = module_opportunity_events(diagnostics)
+    rows = []
+    for event in events.to_dict("records"):
+        end = index.get_loc(event["event_end"])
+        observed = min(max_followup_bars, len(index) - end - 1)
+        prefix = MODULE_ACTIVATION_COLUMNS[event["module"]]
+        direction = event["direction"].lower()
+        active = diagnostics[f"{prefix}_{direction}"].iloc[end + 1:end + observed + 1]
+        hits = [offset for offset, value in enumerate(active, 1) if value]
+        delay = hits[0] if hits else None
+        complete = observed == max_followup_bars
+        converted = True if delay is not None else (False if complete else pd.NA)
+        position = end + delay if delay is not None else None
+        blockers = event["blocker_sequence"].split(" -> ")
+        path = [value for i, value in enumerate(blockers)
+                if i == 0 or value != blockers[i - 1]]
+        row = {
+            **event, "max_followup_bars": max_followup_bars,
+            "observed_followup_bars": observed, "followup_complete": complete,
+            "event_open_at_data_end": end == len(index) - 1,
+            "converted": converted,
+            "conversion_time": index[position] if position is not None else pd.NaT,
+            "conversion_bar_position": position,
+            "bars_to_conversion": delay,
+            "final_signal_at_conversion": (
+                bool(diagnostics[f"{direction}_signal"].iloc[position])
+                if position is not None else pd.NA
+            ),
+            "status": ("converted" if delay is not None else
+                       "not_converted_within_window" if complete else "censored"),
+            "blocker_transition_path": " -> ".join(path),
+        }
+        for horizon in (1, 3, 5):
+            suffix = "bar" if horizon == 1 else "bars"
+            row[f"converted_within_{horizon}_{suffix}"] = (
+                True if delay is not None and delay <= horizon else
+                False if observed >= horizon else pd.NA
+            )
+        rows.append(row)
+    return _typed_table(rows, CONVERSION_SCHEMA, index.dtype)
+
+
+def opportunity_conversion_summary(
+    conversions: pd.DataFrame, *, by_blocker: bool = False,
+    min_events: int = 1,
+) -> pd.DataFrame:
+    """Event counts and fixed-follow-up cohort rates (percent 0..100).
+
+    Rates use ONLY events with all H (or 1/3/5) subsequent rows observed,
+    including for early successes. A zero denominator gives NaN, not 0%.
+    Counts of converted events and delays include every observed conversion;
+    delay statistics are conditional on conversion, not time-to-event estimates.
+    Blocker groups may be filtered by min_events; counts convey sample size,
+    not statistical significance. All eight pairs appear in the default summary.
+    """
+    if type(min_events) is not int or min_events < 1:
+        raise ValueError("min_events must be a positive integer")
+    if conversions["max_followup_bars"].nunique() > 1:
+        raise ValueError("cannot pool different follow-up windows")
+    keys = ["direction", "module"] + (["dominant_blocker"] if by_blocker else [])
+    schema = {key: "object" for key in keys}
+    schema.update({
+        "opportunity_events": "int64", "converted_events": "int64",
+        "censored_events": "int64", "eligible_events": "int64",
+        "eligible_converted_events": "int64", "conversion_rate": "float64",
+        "median_bars_to_conversion": "float64", "mean_bars_to_conversion": "float64",
+    })
+    for h in (1, 3, 5):
+        schema.update({f"eligible_events_{h}": "int64",
+                       f"converted_events_within_{h}": "int64",
+                       f"conversion_rate_within_{h}": "float64"})
+    if by_blocker:
+        groups = conversions.groupby(keys, sort=True, dropna=False)
+    else:
+        groups = [((direction, module), conversions.loc[
+            (conversions.direction == direction) & (conversions.module == module)
+        ]) for direction in ("Long", "Short") for module in MODULE_ACTIVATION_COLUMNS]
+    rows = []
+    for key, group in groups:
+        if by_blocker and len(group) < min_events:
+            continue
+        eligible = group[group.followup_complete]
+        successes = int(eligible.converted.sum())
+        delays = group.bars_to_conversion.dropna()
+        row = dict(zip(keys, key))
+        row.update({
+            "opportunity_events": len(group),
+            "converted_events": int(group.converted.sum()),
+            "censored_events": int(group.converted.isna().sum()),
+            "eligible_events": len(eligible), "eligible_converted_events": successes,
+            "conversion_rate": _rate(successes, len(eligible)) if len(eligible) else float("nan"),
+            "median_bars_to_conversion": float(delays.median()) if len(delays) else float("nan"),
+            "mean_bars_to_conversion": float(delays.mean()) if len(delays) else float("nan"),
+        })
+        for h in (1, 3, 5):
+            cohort = group[group.observed_followup_bars >= h]
+            count = int((cohort.bars_to_conversion <= h).sum())
+            row.update({f"eligible_events_{h}": len(cohort),
+                        f"converted_events_within_{h}": count,
+                        f"conversion_rate_within_{h}": (
+                            _rate(count, len(cohort)) if len(cohort) else float("nan"))})
+        rows.append(row)
+    return _typed_table(rows, schema)
+
+
 def analyze_signals(
     diagnostics: pd.DataFrame,
+    *, max_followup_bars: int = 5, blocker_min_events: int = 5,
 ) -> dict[str, pd.DataFrame]:
     """
     Kör första kompletta deskriptiva analyslagret
@@ -1259,6 +1444,9 @@ def analyze_signals(
     - bygga scanner/ranking
     """
 
+    conversions = opportunity_signal_conversion(
+        diagnostics, max_followup_bars=max_followup_bars
+    )
     return {
         "signal_funnel": signal_funnel(
             diagnostics
@@ -1293,5 +1481,10 @@ def analyze_signals(
             module_opportunity_events(
                 diagnostics
             )
+        ),
+        "opportunity_signal_conversion": conversions,
+        "opportunity_conversion_summary": opportunity_conversion_summary(conversions),
+        "opportunity_conversion_by_blocker": opportunity_conversion_summary(
+            conversions, by_blocker=True, min_events=blocker_min_events
         ),
     }

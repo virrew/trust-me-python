@@ -1,6 +1,16 @@
 from __future__ import annotations
 
 import pandas as pd
+# Deterministic pytest coverage; main() above remains the Yahoo sanity program.
+import numpy as np
+import pytest
+from pandas.testing import assert_frame_equal
+from src.diagnostics_analysis import (
+    module_opportunity_events, opportunity_signal_conversion,
+    opportunity_conversion_summary,
+)
+
+
 
 from src.market_data import download_yahoo_data
 from src.diagnostics_signals import signal_diagnostics
@@ -124,6 +134,13 @@ def main() -> None:
     analysis = analyze_signals(
         diagnostics
     )
+
+    for key in ("opportunity_signal_conversion", "opportunity_conversion_summary",
+                "opportunity_conversion_by_blocker"):
+        print_table(key.upper(), analysis[key])
+    conversions = analysis["opportunity_signal_conversion"]
+    assert len(conversions) == len(analysis["module_opportunity_events"])
+    assert conversions.loc[conversions.converted.fillna(False), "bars_to_conversion"].between(1, 5).all()
 
     # ========================================================
     # HEADER
@@ -840,6 +857,217 @@ def main() -> None:
 
     print()
     print("ALL ANALYSIS SANITY CHECKS PASSED")
+
+
+
+_TEST_MODULES = {
+    "Pullback": ("pb", "pullback", ["trend", "slow_ema", "rsi", "touch", "reclaim"]),
+    "Breakout": ("bo", "breakout", ["trend", "price", "volume", "rsi"]),
+    "Squeeze": ("sq", "squeeze", ["trend", "recent", "release", "price"]),
+    "Mean Reversion": ("mr", "mean_rev", ["trend", "slow_ema", "oversold", "rsi_cross", "candle"]),
+}
+
+
+def _diagnostic_fixture(n=12):
+    index = pd.date_range("2026-08-20 15:00", periods=n, freq="45min",
+                          tz="America/New_York")
+    columns = {}
+    for _, (prefix, activation, requirements) in _TEST_MODULES.items():
+        for direction in ("long", "short"):
+            for requirement in requirements:
+                if direction == "short" and requirement == "oversold":
+                    requirement = "overbought"
+                columns[f"{prefix}_{direction}_fail_{requirement}"] = True
+            columns[f"{activation}_{direction}"] = False
+    columns.update(long_signal=False, short_signal=False)
+    return pd.DataFrame(columns, index=index)
+
+
+def _set_bar(df, module, direction, position, blockers):
+    prefix, activation, _ = _TEST_MODULES[module]
+    columns = [c for c in df if c.startswith(f"{prefix}_{direction}_fail_")]
+    df.loc[df.index[position], columns] = False
+    for blocker in blockers:
+        df.loc[df.index[position], f"{prefix}_{direction}_fail_{blocker}"] = True
+    df.loc[df.index[position], f"{activation}_{direction}"] = not blockers
+
+
+@pytest.mark.parametrize("module", _TEST_MODULES)
+@pytest.mark.parametrize("direction", ["long", "short"])
+@pytest.mark.parametrize("delay", [1, 3, 5, 6, None])
+def test_conversion_windows_and_module_specificity(module, direction, delay):
+    df = _diagnostic_fixture()
+    _set_bar(df, module, direction, 1, ["trend"])
+    if delay is not None:
+        _set_bar(df, module, direction, 1 + delay, [])
+    # Other modules/direction and a final signal cannot substitute for this module.
+    other_direction = "short" if direction == "long" else "long"
+    df.loc[df.index[2], f"pullback_{other_direction}"] = True
+    df[f"{direction}_signal"] = False
+    original = df.copy(deep=True)
+    result = opportunity_signal_conversion(df)
+    row = result.iloc[0]
+    assert len(result) == 1
+    expected = delay is not None and delay <= 5
+    assert bool(row.converted) == expected
+    for h in (1, 3, 5):
+        suffix = "bar" if h == 1 else "bars"
+        assert bool(row[f"converted_within_{h}_{suffix}"]) == (expected and delay <= h)
+    if expected:
+        assert row.conversion_time == df.index[1 + delay]
+        assert row.bars_to_conversion == delay
+        assert row.conversion_bar_position == 1 + delay
+        assert not row.final_signal_at_conversion
+    else:
+        assert pd.isna(row.conversion_time)
+        assert pd.isna(row.bars_to_conversion)
+    assert_frame_equal(df, original)
+    if delay == 6:
+        assert opportunity_signal_conversion(df, max_followup_bars=6).iloc[0].bars_to_conversion == 6
+
+
+def test_censoring_open_event_and_cohort_denominators():
+    df = _diagnostic_fixture(12)
+    for position in (0, 6, 9, 11):
+        _set_bar(df, "Pullback", "long", position, ["reclaim"])
+    for position in (1, 10):
+        _set_bar(df, "Pullback", "long", position, [])
+    events = opportunity_signal_conversion(df)
+    assert events.converted.tolist()[:3] == [True, True, True]
+    assert pd.isna(events.converted.iloc[3])
+    assert events.event_open_at_data_end.tolist() == [False, False, False, True]
+    assert events.followup_complete.tolist() == [True, True, False, False]
+    summary = opportunity_conversion_summary(events).iloc[0]
+    assert summary.opportunity_events == 4
+    assert summary.converted_events == 3
+    assert summary.censored_events == 1
+    assert summary.eligible_events == 2
+    assert summary.conversion_rate == 100
+    assert summary.conversion_rate_within_1 == pytest.approx(200 / 3)
+    assert summary.mean_bars_to_conversion == 2
+    assert summary.median_bars_to_conversion == 1
+    # Remove late activation: partial horizons become unknown, full ones false.
+    _set_bar(df, "Pullback", "long", 10, ["trend", "reclaim"])
+    events = opportunity_signal_conversion(df)
+    assert not events.iloc[1].converted
+    assert pd.isna(events.iloc[2].converted)
+    assert not events.iloc[2].converted_within_1_bar
+    assert pd.isna(events.iloc[2].converted_within_3_bars)
+
+
+def test_blocker_transitions_event_contract_and_shared_activation():
+    df = _diagnostic_fixture()
+    for pos, blocker in [(0, "price"), (1, "price"), (2, "volume"), (4, "volume")]:
+        _set_bar(df, "Breakout", "short", pos, [blocker])
+    _set_bar(df, "Breakout", "short", 5, [])
+    df.loc[df.index[5], "short_signal"] = True
+    events = opportunity_signal_conversion(df)
+    assert events.duration_bars.tolist() == [3, 1]
+    assert events.iloc[0].dominant_blocker == "Price"
+    assert events.iloc[0].blocker_changed
+    assert events.iloc[0].blocker_sequence == "Price -> Price -> Volume"
+    assert events.iloc[0].blocker_transition_path == "Price -> Volume"
+    assert events.bars_to_conversion.tolist() == [3, 1]
+    assert events.final_signal_at_conversion.all()
+    assert_frame_equal(events[list(module_opportunity_events(df).columns)], module_opportunity_events(df))
+    grouped = opportunity_conversion_summary(events, by_blocker=True)
+    assert len(grouped) == 2
+    assert opportunity_conversion_summary(events, by_blocker=True, min_events=2).empty
+
+
+def test_empty_schemas_and_invalid_inputs():
+    df = _diagnostic_fixture()
+    _set_bar(df, "Squeeze", "short", 1, ["recent"])
+    populated = opportunity_signal_conversion(df)
+    for empty_input in (_diagnostic_fixture(), df.iloc[:0]):
+        empty = opportunity_signal_conversion(empty_input)
+        assert empty.empty
+        assert empty.dtypes.equals(populated.dtypes)
+        assert module_opportunity_events(empty_input).dtypes.equals(module_opportunity_events(df).dtypes)
+        summary = opportunity_conversion_summary(empty)
+        assert len(summary) == 8
+        assert summary.opportunity_events.sum() == 0
+        assert summary.conversion_rate.isna().all()
+        assert opportunity_conversion_summary(empty, by_blocker=True).dtypes.equals(
+            opportunity_conversion_summary(populated, by_blocker=True).dtypes)
+    for horizon in (0, 4, True, 5.5):
+        with pytest.raises(ValueError):
+            opportunity_signal_conversion(df, max_followup_bars=horizon)
+    for invalid in (df.iloc[::-1], pd.concat([df, df.iloc[:1]]), df.reset_index(drop=True)):
+        with pytest.raises(ValueError):
+            opportunity_signal_conversion(invalid)
+    df["squeeze_short"] = df.squeeze_short.astype("boolean")
+    df.loc[df.index[2], "squeeze_short"] = pd.NA
+    with pytest.raises(ValueError, match="nonmissing booleans"):
+        opportunity_signal_conversion(df)
+
+
+def _ohlcv_fixture():
+    t = np.arange(300)
+    close = 100 + 0.03 * t + 8 * np.sin(t / 9)
+    return pd.DataFrame({"open": close + np.cos(t), "high": close + 2,
+                         "low": close - 2, "close": close,
+                         "volume": 1000 + 300 * np.sin(t / 3)},
+                        index=pd.date_range("2025-01-01", periods=len(t), freq="D"))
+
+
+@pytest.mark.filterwarnings("ignore:DataFrame is highly fragmented:pandas.errors.PerformanceWarning")
+def test_full_pipeline_prefix_causality_and_existing_analysis_contracts():
+    data = _ohlcv_fixture()
+    full = signal_diagnostics(data, allow_short=True)
+    prefix = signal_diagnostics(data.iloc[:240], allow_short=True)
+    assert_frame_equal(full.iloc[:240], prefix)
+    before = full.copy(deep=True)
+    result = analyze_signals(full)
+    assert_frame_equal(full, before)
+    for direction in ("long", "short"):
+        for module, (mask_prefix, activation, _) in _TEST_MODULES.items():
+            assert (full[f"{mask_prefix}_{direction}_fail_mask"].eq(0)
+                    == full[f"{activation}_{direction}"]).all()
+            events = result["module_opportunity_events"]
+            group = events[(events.direction == direction.title()) & (events.module == module)]
+            conditional = result["module_conditional_analysis"]
+            sole = conditional[(conditional.direction == direction.title()) &
+                               (conditional.module == module) &
+                               (conditional.analysis_type == "Sole Blocker")]
+            assert group.duration_bars.sum() == sole["count"].sum()
+    empty = analyze_signals(full.iloc[:0])
+    for key in result:
+        assert list(result[key].columns) == list(empty[key].columns)
+    # Completed retrospective windows cannot change when future rows are appended.
+    early = opportunity_signal_conversion(prefix)
+    completed = early[early.followup_complete]
+    later = result["opportunity_signal_conversion"]
+    later = later.merge(completed[["direction", "module", "event_start"]],
+                        on=["direction", "module", "event_start"], how="inner")
+    assert_frame_equal(completed.reset_index(drop=True), later[completed.columns].reset_index(drop=True))
+
+
+def test_partial_session_and_overnight_gap_count_observed_bars():
+    df = _diagnostic_fixture(3)
+    df.index = pd.DatetimeIndex([
+        "2026-08-20 15:15", "2026-08-21 09:30", "2026-08-21 10:15",
+    ], tz="America/New_York")
+    _set_bar(df, "Squeeze", "long", 0, ["recent"])
+    _set_bar(df, "Squeeze", "long", 1, [])
+    partial = opportunity_signal_conversion(df.iloc[:1]).iloc[0]
+    assert partial.event_open_at_data_end
+    assert pd.isna(partial.converted)
+    complete = opportunity_signal_conversion(df).iloc[0]
+    assert complete.bars_to_conversion == 1
+    assert complete.conversion_time == df.index[1]
+    assert not complete.followup_complete
+    assert complete.converted_within_5_bars
+
+
+def test_unrelated_final_signal_does_not_convert_opportunity():
+    df = _diagnostic_fixture()
+    _set_bar(df, "Pullback", "long", 1, ["reclaim"])
+    _set_bar(df, "Breakout", "long", 2, [])
+    df.loc[df.index[2], "long_signal"] = True
+    row = opportunity_signal_conversion(df).iloc[0]
+    assert not row.converted
+    assert pd.isna(row.final_signal_at_conversion)
 
 
 if __name__ == "__main__":
