@@ -75,9 +75,76 @@ def test_target_stop_paths(highs, lows, status, target_bar, stop_bar):
     value = result.at[0, f"{key}_bars_to_stop"]
     assert (pd.isna(value) if stop_bar is None else value == stop_bar)
     if status == "AMBIGUOUS":
-        assert not result.at[0, f"{key}_target_before_stop"]
-        assert not result.at[0, f"{key}_stop_before_target"]
+        assert pd.isna(
+        result.at[0, f"{key}_target_before_stop"]
+    )
+        assert pd.isna(
+        result.at[0, f"{key}_stop_before_target"]
+    )
 
+def test_ambiguous_path_is_excluded_from_target_before_stop_rate():
+    df = diagnostics(7)
+
+    observations = pd.concat(
+        [
+            observation(df, position=0),
+            observation(df, position=3),
+        ],
+        ignore_index=True,
+    )
+
+    # --------------------------------------------------------
+    # Observation 1:
+    # Target träffas före stop.
+    # --------------------------------------------------------
+
+    df.loc[
+        df.index[1],
+        ["high", "low"],
+    ] = [104, 99]
+
+    # --------------------------------------------------------
+    # Observation 2:
+    # Target och stop träffas på samma bar.
+    # Ska klassas AMBIGUOUS.
+    # --------------------------------------------------------
+
+    df.loc[
+        df.index[4],
+        ["high", "low"],
+    ] = [104, 97]
+
+    outcomes = calculate_historical_outcomes(
+        df,
+        observations,
+        horizons=(1,),
+        target_stops=((0.03, 0.02),),
+        path_horizon=1,
+    )
+
+    summary = outcome_summary(
+        outcomes
+    )
+
+    key = "target_3_stop_2"
+
+    # Endast den observation där ordningen faktiskt är känd
+    # får ingå i denominatorn.
+    assert (
+        summary.at[
+            0,
+            f"{key}_eligible_samples",
+        ]
+        == 1
+    )
+
+    assert (
+        summary.at[
+            0,
+            f"{key}_target_before_stop_rate",
+        ]
+        == pytest.approx(1.0)
+    )
 
 def test_unresolved_partial_target_path_is_censored_not_failure():
     df = diagnostics(2)
