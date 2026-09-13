@@ -6,9 +6,16 @@ användarens beställning. Läs `ARCHITECTURE.md` för systemkarta och begränsn
 
 ## Börja varje uppgift
 
-1. Läs användarens uppdrag och kontrollera `git status --short` samt relevant diff.
-   Arbetskopian kan innehålla avsiktliga, ocommittade ändringar och nya filer.
-   Återställ, skriv över eller committa inte andras arbete som del av din uppgift.
+1. Läs användarens uppdrag och kontrollera `git status --short`, aktuell branch
+   och relevant diff innan någon ändring görs. Arbetskopian kan innehålla
+   avsiktliga, ocommittade ändringar och nya filer.
+
+   Återställ, skriv över, committa, pusha eller mergea inte andras arbete om
+   detta inte uttryckligen ingår i uppgiften.
+
+   Vid parallellt agentarbete ska varje implementation ha en tydlig filägare och
+   normalt arbeta i separat branch eller worktree. Samordnaren ansvarar för
+   integrationen mellan parallella ändringar.
 2. Läs `ARCHITECTURE.md`, berörda funktioner, deras anropare och tester.
    Dokumentationen är en karta; verifiera detaljer mot aktuell kod.
 3. Beskriv berörda kontrakt innan en ändring: kolumner, index/tidszon, typer,
@@ -42,15 +49,37 @@ avkastningsbacktest. Beskriv inte signalfrekvens eller diagnostik som lönsamhet
   Series måste aligna. Resampling/mappning kräver tidszonsmedveten intradaydata.
 - Ändra inte indexordning, tidszon, kolumnnamn eller maskbitvärden utan att
   uppdatera konsumenter och relevanta tester i samma samordnade ändring.
+- Publika DataFrames från diagnostics- och analysislagren ska behålla sitt
+  dokumenterade schema även när resultatet innehåller noll rader. Nya eller
+  ändrade analystabeller ska verifieras både med data och med tomt resultat.
+  Returnera inte en kolumnlös DataFrame om konsumenterna förväntar sig ett
+  definierat schema.
 - Bevara RMA-seed, EMA-inställningar, RSI-initialisering, `ddof=0`, breakoutens
   `shift(1)` och jämförelseoperatorer när uppgiften inte avser att ändra dem.
 - Skilj diagnostiska marginaler från strategiändringar. Vid ett ändrat entrykrav
   måste core, motsvarande failvillkor i signals och kravlistor i analysis
   granskas tillsammans.
+- `trust_me_core.py` är den primära källan för faktisk strategilogik.
+  `diagnostics_signals.py` och `diagnostics_analysis.py` får spegla denna logik
+  för förklaring och analys, men får inte introducera en alternativ definition
+  av vad som aktiverar en strategi.
+- Duplicerad strategi-semantik är befintlig teknisk skuld och ska inte utökas.
+  Nya entrykrav ska inte implementeras som ytterligare oberoende kopior på flera
+  ställen om ett gemensamt kontrakt eller återanvändbar representation rimligen
+  kan användas.
 - Kontrollera duplicerade standardparametrar i context, signals, parity och
   manuella testprogram. Ändra inte bara en kopia av ett avsett gemensamt värde.
 - Hantera warm-up/NaN uttryckligen. Att fylla NaN eller skära bort inledande bars
   kan ändra signaler, procentnämnare och eventlängder.
+- Bevara tidsmässig kausalitet. Varje feature, signal, label, HTF-värde, exit och
+  framtida ML-input måste endast använda information som faktiskt var tillgänglig
+  vid beslutstidpunkten.
+- Vid nya tidsberoende flöden ska agenten uttryckligen dokumentera när värdet blir
+  tillgängligt, exempelvis `available_at = bar close`, `next bar open` eller
+  motsvarande. En bar får inte använda information från sin egen framtid eller
+  från ännu ej avslutade högre tidsupplösningar.
+- Forward fill, Daily→intraday-mappning, resampling, labels och framtida
+  outcome-beräkningar ska granskas särskilt för lookahead leakage.
 
 ## Kända fallgropar att kontrollera
 
@@ -68,6 +97,36 @@ avkastningsbacktest. Beskriv inte signalfrekvens eller diagnostik som lönsamhet
 - Tomma opportunity events kan sakna kolumner. Rapportprogrammet antar events.
 - Pine-paritet är en ambition och manuella referenser finns; gröna enhetstester
   bevisar inte fullständig paritet eller att marknadsdata är identiska.
+
+## Klassificera ändringen
+
+Varje implementation ska klassificeras som:
+
+- `Behavior change: NO`
+- `Behavior change: YES`
+
+`Behavior change: YES` gäller bland annat om ändringen påverkar:
+
+- strategi- eller entryvillkor
+- jämförelseoperatorer och gränsvärden
+- indikatorberäkningar eller warm-up
+- NaN-hantering
+- tidsstämpling eller index
+- sessioner eller resampling
+- HTF-tillgänglighet
+- signal-, score- eller masklogik
+- eventdefinitioner
+- framtida order/fill-tid
+- exitlogik
+- positionsstorlek eller risk
+- kostnadsmodell
+- labels eller ML-features
+
+En refaktorering får endast klassificeras som `Behavior change: NO` om den
+bevarar observerbart beteende och detta stöds av relevanta tester.
+
+Ändra aldrig förväntade testvärden enbart för att få en beteendeändring att
+framstå som oförändrad.
 
 ## Verifiering
 
@@ -92,6 +151,15 @@ De manuella exemplen använder MU och delvis datumet 2026-08-21. Hårdkodade
 förväntningar kan påverkas av rullande historik och leverantörens data.
 De ersätter inte deterministiska regressionstester.
 
+Redovisa verifiering separat enligt dessa nivåer när de är relevanta:
+
+- `Unit / regression`: deterministiska och nätverksoberoende tester.
+- `Integration`: externa data- eller kompletta dataflöden, exempelvis Yahoo.
+- `Parity / reference`: jämförelser mot Pine/TradingView eller annat externt facit.
+
+Skriv inte enbart "alla tester passerar". Ange vilka nivåer som faktiskt kördes,
+vilka kommandon som användes och vilka relevanta nivåer som inte kördes.
+
 För beteendeändringar: verifiera berörda gränsvärden, indexalignment, warm-up,
 long/short, tomma resultat och signalernas överensstämmelse med diagnostiken.
 Vid nya tidsflöden behövs tester av ofullständiga sessioner och framtidsläckage.
@@ -112,7 +180,19 @@ samordnas innan konsumenter uppdateras. Samordnaren äger integrationsgranskning
 ## Avsluta uppgiften
 
 - Granska diffen och kontrollera att inga orelaterade filer ändrats.
-- Redovisa ändrat beteende, testresultat och faktiska begränsningar.
 - Uppdatera arkitekturdokumentet om modulansvar, kontrakt eller dataflöden ändras.
 - Bevara användarens befintliga arbete och gör inga extra produktändringar som
   en bieffekt av dokumentation eller felsökning.
+
+Slutrapporten ska minst innehålla:
+
+- `Behavior change: YES/NO`
+- ändrade filer
+- vad som ändrades
+- berörda kontrakt
+- tester som kördes och deras resultat
+- relevanta tester som inte kördes
+- kvarvarande risker eller begränsningar
+
+Rapportera inte större säkerhet än verifieringen stödjer. Gröna unit tests innebär
+exempelvis inte automatiskt verifierad Yahoo-integration eller Pine-paritet.

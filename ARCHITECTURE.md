@@ -30,6 +30,53 @@ Kommentarer om parity-verifiering är därför inte bevis på fullständig parit
 | Utvärdering | Signalfrekvens, blockerare, near misses och modultillfällen i `src/diagnostics_analysis.py`; manuella paritykontroller |
 | Live-skanning | `src/live_scanner.py` är tom |
 
+### 1.1 Planerad utvecklingsordning
+
+Följande visar både den redan implementerade analyskedjan och planerade nästa
+steg. Komponenter efter Opportunity / setup events är ännu inte implementerade
+om inget annat uttryckligen anges senare i dokumentet.
+
+```text
+Core / strategi
+      ↓
+Context diagnostics
+      ↓
+Signal diagnostics
+      ↓
+Diagnostic analysis
+      ↓
+Opportunity / setup events
+      ↓
+Opportunity → signal conversion
+      ↓
+Historical outcome engine
+      ↓
+Exit / position / risk lifecycle
+      ↓
+Deterministisk backtestmotor
+      ↓
+Scanner / watchlist / ranking
+      ↓
+Predictive analysis / ML
+```
+
+Principen är att varje lager ska vara verifierat innan ett senare lager börjar
+använda dess output som facit.
+
+ML ska inte implementeras innan följande finns definierat och testat:
+
+- labels och prediction target
+- exakt beslutstidpunkt
+- feature-tillgänglighet
+- train/validation/test-split i tid
+- leakage-kontroller
+- historiska outcomes
+- relevant baseline att jämföra modellen mot
+
+Backtesting ska inte implementeras som enbart en summering av signaler. Innan
+backtestmotorn byggs ska kontrakt finnas för entrytid, fill-pris, exits,
+positionstillstånd, kostnader och kapitalrisk.
+
 ## 2. Fil- och modulkarta
 
 | Fil/katalog | Ansvar och viktiga gränssnitt |
@@ -200,6 +247,24 @@ AND not_overextended AND session_ok AND is_confirmed. Aktiva moduler räknas
 - NaN från warm-up finns kvar; vissa booleska jämförelser blir False och kan
   räknas som blockerare. Analysprocent använder i regel alla inputbars.
 
+### Stabilt outputschema
+
+Publika DataFrames från diagnostics- och analysislagren ska ha ett stabilt,
+dokumenterat schema även när resultatet innehåller noll rader.
+
+En funktion får därför inte normalt returnera en helt kolumnlös DataFrame bara
+för att inga observationer matchade villkoret. Konsumenter ska kunna förlita sig
+på kolumnnamn och datatyper utan att först veta om resultat finns.
+
+Detta är särskilt viktigt för framtida scannerflöden där många tickers legitimt
+kan sakna signaler, near misses eller opportunity events.
+
+Nya analystabeller ska därför definiera sina outputkolumner explicit och testas
+för både:
+
+1. resultat med observationer
+2. tomt resultat med korrekt schema
+
 ### Diagnostikkontrakt
 
 Slutliga fail masks: Direction=1, Score=2, Volatility=4, Candle=8, Session=16,
@@ -274,7 +339,37 @@ definitionstabeller. Alla tre behöver granskas vid en ändring av ett entrykrav
    finns; rapportprogrammet sorterar efter eventkolumner utan föregående tomkontroll.
 8. Manuella baselinekontroller använder ett fast datum men rullande nedladdade
    historikfönster. Data och indikatorseed kan ändras mellan körningar.
-9. Versionslåsning, CI och nätverksoberoende integrationstester saknas.
+9. Versionslåsning, CI och frysta nätverksoberoende regressionstester saknas.
+
+### Testnivåer framåt
+
+Tester ska skiljas i tre nivåer:
+
+**1. Unit / regression**
+
+Deterministiska och nätverksoberoende tester av matematik, strategi,
+diagnostikkontrakt och analystabeller. Dessa ska vara den primära regression-
+baslinjen och kunna köras identiskt över tid.
+
+**2. Integration**
+
+Tester av exempelvis Yahoo-data, resampling, sessioner och kompletta dataflöden.
+Dessa får vara nätverksberoende och kan påverkas av externa dataleverantörer.
+
+**3. Parity / reference**
+
+Kontroller mot TradingView/Pine eller annat externt facit. Dessa visar likhet mot
+referensen för uttryckligen verifierade fall men är inte samma sak som vanliga
+unit tests.
+
+På sikt bör nuvarande rullande MU-baselines kompletteras med frysta OHLCV-
+fixtures, exempelvis CSV eller Parquet under `tests/fixtures/`. Fixtures ska
+innehålla fasta bars och kända förväntade outputs så att förändringar i Yahoo
+Finance inte ändrar regressionstesternas facit.
+
+En agent får inte rapportera enbart "alla tester passerar" om endast en av dessa
+nivåer har körts. Rapporten ska ange exakt vilka testnivåer och kommandon som
+faktiskt kördes.
 
 Verifierat lokalt 2026-09-13:
 
