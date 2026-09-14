@@ -1,0 +1,528 @@
+// AUTHORITATIVE PINE REFERENCE
+// Current Trust Me v2.0 strategy used as reference for the Python migration.
+// Do not infer execution or exit semantics beyond what is defined here.
+
+//@version=6
+strategy(
+     "Modulärt Konfluenssystem - Swing/Intraday v2.0",
+     overlay=true,
+     initial_capital=10000,
+     default_qty_type=strategy.fixed,
+     default_qty_value=1,
+     commission_type=strategy.commission.percent,
+     commission_value=0.1,
+     slippage=2,
+     max_bars_back=500,
+     calc_on_order_fills=true,
+     calc_on_every_tick=true
+)
+
+strategyVersion = "v2.0"
+
+// ============================================================
+// GRUNDLÄGGANDE LÄGE
+// ============================================================
+tradeMode = input.string(
+     "Swing", "Handelsläge",
+     options=["Swing", "Intraday"],
+     tooltip="Swing = håll dagar/veckor, ATR-trailing exit.\nIntraday = tvingad exit vid sessionsslut, tightare stop.",
+     group="Grundläge"
+)
+
+tradeDirection = input.string(
+     "Endast Long", "Handelsriktning",
+     options=["Endast Long", "Endast Short", "Long och Short"],
+     group="Grundläge"
+)
+
+allowLong  = tradeDirection == "Endast Long"  or tradeDirection == "Long och Short"
+allowShort = tradeDirection == "Endast Short" or tradeDirection == "Long och Short"
+
+isSwing = tradeMode == "Swing"
+
+// ============================================================
+// PUNKT 1 & 2: SESSIONSHANTERING (entry-session snävare än exit-session)
+// ============================================================
+entrySessionInput = input.session(
+     "0930-1530",
+     "Intraday: tillåten entry-session",
+     tooltip="Nya intraday-trades tillåts under ordinarie USA-session, men inte sista 30 minuterna.",
+     group="Intraday - Session"
+)
+
+fullSessionInput = input.session(
+     "0930-1600",
+     "Intraday: full handelssession (för tvingad exit)",
+     group="Intraday - Session"
+)
+
+inEntrySession = not na(time(timeframe.period, entrySessionInput))
+inFullSession  = not na(time(timeframe.period, fullSessionInput))
+
+// Swing bryr sig inte om session alls. Intraday kräver att vi är inom entry-fönstret.
+sessionOk = isSwing or inEntrySession
+
+// ============================================================
+// TREND-KONTEXT (hämtad från högre timeframe, oavsett vilken chart du kör på)
+// ============================================================
+trendTF = input.timeframe(
+     "D", "Timeframe för trend-kontext",
+     tooltip="Swing: kör gärna samma som chart (t.ex. D).\nIntraday: kör t.ex. 15m-chart men behåll 'D' här som regimfilter.",
+     group="Grundläge"
+)
+
+emaFastLength = input.int(50,  "Trend EMA (kort)", minval=1, group="Trend")
+emaSlowLength = input.int(200, "Trend EMA (lång)", minval=1, group="Trend")
+adxLength     = input.int(14,  "ADX-period", minval=1, group="Trend")
+
+getTrendContext() => emaFast = ta.ema(close, emaFastLength) ,emaSlow = ta.ema(close, emaSlowLength), [dip, dim, adxVal] = ta.dmi(adxLength, adxLength), [emaFast, emaSlow, adxVal]
+
+[htfEmaFast, htfEmaSlow, htfAdx] = request.security(
+     syminfo.tickerid, trendTF, getTrendContext(), lookahead=barmerge.lookahead_off
+)
+
+// ============================================================
+// PUNKT 3: SEPARATA SWING- / INTRADAY-PARAMETRAR
+// ============================================================
+adxMinSwing    = input.float(18, "Minsta ADX (trendstyrka)", minval=0, group="Swing-parametrar")
+adxMinIntraday = input.float(15, "Minsta ADX (trendstyrka)", minval=0, group="Intraday-parametrar",
+     tooltip="Ofta lägre för intraday - ADX hinner sällan bli lika hög på kortare barer.")
+adxMin = isSwing ? adxMinSwing : adxMinIntraday
+
+uptrend   = htfEmaFast > htfEmaSlow and htfAdx > adxMin
+downtrend = htfEmaFast < htfEmaSlow and htfAdx > adxMin
+
+atrLength = input.int(14, "ATR-period", minval=1, group="Volatilitet")
+atrValueRaw = ta.atr(atrLength)
+atrPct    = (atrValueRaw / close) * 100
+
+minAtrPctSwing    = input.float(1.0, "Minsta ATR% för att handla", minval=0, step=0.1, group="Swing-parametrar")
+minAtrPctIntraday = input.float(0.3, "Minsta ATR% för att handla", minval=0, step=0.1, group="Intraday-parametrar",
+     tooltip="Lägre tröskel eftersom intraday-barer rör sig mindre i % räknat per bar.")
+minAtrPct = isSwing ? minAtrPctSwing : minAtrPctIntraday
+
+volatilityOk = atrPct >= minAtrPct
+
+useCandleFilter = input.bool(true, "Kräv candle-storleksfilter", group="Volatilitet")
+maxCandleAtr    = input.float(2.0, "Max candle-storlek i ATR", minval=0.1, step=0.1, group="Volatilitet")
+candleRange     = high - low
+notOverextended = not useCandleFilter or candleRange < atrValueRaw * maxCandleAtr
+
+// ============================================================
+// MOMENTUM - RSI relativt sitt eget glidande snitt
+// ============================================================
+rsiLength     = input.int(14, "RSI-period", minval=1, group="Momentum")
+rsiSmoothLen  = input.int(9,  "RSI-snittperiod (för relativ jämförelse)", minval=1, group="Momentum")
+rsiValue      = ta.rsi(close, rsiLength)
+rsiAvg        = ta.sma(rsiValue, rsiSmoothLen)
+
+rsiCrossUp    = ta.crossover(rsiValue, rsiAvg)
+rsiCrossDown  = ta.crossunder(rsiValue, rsiAvg)
+
+confluenceWindowSwing    = input.int(5, "Konfluensfönster (barer)", minval=0, group="Swing-parametrar")
+confluenceWindowIntraday = input.int(8, "Konfluensfönster (barer)", minval=0, group="Intraday-parametrar")
+confluenceWindow = isSwing ? confluenceWindowSwing : confluenceWindowIntraday
+
+barsSinceRsiUp    = ta.barssince(rsiCrossUp)
+barsSinceRsiDown  = ta.barssince(rsiCrossDown)
+rsiUpRecent       = not na(barsSinceRsiUp)   and barsSinceRsiUp   <= confluenceWindow
+rsiDownRecent     = not na(barsSinceRsiDown) and barsSinceRsiDown <= confluenceWindow
+
+// RSI < 30 / > 70 nyligen (för mean reversion, punkt 6)
+barsSinceOversold  = ta.barssince(rsiValue < 30)
+barsSinceOverbought = ta.barssince(rsiValue > 70)
+wasOversoldRecently  = not na(barsSinceOversold)   and barsSinceOversold   <= confluenceWindow
+wasOverboughtRecently = not na(barsSinceOverbought) and barsSinceOverbought <= confluenceWindow
+
+// ============================================================
+// VOLYM
+// ============================================================
+useVolumeFilter = input.bool(true, "Kräv volymfilter", group="Volym")
+volumeLengthSwing    = input.int(20, "Volymens snittperiod", minval=1, group="Swing-parametrar")
+volumeLengthIntraday = input.int(30, "Volymens snittperiod", minval=1, group="Intraday-parametrar")
+volumeLength = isSwing ? volumeLengthSwing : volumeLengthIntraday
+averageVolume   = ta.sma(volume, volumeLength)
+volumeStrong    = not useVolumeFilter or volume > averageVolume
+
+// ============================================================
+// BREAKOUT-NIVÅER
+// ============================================================
+breakoutLookbackSwing    = input.int(10, "Breakout lookback (barer)", minval=1, group="Swing-parametrar")
+breakoutLookbackIntraday = input.int(20, "Breakout lookback (barer)", minval=1, group="Intraday-parametrar",
+     tooltip="Ofta högre för intraday eftersom varje bar täcker mindre tid.")
+breakoutLookback = isSwing ? breakoutLookbackSwing : breakoutLookbackIntraday
+
+breakoutLevel    = ta.highest(high, breakoutLookback)[1]
+breakdownLevel   = ta.lowest(low, breakoutLookback)[1]
+
+// ============================================================
+// PUNKT 7: SQUEEZE MED FÖNSTER (inte bara exakt bar efter squeeze)
+// ============================================================
+bbLength    = input.int(20, "BB-period", minval=1, group="Squeeze")
+bbMult      = input.float(2.0, "BB-multiplikator (std)", minval=0.1, group="Squeeze")
+bbBasis     = ta.sma(close, bbLength)
+bbDev       = bbMult * ta.stdev(close, bbLength)
+bbUpper     = bbBasis + bbDev
+bbLower     = bbBasis - bbDev
+bbWidth     = (bbUpper - bbLower) / bbBasis
+bbWidthAvg  = ta.sma(bbWidth, bbLength * 2)
+inSqueeze   = bbWidth < bbWidthAvg * 0.7
+
+squeezeWindowSwing    = input.int(3, "Squeeze: max barer sedan squeeze", minval=1, group="Swing-parametrar")
+squeezeWindowIntraday = input.int(6, "Squeeze: max barer sedan squeeze", minval=1, group="Intraday-parametrar")
+squeezeWindow = isSwing ? squeezeWindowSwing : squeezeWindowIntraday
+barsSinceSqueeze = ta.barssince(inSqueeze)
+squeezeRecent = not na(barsSinceSqueeze) and barsSinceSqueeze <= squeezeWindow
+
+// ============================================================
+// PUNKT 5: FÖRBÄTTRAD PULLBACK (faktisk beröring + återtagning, inte bara "nära")
+// ============================================================
+touchedEmaLong  = ta.lowest(low, 3) <= htfEmaFast * 1.005   // priset har varit vid/under EMA senaste 3 barerna
+reclaimedLong   = close > htfEmaFast and close[1] <= htfEmaFast  // just tagit sig tillbaka över EMA
+
+touchedEmaShort = ta.highest(high, 3) >= htfEmaFast * 0.995
+reclaimedShort  = close < htfEmaFast and close[1] >= htfEmaFast
+
+// ============================================================
+// KONFLUENS-MODULER - LONG
+// ============================================================
+pullbackLong   = uptrend and close > htfEmaSlow and rsiUpRecent and touchedEmaLong and reclaimedLong
+breakoutLong   = uptrend and close > breakoutLevel and volumeStrong and rsiUpRecent
+squeezeLong    = uptrend and squeezeRecent and not inSqueeze and close > bbUpper
+// PUNKT 6: mean reversion kräver nu vändning, inte bara låg RSI
+meanRevLong    = uptrend and close > htfEmaSlow and wasOversoldRecently and rsiCrossUp and close > open
+
+longScore = (
+     (pullbackLong ? 1 : 0) +
+     (breakoutLong ? 1 : 0) +
+     (squeezeLong  ? 1 : 0) +
+     (meanRevLong  ? 1 : 0)
+)
+
+longModuleTxt = (pullbackLong ? "Pullback " : "") + (breakoutLong ? "Breakout " : "") +
+     (squeezeLong ? "Squeeze " : "") + (meanRevLong ? "MeanRev " : "")
+
+// ============================================================
+// KONFLUENS-MODULER - SHORT (symmetriska)
+// ============================================================
+pullbackShort  = downtrend and close < htfEmaSlow and rsiDownRecent and touchedEmaShort and reclaimedShort
+breakoutShort  = downtrend and close < breakdownLevel and volumeStrong and rsiDownRecent
+squeezeShort   = downtrend and squeezeRecent and not inSqueeze and close < bbLower
+meanRevShort   = downtrend and close < htfEmaSlow and wasOverboughtRecently and rsiCrossDown and close < open
+
+shortScore = (
+     (pullbackShort ? 1 : 0) +
+     (breakoutShort ? 1 : 0) +
+     (squeezeShort  ? 1 : 0) +
+     (meanRevShort  ? 1 : 0)
+)
+
+shortModuleTxt = (pullbackShort ? "Pullback " : "") + (breakoutShort ? "Breakout " : "") +
+     (squeezeShort ? "Squeeze " : "") + (meanRevShort ? "MeanRev " : "")
+
+minConfluence = input.int(1, "Minsta antal moduler som ska trigga", minval=1, maxval=4, group="Signal")
+
+// ============================================================
+// ENTRY-SIGNALER (nu med sessionOk, punkt 1 & 2)
+// ============================================================
+longSignal = (
+     allowLong and
+     longScore >= minConfluence and
+     volatilityOk and
+     notOverextended and
+     sessionOk and
+     barstate.isconfirmed
+)
+
+shortSignal = (
+     allowShort and
+     shortScore >= minConfluence and
+     volatilityOk and
+     notOverextended and
+     sessionOk and
+     barstate.isconfirmed
+)
+
+// ============================================================
+// RISK & POSITIONSSTORLEK
+// ============================================================
+
+testWebhook = input.bool(
+     false,
+     "Skicka test till webhook",
+     group="Test"
+)
+
+riskPercent      = input.float(1.0, "Risk per trade (% av eget kapital)", minval=0.01, step=0.1, group="Risk & Position")
+atrMultSwing     = input.float(2.5, "ATR-multiplikator stop (Swing)", minval=0.1, step=0.1, group="Swing-parametrar")
+atrMultIntraday  = input.float(1.2, "ATR-multiplikator stop (Intraday)", minval=0.1, step=0.1, group="Intraday-parametrar")
+maxCapitalPct    = input.float(25, "Max andel av kapital per position (%)", minval=1, maxval=100, group="Risk & Position")
+
+// PUNKT 8: valfritt låst ATR-värde vid entry, istället för löpande ATR under traden
+useLockedAtr = input.bool(false, "Lås ATR-värdet vid entry (istället för löpande ATR)", group="Risk & Position",
+     tooltip="Av = trailing-avståndet ändras med aktuell ATR (mer adaptivt).\nPå = avståndet sätts en gång vid entry och ändras inte (mer förutsägbart, men reagerar inte på volatilitetsförändringar under traden).")
+
+atrMultiplier    = isSwing ? atrMultSwing : atrMultIntraday
+plannedStopDist  = atrValueRaw * atrMultiplier
+
+// PUNKT 9: avrundning till hela aktier + kapitaltak
+rawQty        = plannedStopDist > 0 ? (strategy.equity * (riskPercent / 100)) / plannedStopDist : (strategy.equity * 0.10) / close
+maxQtyCapital = (strategy.equity * (maxCapitalPct / 100)) / close
+positionQty   = math.floor(math.min(rawQty, maxQtyCapital))
+
+// ============================================================
+// STATE - TRAILING STOP + LOGGNING AV ENTRY-DATA (för punkt 13)
+// ============================================================
+var float extremeSinceEntry   = na
+var float activeStop          = na
+var float atrAtEntry          = na
+var string curEntryModule     = na
+var float curEntryRiskShare   = na
+var int curEntryScore         = na
+
+atrForStop() =>
+     useLockedAtr ? atrAtEntry : atrValueRaw
+
+if strategy.position_size > 0
+    if strategy.position_size[1] <= 0
+        atrAtEntry := atrValueRaw
+        extremeSinceEntry := high
+        activeStop := strategy.position_avg_price - atrForStop() * atrMultiplier
+        curEntryRiskShare := math.abs(strategy.position_avg_price - activeStop)
+    else
+        extremeSinceEntry := math.max(extremeSinceEntry, high)
+        activeStop := math.max(activeStop, extremeSinceEntry - atrForStop() * atrMultiplier)
+
+else if strategy.position_size < 0
+    if strategy.position_size[1] >= 0
+        atrAtEntry := atrValueRaw
+        extremeSinceEntry := low
+        activeStop := strategy.position_avg_price + atrForStop() * atrMultiplier
+        curEntryRiskShare := math.abs(activeStop - strategy.position_avg_price)
+    else
+        extremeSinceEntry := math.min(extremeSinceEntry, low)
+        activeStop := math.min(activeStop, extremeSinceEntry + atrForStop() * atrMultiplier)
+
+else
+    extremeSinceEntry := na
+    activeStop := na
+
+// ============================================================
+// ENTRY (punkt 10: rikare alertmeddelanden)
+// ============================================================
+if longSignal and strategy.position_size == 0 and positionQty >= 1
+    curEntryModule := longModuleTxt
+    curEntryScore := longScore
+
+    strategy.entry(
+         "Long", strategy.long, qty=positionQty,
+         alert_message="🟢 KÖP " + syminfo.ticker +
+              " | Läge: " + tradeMode +
+              " | TF: " + timeframe.period +
+              " | Riktning: Long" +
+              " | Modul: " + longModuleTxt +
+              " | Pris: " + str.tostring(close, format.mintick) +
+              " | Score: " + str.tostring(longScore) +
+              " | Qty: " + str.tostring(positionQty)
+    )
+
+if shortSignal and strategy.position_size == 0 and positionQty >= 1
+    curEntryModule := shortModuleTxt
+    curEntryScore := shortScore
+
+    strategy.entry(
+         "Short", strategy.short, qty=positionQty,
+         alert_message="🔴 SÄLJ (short) " + syminfo.ticker +
+              " | Läge: " + tradeMode +
+              " | TF: " + timeframe.period +
+              " | Riktning: Short" +
+              " | Modul: " + shortModuleTxt +
+              " | Pris: " + str.tostring(close, format.mintick) +
+              " | Score: " + str.tostring(shortScore) +
+              " | Qty: " + str.tostring(positionQty)
+    )
+
+// ============================================================
+// EXIT - ATR trailing (båda lägen)
+// ============================================================
+if strategy.position_size != 0
+    strategy.exit(
+         "ATR Exit", from_entry=strategy.position_size > 0 ? "Long" : "Short",
+         stop=activeStop,
+         alert_message="⏹ EXIT " + syminfo.ticker + " | " + tradeMode + " | ATR-stop | Stopnivå: " + str.tostring(activeStop, format.mintick)
+    )
+
+// ============================================================
+// EXIT - Trendbrott (Swing)
+// ============================================================
+if isSwing
+    if strategy.position_size > 0 and close < htfEmaFast and barstate.isconfirmed
+        strategy.close("Long", comment="Trendbrott under EMA")
+    if strategy.position_size < 0 and close > htfEmaFast and barstate.isconfirmed
+        strategy.close("Short", comment="Trendbrott över EMA")
+
+// ============================================================
+// EXIT - Sessionsslut Intraday
+// Fungerar i realtid på 10m, 15m, 30m, 45m, 1h och 2h
+// ============================================================
+
+sessionCloseTime = timestamp(
+     syminfo.timezone,
+     year(timenow, syminfo.timezone),
+     month(timenow, syminfo.timezone),
+     dayofmonth(timenow, syminfo.timezone),
+     16,
+     0
+)
+
+// Exitfönster 16:00–16:05 i börsens tidszon.
+// Pine körs vid prisuppdateringar, inte som en fristående klocka.
+sessionExitNow =
+     not isSwing and
+     strategy.position_size != 0 and
+     timenow >= sessionCloseTime and
+     timenow < sessionCloseTime + 5 * 60 * 1000
+
+if sessionExitNow
+    strategy.close_all(
+         comment="Sessionsslut - tvingad flat",
+         alert_message="⏹ EXIT " + syminfo.ticker +
+             " | Intraday" +
+             " | TF: " + timeframe.period +
+             " | Sessionsslut",
+         immediately=true
+)
+
+// ============================================================
+// PUNKT 12: SÄKERHETSSPÄRR VID OLÄMPLIG TIMEFRAME/LÄGE-KOMBINATION
+// ============================================================
+tfSeconds = timeframe.in_seconds()
+mismatchIntraday = not isSwing and tfSeconds >= 86400          // Intraday men chart = daily eller större
+mismatchSwing    = isSwing and tfSeconds > 0 and tfSeconds < 900  // Swing men chart < 15 min
+
+if barstate.islast and (mismatchIntraday or mismatchSwing)
+    warnTxt = mismatchIntraday ?
+         "⚠️ Intraday-läge men chart-timeframe ≥ 1 dag. Sessionsexit blir meningslös. Byt chart till t.ex. 15m/1h." :
+         "⚠️ Swing-läge men chart-timeframe < 15 min. Överväg en högre chart-timeframe för rimligt antal trades."
+    label.new(
+         bar_index, high, warnTxt,
+         style=label.style_label_down, color=color.orange, textcolor=color.black,
+         size=size.normal
+    )
+
+// ============================================================
+// DIAGRAM
+// ============================================================
+plot(htfEmaFast, "Trend EMA kort", color=color.yellow, linewidth=2)
+plot(htfEmaSlow, "Trend EMA lång", color=color.orange, linewidth=2)
+plot(strategy.position_size != 0 ? activeStop : na, "Aktiv stop", color=color.red, style=plot.style_linebr)
+
+plotshape(longSignal and strategy.position_size == 0, title="Long-signal", style=shape.triangleup,
+     location=location.belowbar, size=size.tiny, color=color.green, text="LONG")
+
+plotshape(shortSignal and strategy.position_size == 0, title="Short-signal", style=shape.triangledown,
+     location=location.abovebar, size=size.tiny, color=color.red, text="SHORT")
+
+// ============================================================
+// PUNKT 13: TRADE-LOGGNING (R-multipel m.m.) VIA strategy.closedtrades
+// ============================================================
+var int lastLoggedCount = 0
+var table logTable = table.new(position.bottom_right, 6, 16, border_width=1)
+
+if barstate.isfirst
+    table.cell(logTable, 0, 0, "Dir",   bgcolor=color.gray, text_color=color.white)
+    table.cell(logTable, 1, 0, "Entry", bgcolor=color.gray, text_color=color.white)
+    table.cell(logTable, 2, 0, "Exit",  bgcolor=color.gray, text_color=color.white)
+    table.cell(logTable, 3, 0, "PnL",   bgcolor=color.gray, text_color=color.white)
+    table.cell(logTable, 4, 0, "R",     bgcolor=color.gray, text_color=color.white)
+    table.cell(logTable, 5, 0, "Modul", bgcolor=color.gray, text_color=color.white)
+
+newClosedTrade =
+     strategy.closedtrades > nz(strategy.closedtrades[1], 0)
+
+if newClosedTrade
+    idx = strategy.closedtrades - 1
+
+    entryP = strategy.closedtrades.entry_price(idx)
+    exitP  = strategy.closedtrades.exit_price(idx)
+    qtySz  = strategy.closedtrades.size(idx)
+    pnl    = strategy.closedtrades.profit(idx)
+    entryT = strategy.closedtrades.entry_time(idx)
+    exitT  = strategy.closedtrades.exit_time(idx)
+
+    dirTxt = qtySz > 0 ? "Long" : "Short"
+
+    rMult = not na(curEntryRiskShare) and curEntryRiskShare > 0 ?
+         pnl / (math.abs(qtySz) * curEntryRiskShare) :
+         na
+
+    tradeId = (
+         syminfo.ticker + "-" +
+         timeframe.period + "-" +
+         str.tostring(entryT)
+    )
+
+    // TradingViews interna tabell
+    row = math.min(lastLoggedCount + 1, 15)
+
+    table.cell(logTable, 0, row, dirTxt)
+    table.cell(logTable, 1, row, str.tostring(entryP, format.mintick))
+    table.cell(logTable, 2, row, str.tostring(exitP, format.mintick))
+    table.cell(
+         logTable,
+         3,
+         row,
+         str.tostring(pnl, "#.##"),
+         text_color=pnl >= 0 ? color.green : color.red
+    )
+    table.cell(logTable, 4, row, str.tostring(rMult, "#.##"))
+    table.cell(logTable, 5, row, curEntryModule)
+
+    // CSV-rad till Google Sheets
+    
+    // CSV-rad till Google Sheets när en riktig trade stängs
+    // Skicka endast en trade som verkligen stängs i realtid
+    if barstate.isrealtime
+        alert(
+             tradeId + ";" +
+             syminfo.ticker + ";" +
+             strategyVersion + ";" +
+             tradeMode + ";" +
+             timeframe.period + ";" +
+             dirTxt + ";" +
+             str.tostring(entryT) + ";" +
+             str.tostring(exitT) + ";" +
+             str.tostring(entryP, format.mintick) + ";" +
+             str.tostring(exitP, format.mintick) + ";" +
+             str.tostring(nz(curEntryRiskShare), format.mintick) + ";" +
+             str.tostring(math.abs(qtySz)) + ";" +
+             str.tostring(pnl, "#.##") + ";" +
+             str.tostring(rMult, "#.##") + ";" +
+             (na(curEntryModule) ? "Okänd" : curEntryModule) + ";" +
+             str.tostring(nz(curEntryScore)),
+             alert.freq_once_per_bar
+        )
+
+    lastLoggedCount := strategy.closedtrades
+
+
+// ============================================================
+// TEST AV MOBILNOTIS + WEBHOOK
+// Ska ligga utanför blocket för avslutade trades
+// ============================================================
+
+// if barstate.isconfirmed
+//     alert(
+//         "HÅRDKODAT-TEST;" +
+//         syminfo.ticker + ";" +
+//         strategyVersion + ";" +
+//         tradeMode + ";" +
+//         timeframe.period + ";" +
+//         "Test;" +
+//         str.tostring(time) + ";" +
+//         str.tostring(time) + ";" +
+//         str.tostring(close, format.mintick) + ";" +
+//         str.tostring(close, format.mintick) + ";" +
+//         "0;0;0;0;Webhooktest;0",
+//         alert.freq_once_per_bar_close
+//     )
