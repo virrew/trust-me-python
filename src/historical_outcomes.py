@@ -219,6 +219,19 @@ def calculate_historical_outcomes(
                 status = "NEITHER" if complete else "CENSORED"
             known_no_target = complete or target_bar is not None
             known_no_stop = complete or stop_bar is not None
+            order_known = status not in {"AMBIGUOUS", "CENSORED"}
+            row.update({
+                f"{key}_target_hit": True if target_bar else (False if known_no_target else pd.NA),
+                f"{key}_stop_hit": True if stop_bar else (False if known_no_stop else pd.NA),
+                f"{key}_target_before_stop": (status == "TARGET_BEFORE_STOP"
+                                                if order_known else pd.NA),
+                f"{key}_stop_before_target": (status == "STOP_BEFORE_TARGET"
+                                                if order_known else pd.NA),
+                f"{key}_neither": (status == "NEITHER" if status != "CENSORED" else pd.NA),
+                f"{key}_bars_to_target": target_bar,
+                f"{key}_bars_to_stop": stop_bar, f"{key}_path_status": status,
+            })
+        rows.append(row)
             is_resolved_order = status not in {
     "CENSORED",
     "AMBIGUOUS",
@@ -303,6 +316,8 @@ def outcome_summary(outcomes: pd.DataFrame, *, by_blocker: bool = False) -> pd.D
                 row[f"median_{metric}_{h}"] = float(values.median())
         for key in pair_keys:
             eligible = group[f"{key}_path_status"].isin({
+                "TARGET_BEFORE_STOP", "STOP_BEFORE_TARGET", "NEITHER",
+            })
                 "TARGET_BEFORE_STOP",
                 "STOP_BEFORE_TARGET",
                 "NEITHER",

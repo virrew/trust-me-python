@@ -539,6 +539,9 @@ Target/stop-par är konfigurerbara och är som standard +3%/-2% och +5%/-3%.
 De följs som standard till största valda horisont, eller till explicit
 `path_horizon`. Första träffbar för vardera nivå rapporteras från 1. Om båda
 nivåerna först träffas i samma OHLC-bar blir `path_status=AMBIGUOUS`: båda
+hit-flaggorna är True men target-before-stop och stop-before-target är NA
+eftersom ordningen är okänd. I övrigt används `TARGET_BEFORE_STOP`,
+`STOP_BEFORE_TARGET`, `NEITHER`
 hit-flaggorna är True men varken target-before-stop eller stop-before-target är
 True. I övrigt används `TARGET_BEFORE_STOP`, `STOP_BEFORE_TARGET`, `NEITHER`
 efter ett komplett fönster eller `CENSORED` för ett ofullständigt olöst fönster.
@@ -546,6 +549,9 @@ Ingen intrabarordning antas.
 
 Aggregeringarna rapporterar alltid `sample_size`, fullständiga samples och
 censurerade samples per horisont, medel/median för forward return, MFE och MAE,
+samt target-before-stop-rate bland statusarna `TARGET_BEFORE_STOP`,
+`STOP_BEFORE_TARGET` och `NEITHER`. `AMBIGUOUS` och `CENSORED` exkluderas från
+denominatorn. Detta är prisbana-analys, inte exits,
 samt target-before-stop-rate bland icke-censurerade path-resultat. Ambiguous är
 observerat men inte target-before-stop. Detta är prisbana-analys, inte exits,
 PnL, backtest, orders, fills, kostnader, risk eller positionshantering.

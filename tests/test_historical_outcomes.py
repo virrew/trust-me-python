@@ -75,6 +75,11 @@ def test_target_stop_paths(highs, lows, status, target_bar, stop_bar):
     value = result.at[0, f"{key}_bars_to_stop"]
     assert (pd.isna(value) if stop_bar is None else value == stop_bar)
     if status == "AMBIGUOUS":
+        assert result.at[0, f"{key}_target_hit"]
+        assert result.at[0, f"{key}_stop_hit"]
+        assert pd.isna(result.at[0, f"{key}_target_before_stop"])
+        assert pd.isna(result.at[0, f"{key}_stop_before_target"])
+
         assert pd.isna(
         result.at[0, f"{key}_target_before_stop"]
     )
@@ -152,6 +157,26 @@ def test_unresolved_partial_target_path_is_censored_not_failure():
                                            target_stops=((.03, .02),), path_horizon=3)
     assert result.at[0, "target_3_stop_2_path_status"] == "CENSORED"
     assert pd.isna(result.at[0, "target_3_stop_2_neither"])
+
+
+def test_ambiguous_and_censored_paths_are_excluded_from_summary_rate():
+    df = diagnostics(5)
+    observations = pd.concat([observation(df, 0), observation(df, 1),
+                              observation(df, 3)], ignore_index=True)
+    # Anchor 0 reaches target on bar 1. Anchor 1 reaches target and stop on bar
+    # 2. Anchor 3 has an unresolved, incomplete two-bar path.
+    df.loc[df.index[1], ["high", "low"]] = [104, 99]
+    df.loc[df.index[2], ["high", "low"]] = [104, 97]
+    outcomes = calculate_historical_outcomes(
+        df, observations, horizons=(1,), target_stops=((.03, .02),),
+        path_horizon=2,
+    )
+    assert outcomes["target_3_stop_2_path_status"].tolist() == [
+        "TARGET_BEFORE_STOP", "AMBIGUOUS", "CENSORED",
+    ]
+    summary = outcome_summary(outcomes).iloc[0]
+    assert summary.target_3_stop_2_eligible_samples == 1
+    assert summary.target_3_stop_2_target_before_stop_rate == 1.0
 
 
 def test_module_activation_and_opportunity_metadata_and_timezone():
