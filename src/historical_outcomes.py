@@ -232,42 +232,6 @@ def calculate_historical_outcomes(
                 f"{key}_bars_to_stop": stop_bar, f"{key}_path_status": status,
             })
         rows.append(row)
-            is_resolved_order = status not in {
-    "CENSORED",
-    "AMBIGUOUS",
-}
-
-    row.update({
-    f"{key}_target_hit": (
-        True
-        if target_bar is not None
-        else (False if known_no_target else pd.NA)
-    ),
-    f"{key}_stop_hit": (
-        True
-        if stop_bar is not None
-        else (False if known_no_stop else pd.NA)
-    ),
-    f"{key}_target_before_stop": (
-        status == "TARGET_BEFORE_STOP"
-        if is_resolved_order
-        else pd.NA
-    ),
-    f"{key}_stop_before_target": (
-        status == "STOP_BEFORE_TARGET"
-        if is_resolved_order
-        else pd.NA
-    ),
-    f"{key}_neither": (
-        status == "NEITHER"
-        if status != "CENSORED"
-        else pd.NA
-    ),
-    f"{key}_bars_to_target": target_bar,
-    f"{key}_bars_to_stop": stop_bar,
-    f"{key}_path_status": status,
-})
-    rows.append(row)
     if not rows:
         return _empty_table(schema, diagnostics.index.dtype)
     result = pd.DataFrame(rows)
@@ -318,10 +282,6 @@ def outcome_summary(outcomes: pd.DataFrame, *, by_blocker: bool = False) -> pd.D
             eligible = group[f"{key}_path_status"].isin({
                 "TARGET_BEFORE_STOP", "STOP_BEFORE_TARGET", "NEITHER",
             })
-                "TARGET_BEFORE_STOP",
-                "STOP_BEFORE_TARGET",
-                "NEITHER",
-})
             n = int(eligible.sum())
             row[f"{key}_eligible_samples"] = n
             row[f"{key}_target_before_stop_rate"] = (
