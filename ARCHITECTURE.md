@@ -555,3 +555,49 @@ denominatorn. Detta är prisbana-analys, inte exits,
 samt target-before-stop-rate bland icke-censurerade path-resultat. Ambiguous är
 observerat men inte target-before-stop. Detta är prisbana-analys, inte exits,
 PnL, backtest, orders, fills, kostnader, risk eller positionshantering.
+
+## 11. Pine-audit för Exit / Position / Risk Lifecycle (2026-09-14)
+
+`reference/trust_me_strategy.pine` är repositoryts auktoritativa v2.0-referens.
+Följande är direkt definierat av Pine-koden, utan antaganden om broker emulatorn:
+
+- `longSignal` och `shortSignal` kräver `barstate.isconfirmed` och är kända vid
+  den bekräftade barens stängning. Entry-anrop kräver dessutom
+  `strategy.position_size == 0` och `positionQty >= 1`. Long-blocket står före
+  short-blocket; båda läser emellertid positionstillståndet i samma körning.
+- Strategin anger `calc_on_order_fills=true` och `calc_on_every_tick=true`, men
+  inte `process_orders_on_close`. Koden definierar när orderanrop görs, inte i
+  sig när broker emulatorn fyller ordern.
+- ATR-multiplikatorn är 2,5 i Swing och 1,2 i Intraday. Vid en ny observerad
+  longposition sätts `atrAtEntry` till aktuell ATR, `extremeSinceEntry` till
+  aktuell high och `activeStop` till genomsnittligt entrypris minus vald ATR
+  gånger multiplikatorn. Short använder aktuell low och plusavståndet.
+- `useLockedAtr=true` använder därefter `atrAtEntry`; annars används aktuell
+  bars ATR. På fortsatta longbars uppdateras extremen och stoppen med maximum;
+  short använder minimum. Stoppen kan därför aldrig flyttas bakåt, även med
+  dynamisk ATR.
+- Med position anropas `strategy.exit("ATR Exit", ...)` med `stop=activeStop`.
+  Swing anropar dessutom `strategy.close` för long när bekräftad close ligger
+  strikt under snabb HTF-EMA och för short när den ligger strikt över.
+  Intraday anropar `strategy.close_all(..., immediately=true)` när `timenow`
+  ligger i 16:00–16:05 i symbolens tidszon.
+- Flat state nollställer `extremeSinceEntry` och `activeStop`, men inte
+  uttryckligen `atrAtEntry`; det skrivs på nytt vid nästa positionsövergång.
+
+Följande avgörs däremot av TradingViews broker emulator/defaultsemantik och kan
+inte härledas säkert ur repositoryt: exakt filltid och fillpris för market
+entries och `strategy.close`, när en nytillagd eller uppdaterad stop blir aktiv,
+historisk intrabarbana för stoppar, effekten av omkörningar efter fills,
+samspelet mellan samtidigt stop- och trend-close-anrop, samt vad två samtidigt
+sanna entryblock innebär innan positionstillståndet har uppdaterats.
+Realtidseffekten av `calc_on_every_tick` och `timenow`/`immediately` kräver också
+ett externt TradingView-facit. `process_orders_on_close` och `pyramiding` är inte
+explicit konfigurerade, så deras defaults hör till denna externa semantik.
+
+En OHLC-baserad Python-motor kan inte avgöra ordningen när flera relevanta
+prisnivåer eller exitkandidater nås på samma bar och får inte hitta på en
+intrabarordning. Innan lifecycle-motorn implementeras måste ovanstående defaults
+verifieras mot officiell TradingView-dokumentation eller ett fryst TradingView-
+facit, och kontraktet måste ange `signal_available_at`, ordertid, filltid och
+när stoppen först kan exekveras. Exit / position / risk lifecycle och
+Deterministic backtest är därför fortsatt ej implementerade.
