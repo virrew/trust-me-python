@@ -22,11 +22,11 @@ Kommentarer om parity-verifiering är därför inte bevis på fullständig parit
 | Preprocessing | Samma fil: kolumnnormalisering, sortering, sessionsaggregering och separat Daily→intraday-mappning |
 | Features/indikatorer | `src/trust_me_core.py`; diagnostiska avstånd och marginaler i `src/diagnostics_context.py` |
 | Strategier | Fyra regelbaserade entrymoduler för long/short i `entry_modules_context()` |
-| Entries | Modulpoäng och slutliga booleska signaler i core, sammanfogade i `src/diagnostics_signals.py`; inga order/fills |
-| Exits | Saknas: ingen exitmotor, stop-loss, take-profit eller trailing stop |
+| Entries | Modulpoäng och slutliga booleska signaler i core, sammanfogade i `src/diagnostics_signals.py`; research-fills för Swing i `src/backtest.py` |
+| Exits | Deterministisk Swing research-modell med kausalt ATR-stop och trendexit; ingen live-exekvering |
 | Risk management | ATR- och candlefilter finns som entryfilter; positionsstorlek, kapitalrisk och portföljgränser saknas |
 | ML | Saknas: ingen modell, träning, inferens, labels eller tränings-/testsplit |
-| Backtesting | `src/backtest.py` är tom; ingen trade-, kostnads- eller equitysimulering |
+| Backtesting | `src/backtest.py` simulerar en position åt gången för Swing och ger trade ledger, state trace och closed-trade summary; ingen kapital-/kostnadsmodell |
 | Utvärdering | Signalfrekvens, blockerare, near misses och modultillfällen i `src/diagnostics_analysis.py`; retrospektiva prisoutcomes i `src/historical_outcomes.py`; manuella paritykontroller |
 | Live-skanning | `src/live_scanner.py` är tom |
 
@@ -49,11 +49,17 @@ Opportunity / setup events
       ↓
 Opportunity → signal conversion
       ↓
-Historical outcome engine
+Historical Outcome Engine          ✅
       ↓
-Exit / position / risk lifecycle
+Research Execution Contract        ✅
       ↓
-Deterministisk backtestmotor
+Deterministic Swing Backtest       ✅
+      ↓
+Strategy Evaluation                ← NÄSTA
+      ↓
+A/B Rule Testing
+      ↓
+Walk-forward / Out-of-sample
       ↓
 Scanner / watchlist / ranking
       ↓
@@ -88,7 +94,7 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/diagnostics_analysis.py` | Tar signaldiagnostikens schema och returnerar elva analystabeller via `analyze_signals()`; hämtar ingen data och beräknar inga indikatorer |
 | `src/historical_outcomes.py` | Bygger aktiverings-/opportunity-observationer, mäter kausalt avgränsade framtida prisoutcomes och returnerar tre aggregerade diagnostikvyer |
 | `src/parity_test.py` | Manuellt körprogram: jämför två hårdkodade MU-bars med aggregerad 45m-data, visar Daily→45m-trend och skriver swingindikatorer |
-| `src/backtest.py` | Tom platshållare |
+| `src/backtest.py` | Kausal deterministisk Swing research-backtest: next-open fills, ATR/trendexits, trade ledger, state trace och closed-trade summary |
 | `src/live_scanner.py` | Tom platshållare |
 | `src/__init__.py` | Tom paketmarkör |
 | `tests/test_core.py` | 13 syntetiska pytest-tester: OHLCV-validering, trend, regim, volatilitet, momentum, volym, breakout, squeeze, pullback, moduler, score, signal och session |
@@ -596,8 +602,48 @@ explicit konfigurerade, så deras defaults hör till denna externa semantik.
 
 En OHLC-baserad Python-motor kan inte avgöra ordningen när flera relevanta
 prisnivåer eller exitkandidater nås på samma bar och får inte hitta på en
-intrabarordning. Innan lifecycle-motorn implementeras måste ovanstående defaults
-verifieras mot officiell TradingView-dokumentation eller ett fryst TradingView-
-facit, och kontraktet måste ange `signal_available_at`, ordertid, filltid och
-när stoppen först kan exekveras. Exit / position / risk lifecycle och
-Deterministic backtest är därför fortsatt ej implementerade.
+intrabarordning. TradingView-paritet skulle kräva att ovanstående defaults
+verifieras mot officiell dokumentation eller ett fryst TradingView-facit. Det
+separata forskningskontraktet nedan väljer i stället explicit kausal semantik.
+
+## 12. Pine Strategy Semantics kontra Research Execution Semantics
+
+`reference/trust_me_strategy.pine` är fortsatt auktoritativ för Trust Me v2.0:s
+strategiintention: finala signaler och moduler, riktning, ATR length 14, Swing
+ATR-multiplikator 2,5, standarden `useLockedAtr=false` och trendbrott vid
+bekräftad close under/över snabb HTF-EMA. Core och diagnostics producerar dessa
+signaler och Pine-derived värden; backtestlagret räknar inte om entrylogiken.
+
+`reference/RESEARCH_EXECUTION_CONTRACT.md` definierar däremot Pythonmodellens
+forskningsfills. En final signal är tillgänglig vid signalbarens close och fylls
+vid nästa open. Initial ATR är signalbarens senast fullt kända ATR. Stoppen som
+testas inom en bar bestämdes före barens high/low; först efter en överlevd close
+kan färdig high/low och dynamisk ATR skapa nästa bars monotona stop. Gap genom
+stop fylls vid open. Trendexit beslutas vid bekräftad close och fylls vid nästa
+open; samtidig trend- och stophändelse där får kombinerad attribution.
+
+Detta är uttryckligen **inte TradingView broker-emulator parity**. Modellen gör
+ingen intrabar path-rekonstruktion. Den hanterar en Swing-position åt gången,
+ignorerar signaler under aktiv position och skippar konflikt mellan samtidiga
+long/short-signaler utan godtycklig prioritet. Saknad nästa open ger ingen entry;
+öppen position vid dataslut censureras utan konstruerat exitpris.
+
+### Backtestkontrakt
+
+`run_swing_backtest(diagnostics)` kräver en unik, stigande DatetimeIndex samt
+OHLC, `atr`, `htf_ema_fast`, finala long/short-signaler, respektive score och
+active-module-mask. Funktionen muterar inte input och returnerar:
+
+- en stabil trade ledger med signalens availability, entry/exit, ATR och stop,
+  kopierad signalprovenance, riktning, bars held, status och riktningsjusterad
+  return för stängda trades;
+- en stabil per-bar state trace med stop/extreme före baren, stopträff,
+  trendbeslut vid close samt stop/extreme för nästa bar.
+
+Tomma tabeller behåller schema, dtypes och inputens tidszon. `summarize_trades`
+beräknar antal closed trades, wins/losses, win rate, medel/median, average
+win/loss, return-baserad profit factor och expectancy. Censurerade trades ingår
+inte. Lagret har ingen equity, sizing, leverage, drawdown, Sharpe, kostnad,
+slippage, multi-asset-portfölj eller parameteroptimering. Intraday är inte
+implementerat. Historical Outcome Engine är fortsatt ett separat
+observationslager och har inte ändrats.
