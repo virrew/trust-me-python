@@ -27,7 +27,7 @@ Kommentarer om parity-verifiering är därför inte bevis på fullständig parit
 | Risk management | ATR- och candlefilter finns som entryfilter; positionsstorlek, kapitalrisk och portföljgränser saknas |
 | ML | Saknas: ingen modell, träning, inferens, labels eller tränings-/testsplit |
 | Backtesting | `src/backtest.py` är tom; ingen trade-, kostnads- eller equitysimulering |
-| Utvärdering | Signalfrekvens, blockerare, near misses och modultillfällen i `src/diagnostics_analysis.py`; manuella paritykontroller |
+| Utvärdering | Signalfrekvens, blockerare, near misses och modultillfällen i `src/diagnostics_analysis.py`; retrospektiva prisoutcomes i `src/historical_outcomes.py`; manuella paritykontroller |
 | Live-skanning | `src/live_scanner.py` är tom |
 
 ### 1.1 Planerad utvecklingsordning
@@ -86,6 +86,7 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/diagnostics_context.py` | `context_diagnostics(data, **parametrar)` bygger OHLCV, läge, session, indikatorer och kontinuerliga marginaler: 81 explicit skrivna unika kolumner |
 | `src/diagnostics_signals.py` | `signal_diagnostics(df, **parametrar)` återanvänder context och lägger till 110 kolumner för pullback, moduler, signaler och förklaringar; totalt avsett schema 191 kolumner |
 | `src/diagnostics_analysis.py` | Tar signaldiagnostikens schema och returnerar elva analystabeller via `analyze_signals()`; hämtar ingen data och beräknar inga indikatorer |
+| `src/historical_outcomes.py` | Bygger aktiverings-/opportunity-observationer, mäter kausalt avgränsade framtida prisoutcomes och returnerar tre aggregerade diagnostikvyer |
 | `src/parity_test.py` | Manuellt körprogram: jämför två hårdkodade MU-bars med aggregerad 45m-data, visar Daily→45m-trend och skriver swingindikatorer |
 | `src/backtest.py` | Tom platshållare |
 | `src/live_scanner.py` | Tom platshållare |
@@ -171,7 +172,9 @@ flowchart TD
     CT --> FS
     FS --> SD[signal_diagnostics: signaler, fail masks, near misses, väntan]
     SD --> AN[analyze_signals: elva DataFrames]
+    AN --> HO[historical_outcomes: framtida prisutfall]
     AN --> OUT[Manuell sortering, assertions och terminalutskrift]
+    HO --> OUT
 ```
 
 1. Ett körprogram väljer ticker, period och interval. Exemplen använder MU,
@@ -495,3 +498,56 @@ De omfattar alla fyra moduler i båda riktningarna, 1/3/5-gränser, längre fön
 censurering, öppna events, scheman, blockerbyten, delade aktiveringar och
 syntetiskt OHLCV → context → signals → analys med prefixkontroll av kausalitet.
 Yahoo-main-programmen och Pine-paritet är separata verifieringsnivåer.
+
+## 10. Historical outcome engine (implementerat 2026-09-13)
+
+`src/historical_outcomes.py` är ett separat, retrospektivt analyslager efter
+signal- och eventdiagnostiken. Det ändrar eller räknar inte om entrykrav,
+moduler, score eller slutfilter. `analyze_historical_outcomes` returnerar råa
+outcomes samt sammanställningar per riktning/modul/sample type, per dominant
+blocker och för full aktivering jämförd med varje sole blocker. Inga grupper
+filtreras på sample size. Resultaten är observationella och stödjer inte i sig
+kausala påståenden om en blockerare.
+
+### Observationer och tid
+
+En `Module Activation` skapas direkt från en True-rad i någon av de åtta
+befintliga modulkolumnerna. Dess `anchor_time` är aktiveringsbarens label och
+`anchor_price` dess close. En `Opportunity Event` återanvänder eventtabellen,
+inklusive dominant blocker, blockerbyten och eventuell konverteringsmetadata;
+dess anchor är `event_end` och close på den raden. Indexets datetime-typ och
+tidszon bevaras i timestampkolumner, även för tomma resultat.
+
+För båda typerna gäller **`available_at = anchor bar close`**. Anchor close är
+ett analytiskt referenspris, inte fill eller faktisk trade-entry. Alla outcomes
+använder endast observerade inputrader `anchor+1 ... anchor+h`; anchor-barens
+high/low ingår aldrig. Bars betyder rader, inte förfluten kalendertid. Lagret är
+framtidsvetande diagnostik och får inte återkopplas som samtidig signalfeature.
+
+### Exakta outcome-definitioner
+
+För riktningstecken `s=+1` Long och `s=-1` Short är forward return efter `h`
+bars `s * (close[t+h] / anchor_price - 1)`. Long MFE är högsta
+`high/anchor_price-1` och Long MAE lägsta `low/anchor_price-1` i hela det
+framtida fönstret. Short MFE är högsta `1-low/anchor_price` och Short MAE lägsta
+`1-high/anchor_price`. Därmed är gynnsam excursion positiv och ogynnsam
+excursion negativ för båda riktningarna. Standardhorisonterna är 1, 3, 5, 10
+och 20 bars. Ett mått är NA och `complete_h=False` om samtliga h framtida rows
+inte finns; det räknas som censurerat, inte som misslyckande.
+
+Target/stop-par är konfigurerbara och är som standard +3%/-2% och +5%/-3%.
+De följs som standard till största valda horisont, eller till explicit
+`path_horizon`. Första träffbar för vardera nivå rapporteras från 1. Om båda
+nivåerna först träffas i samma OHLC-bar blir `path_status=AMBIGUOUS`: båda
+hit-flaggorna är True men target-before-stop och stop-before-target är NA
+eftersom ordningen är okänd. I övrigt används `TARGET_BEFORE_STOP`,
+`STOP_BEFORE_TARGET`, `NEITHER`
+efter ett komplett fönster eller `CENSORED` för ett ofullständigt olöst fönster.
+Ingen intrabarordning antas.
+
+Aggregeringarna rapporterar alltid `sample_size`, fullständiga samples och
+censurerade samples per horisont, medel/median för forward return, MFE och MAE,
+samt target-before-stop-rate bland statusarna `TARGET_BEFORE_STOP`,
+`STOP_BEFORE_TARGET` och `NEITHER`. `AMBIGUOUS` och `CENSORED` exkluderas från
+denominatorn. Detta är prisbana-analys, inte exits,
+PnL, backtest, orders, fills, kostnader, risk eller positionshantering.
