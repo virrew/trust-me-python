@@ -45,6 +45,17 @@ STATE_SCHEMA = {
     "active_stop_for_next_bar": "float64",
 }
 
+RECONCILIATION_SCHEMA = {
+    "signal_time": "datetime64[ns]", "direction": "object",
+    "active_module_mask": "int64", "module_score": "int64",
+    "position_state_at_signal_close": "object",
+    "active_trade_id_at_signal_close": "Int64",
+    "resolution": "object", "trade_id": "Int64",
+    "entry_time": "datetime64[ns]", "closed": "boolean",
+    "censored_at_end": "boolean",
+}
+
+
 SUMMARY_SCHEMA = {
     "number_of_trades": "int64", "wins": "int64", "losses": "int64",
     "win_rate": "float64", "mean_return": "float64",
@@ -100,6 +111,16 @@ def run_swing_backtest(
     diagnostics: pd.DataFrame, *, atr_multiplier: float = 2.5,
     use_locked_atr: bool = False,
 ) -> SwingBacktestResult:
+    """Preserve the public ledger/state pair using the shared execution loop."""
+    result, _ = run_swing_backtest_with_reconciliation(
+        diagnostics, atr_multiplier=atr_multiplier, use_locked_atr=use_locked_atr)
+    return result
+
+
+def run_swing_backtest_with_reconciliation(
+    diagnostics: pd.DataFrame, *, atr_multiplier: float = 2.5,
+    use_locked_atr: bool = False,
+) -> tuple[SwingBacktestResult, pd.DataFrame]:
     """Simulate one-at-a-time Swing trades from final diagnostic signals.
 
     A signal is known at its bar close and fills at the following open. ATR on
@@ -108,7 +129,7 @@ def run_swing_backtest(
     """
     _validate(diagnostics, atr_multiplier)
     timestamp_dtype = diagnostics.index.dtype
-    trades, states = [], []
+    trades, states, resolutions = [], [], []
     position = None
     pending_entry = None
     next_trade_id = 1
@@ -186,21 +207,43 @@ def run_swing_backtest(
             if stop_hit:
                 position = None
 
-        # A bar's final signals are inspected only after all bar processing.
-        if position is None and offset + 1 < len(diagnostics):
-            long_signal = bool(pd.notna(bar.long_signal) and bar.long_signal)
-            short_signal = bool(pd.notna(bar.short_signal) and bar.short_signal)
-            if long_signal != short_signal:
-                direction = "Long" if long_signal else "Short"
-                atr_value = float(bar.atr)
-                if np.isfinite(atr_value) and atr_value >= 0:
-                    prefix = direction.lower()
-                    pending_entry = {
-                        "direction": direction, "signal_time": bar_time,
-                        "signal_available_at": "signal bar close", "atr": atr_value,
-                        "active_module_mask": int(bar[f"{prefix}_active_module_mask"]),
-                        "module_score": int(bar[f"{prefix}_score"]),
-                    }
+        long_signal = bool(pd.notna(bar.long_signal) and bar.long_signal)
+        short_signal = bool(pd.notna(bar.short_signal) and bar.short_signal)
+        resolution = None
+        if position is not None:
+            resolution = "IGNORED_POSITION_OPEN"
+        elif offset + 1 == len(diagnostics):
+            resolution = "NO_NEXT_BAR"
+        elif long_signal and short_signal:
+            resolution = "CONFLICTING_SIGNAL"
+        elif (long_signal or short_signal) and not (
+                np.isfinite(float(bar.atr)) and float(bar.atr) >= 0):
+            resolution = "INVALID_ENTRY_PREREQUISITE"
+
+        for direction, active in (("Long", long_signal), ("Short", short_signal)):
+            if active:
+                prefix = direction.lower()
+                resolutions.append({
+                    "signal_time": bar_time, "direction": direction,
+                    "active_module_mask": int(bar[f"{prefix}_active_module_mask"]),
+                    "module_score": int(bar[f"{prefix}_score"]),
+                    "position_state_at_signal_close": (
+                        position["direction"] if position is not None else "FLAT"),
+                    "active_trade_id_at_signal_close": (
+                        position["trade_id"] if position is not None else pd.NA),
+                    "resolution": resolution,
+                })
+
+        # The same eligibility decision drives execution and its audit row.
+        if resolution is None and long_signal != short_signal:
+            direction = "Long" if long_signal else "Short"
+            prefix = direction.lower()
+            pending_entry = {
+                "direction": direction, "signal_time": bar_time,
+                "signal_available_at": "signal bar close", "atr": float(bar.atr),
+                "active_module_mask": int(bar[f"{prefix}_active_module_mask"]),
+                "module_score": int(bar[f"{prefix}_score"]),
+            }
 
     if position is not None:
         row = _trade_row(position)
@@ -208,8 +251,22 @@ def run_swing_backtest(
                     "exit_reason": "CENSORED_AT_END", "closed": False,
                     "censored_at_end": True, "return_pct": np.nan})
         trades.append(row)
-    return SwingBacktestResult(_table(trades, TRADE_SCHEMA, timestamp_dtype),
-                               _table(states, STATE_SCHEMA, timestamp_dtype))
+    fills = {(t["signal_time"], t["direction"]): t for t in trades}
+    for row in resolutions:
+        trade = fills.get((row["signal_time"], row["direction"]))
+        row.update({"trade_id": pd.NA, "entry_time": pd.NaT,
+                    "closed": pd.NA, "censored_at_end": pd.NA})
+        if trade is not None:
+            row.update({key: trade[key] for key in
+                        ("trade_id", "entry_time", "closed", "censored_at_end")})
+            row["resolution"] = ("FILLED" if trade["closed"]
+                                 else "FILLED_BUT_CENSORED_AT_END")
+        assert row["resolution"] is not None
+    return (
+        SwingBacktestResult(_table(trades, TRADE_SCHEMA, timestamp_dtype),
+                            _table(states, STATE_SCHEMA, timestamp_dtype)),
+        _table(resolutions, RECONCILIATION_SCHEMA, timestamp_dtype),
+    )
 
 
 def _trade_row(position):
