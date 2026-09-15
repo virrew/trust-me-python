@@ -55,9 +55,9 @@ Research Execution Contract        ✅
       ↓
 Deterministic Swing Backtest       ✅
       ↓
-Strategy Evaluation                ← NÄSTA
+Strategy Evaluation                ✅
       ↓
-A/B Rule Testing
+A/B Rule Testing                   ← NÄSTA
       ↓
 Walk-forward / Out-of-sample
       ↓
@@ -95,10 +95,12 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/historical_outcomes.py` | Bygger aktiverings-/opportunity-observationer, mäter kausalt avgränsade framtida prisoutcomes och returnerar tre aggregerade diagnostikvyer |
 | `src/parity_test.py` | Manuellt körprogram: jämför två hårdkodade MU-bars med aggregerad 45m-data, visar Daily→45m-trend och skriver swingindikatorer |
 | `src/backtest.py` | Kausal deterministisk Swing research-backtest: next-open fills, ATR/trendexits, trade ledger, state trace och closed-trade summary |
+| `src/strategy_evaluation.py` | Deskriptiv Strategy Evaluation: total-, riktnings- och modulattribuerad trade-performance, approved-vs-blocked paths samt MFE/MAE jämfört med realiserat trade-resultat |
 | `src/live_scanner.py` | Tom platshållare |
 | `src/__init__.py` | Tom paketmarkör |
 | `tests/test_core.py` | 13 syntetiska pytest-tester: OHLCV-validering, trend, regim, volatilitet, momentum, volym, breakout, squeeze, pullback, moduler, score, signal och session |
 | `tests/test_market_data.py` | Tom; OHLCV-validering testas i `test_core.py` |
+| `tests/test_strategy_evaluation.py` | Deterministiska tester av performancegrupper, censurering, approved/blocked, excursion-matchning, tomma scheman och tidszon |
 | `tests/diagnostics_context_test.py` | Manuellt `main()`: hämtar MU Daily, kontrollerar kontext på 2026-08-21 och skriver värden |
 | `tests/diagnostics_signals_test.py` | Manuellt `main()`: samma datatyp/datum; hårdkodade förväntningar på moduler, masks, signaler och streaks |
 | `tests/diagnostics_analysis_test.py` | Manuellt `main()`: två års MU Daily, elva tabeller, eventsammanställningar och konsistensassertions |
@@ -647,3 +649,60 @@ inte. Lagret har ingen equity, sizing, leverage, drawdown, Sharpe, kostnad,
 slippage, multi-asset-portfölj eller parameteroptimering. Intraday är inte
 implementerat. Historical Outcome Engine är fortsatt ett separat
 observationslager och har inte ändrats.
+
+## 13. Strategy Evaluation (implementerat 2026-09-15)
+
+`src/strategy_evaluation.py` komponerar befintlig signaldiagnostik, Historical
+Outcomes och den deterministiska Swing-backtesten. `evaluate_strategy` ändrar
+inte input och returnerar trade-performance, approved-vs-blocked-jämförelse,
+rå MFE/MAE-kontra-realiserat per trade/modul, dess sammanställning, trade ledger
+och evaluation-specifika historiska outcomes som tabeller med stabila scheman.
+Lagret hämtar ingen data, ändrar inga entryregler och gör ingen A/B-testning,
+parameteroptimering, scannerlogik eller ML.
+
+### Performance och modulattribuering
+
+`trade_performance` använder endast stängda trades. Den ger en totalrad,
+Long/Short, de fyra modulerna över båda riktningarna samt varje kombination av
+riktning och modul. Alla grupper rapporterar antal trades, wins/losses, win
+rate, medel/median, average win/loss, profit factor och expectancy med samma
+return-baserade definitioner som backtestsummeringen. Nollreturer är varken
+wins eller losses; censurerade trades ingår inte.
+
+Aktiva modulmasker tolkas enligt det befintliga kontraktet Pullback=1,
+Breakout=2, Squeeze=4 och Mean Reversion=8. En trade med flera aktiva moduler
+attribueras till varje aktiv modul. Modulrader är därför överlappande kohorter
+och får inte summeras för att återskapa totalen; detta är attribution, inte ett
+påstående om att en enskild modul orsakade resultatet.
+
+### Approved signals kontra blocked opportunities
+
+Approved Signal är en befintlig final `long_signal`/`short_signal` vid
+signalbarens close, expanderad till varje bit i dess aktiva modulmask. Blocked
+Opportunity är ett befintligt sammanhängande sole-blocker-event från
+`module_opportunity_events`, förankrat vid eventets slutbar. Båda har
+`available_at = anchor bar close`. Outcomes börjar strikt på nästa observerade
+rad och blir kända först när hela vald horisont har stängt. Ofullständiga fönster
+är censurerade och exkluderas från win rate, profit factor och expectancy.
+
+Jämförelsen visar sample size, fullständiga/censurerade samples, forward-return,
+MFE, MAE, win rate, profit factor och expectancy per riktning, modul och grupp.
+Blocked opportunities är prisbaneobservationer utan order, fill eller realiserad
+PnL. Skillnader är deskriptiva och får inte beskrivas som kausal blockereffekt
+eller robust strategi-edge.
+
+### MFE/MAE kontra realiserat
+
+Fyllda backtesttrades matchas på riktning och `signal_time` mot godkända
+signalobservationer och expanderas per aktiv modul. Tabellen jämför historisk
+MFE/MAE under vald fast horisont efter signalbaren med trade ledgerns
+riktningsjusterade realiserade return samt `realized_to_mfe` och
+`mfe_minus_realized`. En trade kan alltså förekomma i flera modulrader.
+Excursionens ankare är signalbarens close medan realiserat resultat använder
+research-entry vid nästa open; storheterna är avsiktligt diagnostiska och inte
+en exit-effektivitetsidentitet. En öppen/censurerad trade saknar realiserad
+return, och ett ofullständigt excursionfönster saknar MFE/MAE.
+
+Evaluation introducerar ingen kapitalserie, drawdown, riskjusterad avkastning,
+kostnad, statistisk signifikans eller out-of-sample-verifiering. Nästa roadmap-
+lager är A/B Rule Testing och ingår inte i denna implementation.
