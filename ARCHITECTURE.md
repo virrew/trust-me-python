@@ -57,6 +57,8 @@ Deterministic Swing Backtest       ✅
       ↓
 Strategy Evaluation                ✅
       ↓
+Trade Lifecycle + Signal → Fill    ✅
+      ↓
 A/B Rule Testing                   ← NÄSTA
       ↓
 Walk-forward / Out-of-sample
@@ -96,6 +98,7 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/parity_test.py` | Manuellt körprogram: jämför två hårdkodade MU-bars med aggregerad 45m-data, visar Daily→45m-trend och skriver swingindikatorer |
 | `src/backtest.py` | Kausal deterministisk Swing research-backtest: next-open fills, ATR/trendexits, trade ledger, state trace och closed-trade summary |
 | `src/strategy_evaluation.py` | Deskriptiv Strategy Evaluation: total-, riktnings- och modulattribuerad trade-performance, approved-vs-blocked paths samt MFE/MAE jämfört med realiserat trade-resultat |
+| `src/trade_lifecycle.py` | Faktisk holding-period MFE/MAE med osäkerhetsintervall, stopförlopp och separat post-exit-observation |
 | `src/live_scanner.py` | Tom platshållare |
 | `src/__init__.py` | Tom paketmarkör |
 | `tests/test_core.py` | 13 syntetiska pytest-tester: OHLCV-validering, trend, regim, volatilitet, momentum, volym, breakout, squeeze, pullback, moduler, score, signal och session |
@@ -655,7 +658,8 @@ observationslager och har inte ändrats.
 `src/strategy_evaluation.py` komponerar befintlig signaldiagnostik, Historical
 Outcomes och den deterministiska Swing-backtesten. `evaluate_strategy` ändrar
 inte input och returnerar trade-performance, approved-vs-blocked-jämförelse,
-rå MFE/MAE-kontra-realiserat per trade/modul, dess sammanställning, trade ledger
+rå MFE/MAE-kontra-realiserat per trade/modul, dess sammanställning, lifecycle,
+stopförlopp, signal→fill reconciliation, trade ledger
 och evaluation-specifika historiska outcomes som tabeller med stabila scheman.
 Lagret hämtar ingen data, ändrar inga entryregler och gör ingen A/B-testning,
 parameteroptimering, scannerlogik eller ML.
@@ -706,3 +710,162 @@ return, och ett ofullständigt excursionfönster saknar MFE/MAE.
 Evaluation introducerar ingen kapitalserie, drawdown, riskjusterad avkastning,
 kostnad, statistisk signifikans eller out-of-sample-verifiering. Nästa roadmap-
 lager är A/B Rule Testing och ingår inte i denna implementation.
+
+
+## 14. Trade Lifecycle Diagnostics + Signal → Fill (2026-09-15)
+
+Implementerat prerequisite före A/B Rule Testing. **Behavior change: YES**
+avser nya diagnostiska outputs. **Existing strategy behavior changed: NO**.
+Pine-, signal-, entry-, exit- och Research Execution Contract är oförändrade.
+Ingen parameteroptimering eller A/B-testning ingår.
+
+### API och dataflöde
+
+- `run_swing_backtest(diagnostics, ...)` behåller sitt befintliga
+  `SwingBacktestResult(trades, state)` och befintliga tabellscheman.
+- `run_swing_backtest_with_reconciliation(diagnostics, ...)` returnerar
+  `(SwingBacktestResult, reconciliation)` från samma körloop. Samma
+  eligibility-beslut används för entry och dess diagnostiska resolution.
+  Ingen separat strategiberäkning eller exekveringssimulator införs.
+- `trade_lifecycle_diagnostics(diagnostics, backtest, post_exit_horizon=20)`
+  konsumerar ledger/state från **samma input och körning** och returnerar
+  `trade_lifecycle` samt `trade_stop_path`. Parametern är ett positivt heltal
+  och påverkar endast post-exit-observationen.
+- `evaluate_strategy` returnerar dessa två tabeller och
+  `signal_fill_reconciliation` utöver de sex tidigare tabellerna. Backtesten
+  körs bara en gång. `excursion_horizon` används även som post-exit-horisont.
+  Befintlig Historical Outcomes och `excursion_vs_realized` behåller
+  signal-close-ankaret och det fasta framtidsfönstret.
+
+Input förutsätter ett instrument, stängda OHLC-bars och backtestens unika,
+stigande DatetimeIndex. Ingen resampling, warm-up-trimning eller imputering
+sker. Timestampkolumner bevarar inputens datetime-typ/tidszon; de är barlabels,
+inte konstruerade intrabar-klockslag. Tabeller har RangeIndex, explicit
+kolumnordning och dtypes även med noll rader. Schemakällor är
+`LIFECYCLE_SCHEMA`, `STOP_PATH_SCHEMA` och `RECONCILIATION_SCHEMA`.
+
+### Lifecycle: en rad per trade, utan modulexpansion
+
+Samtliga `TRADE_SCHEMA`-kolumner kopieras, inklusive signal/entry/exit,
+faktiska priser, exit reason, initial stop, ATR, modulmask, module score,
+bars held, closed/censored och return. Masker och score räknas inte om.
+
+| Tillägg | Typ / innebörd |
+| --- | --- |
+| `observed_through` | timestamp; exitbaren eller sista observerade baren vid censurering |
+| `exit_timing` | object; OPEN / INTRABAR_STOP / CENSORED |
+| `exit_stop_source` | object; INITIAL_STOP / TRAILING_STOP när stop faktiskt deltar i exit, annars saknat |
+| `intrabar_exit_uncertain` | bool; exit inträffar inne i en stopbar med okänd extremordning |
+| `excursion_data_valid` | bool; entry är positivt/finit och använda priser är finita; ingen generell OHLC-kvalitetsgaranti |
+| `in_trade_mfe`, `in_trade_mae` | float64; exakta punktvärden endast när respektive bounds sammanfaller, annars NaN |
+| `in_trade_mfe_lower/upper`, `in_trade_mae_lower/upper` | float64; numeriskt ordnade konservativa intervall |
+| `mfe_bar`, `bars_to_mfe` | timestamp / nullable Int64; första säkert identifierade maxbar, entrybaren räknas som 0; annars NaT/NA |
+| `realized_to_in_trade_mfe` | float64; return_pct / exakt MFE, endast closed och MFE > 0 |
+| `in_trade_mfe_minus_realized` | float64; exakt MFE minus return_pct, endast closed |
+| `post_exit_horizon` | int64; fast antal observerade rader efter signalbaren |
+| `post_exit_window_complete` | bool; hela signalhorisonten finns i datasetet, oberoende av trade-status |
+| `post_exit_observed_bars` | int64; antal inkluderade post-exit-bars inom horisonten |
+| `post_exit_mfe_from_entry` | float64; separat gynnsam post-exit-excursion relativt faktiskt entrypris |
+
+För s=+1 Long och s=-1 Short mäts priser p som `s*(p/entry_price-1)`.
+Värden är return-fraktioner: 0,05 betyder 5 %. Noll vid faktisk entry ingår,
+så MFE >= 0 och MAE <= 0. För censurerade trades avser excursionen endast
+observerad positionstid; framtida slutlig lifecycle är fortfarande okänd.
+Realisering och dess kvoter är NaN vid censurering.
+
+**Säkert observerade priser** är entry, open på innehavsbars, high/low/close
+på fullt överlevda bars samt faktisk exit-fill. Vid exit på open ingår bara
+open/fill från exitbaren; dess senare high/low/close utesluts helt.
+Det gäller ATR-gap, trendexit och kombinerad trend/stop-exit.
+
+Vid intrabar ATR-stop ingår exitbarens open och stop-fill som säkra endpoints.
+Exitbarens high/low används enbart som möjliga extrema för konservativa
+bounds; dess close används inte. MFE lower och MAE upper kommer från säkra
+priser. MFE upper och MAE lower inkluderar möjliga extrema. Intervallen kan
+vara bredare än strikt nödvändigt: ingen kontinuerlig intrabar-prisbana eller
+tät ticksekvens antas. Exitbarens high/low räknas aldrig automatiskt som
+pre-exit-observationer.
+
+Ett tidigare säkert extremvärde kan dominera hela exitbarens möjliga extrem
+så att ett punktvärde ändå är bestämt. MFE-bar är då första säkra maxbar.
+Noll-MFE får entrybaren som referens. Ingen exakt tid inom en bar rapporteras.
+Om använda priser saknas/är icke-finita blir alla excursion-bounds och
+punktvärden NaN; backtestens egna fills ändras inte.
+
+### Stopförlopp
+
+`trade_stop_path` behåller `STATE_SCHEMA` och lägger till object
+`stop_source_at_bar_start`, bool `stop_moved_at_close` och bool
+`exit_at_open`. Det finns en rad per aktiv bar, inklusive trend-exitbaren
+som saknas i den ursprungliga state-tabellen. Dess aktiva stop/extreme kopieras
+från föregående bars next-stop/extreme; ingen stop räknas om.
+Exitbaren på open har ingen next-stop. Den ursprungliga state-tabellen ändras
+inte. INITIAL_STOP betyder samma nivå som initial stop; TRAILING_STOP betyder
+att den monotona stoppen har flyttats. Detta beskriver nivån som faktiskt
+användes och är inget påstående om en alternativ exits resultat.
+
+### Signal → Fill Reconciliation
+
+En rad per True final signal och riktning, även utan aktiv modulbit.
+Samtidiga Long/Short ger två rader. Tabellen kopierar `signal_time`,
+`direction`, `active_module_mask` och `module_score`.
+`position_state_at_signal_close` är FLAT/Long/Short, och nullable Int64
+`active_trade_id_at_signal_close` identifierar positionen vid close.
+`trade_id` (nullable Int64), `entry_time` (timestamp), `closed` och
+`censored_at_end` (nullable boolean) beskriver endast signalens egen fill;
+utan fill är dessa NA/NaT, inte en annan positions trade-id/status.
+
+`resolution` följer körloopens befintliga beslut i denna prioritetsordning:
+
+1. IGNORED_POSITION_OPEN: position kvar vid signal-close, även när trendexit
+   har schemalagts för nästa open och även på sista baren.
+2. NO_NEXT_BAR: flat men ingen nästa observerad bar, även vid signalkonflikt.
+3. CONFLICTING_SIGNAL: flat, nästa bar finns, båda riktningarna är True.
+4. INVALID_ENTRY_PREREQUISITE: signalbarens ATR är negativ eller icke-finit.
+   ATR=0 accepteras redan av backtesten och skapar ingen ny bortfallsregel.
+5. FILLED: faktiskt fylld och senare stängd trade.
+6. FILLED_BUT_CENSORED_AT_END: faktisk fill, fortfarande censurerad vid dataslut.
+
+Det finns ingen separat sizing-, pris-, kostnads- eller sessionsrejection i
+modellen. Sådana statusar uppfinns inte. En signal på en stop-/trend-exitbar
+kan accepteras eftersom positionen redan är flat vid den barens close.
+
+För en vald riktning/modulmask gäller:
+antal signalrader = FILLED + FILLED_BUT_CENSORED_AT_END + alla bortfallsrader.
+FILLED motsvarar antalet stängda trades från dessa signaler.
+Exempelvis verifieras 30 Approved Long → 13 FILLED + 1 censurerad fill +
+16 IGNORED_POSITION_OPEN. Filtrera Breakout med `active_module_mask & 2 != 0`
+och koppla fyllda signaler till lifecycle/stopförlopp med `trade_id`.
+Flerbitsmasker är överlappande kohorter och ska inte summeras över moduler.
+
+### Post-exit och temporal availability
+
+Post-exit-observationen använder återstoden av samma signalankrade horisont
+som Evaluation, men mäter relativt faktiskt entrypris. Vid open-exit ingår
+exitbarens high/low eftersom de sker efter fill vid open; vid intrabar-exit
+utesluts hela exitbaren eftersom dess återstående del inte kan isoleras.
+Endast bars inom signal+1 ... signal+h ingår. Måttet är max(0, gynnsam
+riktningsjusterad return) på dessa post-exit-bars. Det är NaN om fönstret är
+ofullständigt, inga post-exit-bars ingår, traden är censurerad eller använda
+priser är icke-finita. Avsaknad av eligible bars betyder inte noll rörelse.
+
+Detta gör att stora säkra lifecycle-vinster som senare återlämnats kan skiljas
+från stora observerade rörelser efter exit. Intrabarosäkerhet kan fortfarande
+hindra en sådan slutsats. Måtten bevisar inte att en alternativ stop eller
+senare exit hade gett bättre resultat.
+
+- Signalprovenance och position state: available_at = signal bar close.
+- Entry/fill: available_at = next bar open.
+- Stop at bar start är känt före high/low; stopförflyttning beräknas vid
+  överlevd close och gäller först nästa bar. En sista next-stop kan därför
+  sakna en observerad bar där den används.
+- Realiserad exit är känd vid research-fill, men intrabarbarens bounds kräver
+  dess avslutade OHLC: available_at = exit bar close för färdig lifecycle.
+- Censurerad lifecycle/status gäller observerat dataslut och är tillgänglig
+  vid sista inputbarens close. En senare körning kan avsluta den traden.
+- FILLED kontra FILLED_BUT_CENSORED_AT_END är retrospektiv slutstatus, inte
+  framtida information som var känd vid signal-close.
+- Full post-exit-observation är tillgänglig först vid signal+h bar close.
+
+Alla framtidsberoende fält är analysoutputs, inte samtidiga signaler eller
+ML-features. Inga TradingView broker-emulator-paritetspåståenden görs.

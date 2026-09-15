@@ -82,7 +82,8 @@ def test_end_to_end_evaluation_matches_excursions_to_realized_trade():
     result = evaluate_strategy(frame, horizons=(2,), excursion_horizon=2)
     assert set(result) == {"trade_performance", "approved_vs_blocked",
                            "excursion_vs_realized", "excursion_summary",
-                           "trades", "evaluation_outcomes"}
+                           "trades", "evaluation_outcomes", "trade_lifecycle",
+                           "trade_stop_path", "signal_fill_reconciliation"}
     total = result["trade_performance"].iloc[0]
     assert total.number_of_trades == 1
     comparison = result["excursion_vs_realized"]
@@ -108,3 +109,21 @@ def test_module_masks_outside_documented_contract_do_not_create_unknown_groups(m
                            "closed": [True], "return_pct": [.1]})
     result = trade_performance(trades)
     assert set(result[result.group_type == "Module"].module) == set(MODULE_BITS)
+
+
+def test_evaluation_lifecycle_and_reconciliation_share_trade_ids_and_provenance():
+    frame = _diagnostics(23, "Europe/Stockholm")
+    frame.loc[frame.index[:3], ["long_signal", "long_active_module_mask", "long_score"]] = [True, 3, 2]
+    frame.loc[frame.index[1], "htf_ema_fast"] = 101
+    frame.loc[frame.index[4:21], "high"] = 150
+    result = evaluate_strategy(frame)
+    lifecycle = result["trade_lifecycle"]
+    reconciliation = result["signal_fill_reconciliation"]
+    assert lifecycle.trade_id.tolist() == result["trades"].trade_id.tolist()
+    assert reconciliation.resolution.iloc[1] == "IGNORED_POSITION_OPEN"
+    assert lifecycle.iloc[0].post_exit_mfe_from_entry == .5
+    assert lifecycle.iloc[0].in_trade_mfe == pytest.approx(.02)
+    assert lifecycle.iloc[0].active_module_mask == 3
+    assert lifecycle.iloc[0].module_score == 2
+    assert lifecycle.entry_time.dtype == frame.index.dtype
+    assert reconciliation.entry_time.dtype == frame.index.dtype

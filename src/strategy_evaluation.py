@@ -13,7 +13,8 @@ from collections.abc import Sequence
 import numpy as np
 import pandas as pd
 
-from src.backtest import run_swing_backtest
+from src.backtest import run_swing_backtest_with_reconciliation
+from src.trade_lifecycle import trade_lifecycle_diagnostics
 from src.diagnostics_analysis import module_opportunity_events
 from src.historical_outcomes import (
     DEFAULT_HORIZONS, OBSERVATION_SCHEMA, calculate_historical_outcomes,
@@ -235,7 +236,7 @@ def evaluate_strategy(diagnostics: pd.DataFrame, *,
     horizons = tuple(horizons)
     if excursion_horizon not in horizons:
         raise ValueError("excursion_horizon must be included in horizons")
-    backtest = run_swing_backtest(diagnostics, **backtest_kwargs)
+    backtest, reconciliation = run_swing_backtest_with_reconciliation(diagnostics, **backtest_kwargs)
     observations = _evaluation_observations(diagnostics)
     outcomes = calculate_historical_outcomes(
         diagnostics, observations, horizons=horizons,
@@ -243,6 +244,9 @@ def evaluate_strategy(diagnostics: pd.DataFrame, *,
     comparison = excursion_vs_realized(
         backtest.trades, outcomes, excursion_horizon, diagnostics.index.dtype)
     return {
+        **trade_lifecycle_diagnostics(
+            diagnostics, backtest, post_exit_horizon=excursion_horizon),
+        "signal_fill_reconciliation": reconciliation,
         "trade_performance": trade_performance(backtest.trades),
         "approved_vs_blocked": approved_vs_blocked_evaluation(outcomes, excursion_horizon),
         "excursion_vs_realized": comparison,
