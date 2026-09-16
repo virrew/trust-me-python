@@ -59,9 +59,9 @@ Strategy Evaluation                ✅
       ↓
 Trade Lifecycle + Signal → Fill    ✅
       ↓
-A/B Rule Testing                   ← NÄSTA
+A/B Rule Testing                   ✅
       ↓
-Walk-forward / Out-of-sample
+Walk-forward / Out-of-sample       ← NÄSTA
       ↓
 Scanner / watchlist / ranking
       ↓
@@ -99,6 +99,7 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/backtest.py` | Kausal deterministisk Swing research-backtest: next-open fills, ATR/trendexits, trade ledger, state trace och closed-trade summary |
 | `src/strategy_evaluation.py` | Deskriptiv Strategy Evaluation: total-, riktnings- och modulattribuerad trade-performance, approved-vs-blocked paths samt MFE/MAE jämfört med realiserat trade-resultat |
 | `src/trade_lifecycle.py` | Faktisk holding-period MFE/MAE med osäkerhetsintervall, stopförlopp och separat post-exit-observation |
+| `src/ab_rule_testing.py` | Deterministisk A/B-replay av baseline och en isolerad execution-konfigurationsändring, med performance-, signal/execution-, lifecycle- och paired-vyer |
 | `src/live_scanner.py` | Tom platshållare |
 | `src/__init__.py` | Tom paketmarkör |
 | `tests/test_core.py` | 13 syntetiska pytest-tester: OHLCV-validering, trend, regim, volatilitet, momentum, volym, breakout, squeeze, pullback, moduler, score, signal och session |
@@ -869,3 +870,58 @@ senare exit hade gett bättre resultat.
 
 Alla framtidsberoende fält är analysoutputs, inte samtidiga signaler eller
 ML-features. Inga TradingView broker-emulator-paritetspåståenden görs.
+
+## 15. A/B Rule Testing (implementerat 2026-09-16)
+
+`src/ab_rule_testing.py` komponerar Strategy Evaluation, samma sekventiella
+Swing-backtest, lifecycle-diagnostiken och signal→fill-reconciliation. A och B
+körs oberoende från samma oförändrade diagnostics-input; ett färdigt ledger
+filtreras eller omskrivs aldrig. Därmed syns sekvenseffekter där en tidigare
+eller senare exit ändrar om efterföljande signaler blir `FILLED` eller
+`IGNORED_POSITION_OPEN`. Lagret är deskriptivt och väljer eller rangordnar inte
+en vinnare, söker ingen grid och staplar inte tidigare varianter.
+
+### Experiment- och outputkontrakt
+
+`run_ab_rule_test` kräver id och namn samt normaliserar båda konfigurationerna
+mot research-defaulten `atr_multiplier=2.5, use_locked_atr=False`. En riktig
+variant får avvika i högst en parameter; en identisk B tillåts uttryckligen som
+kontroll av A==B. Första stödda experimentet är Dynamic ATR mot Locked ATR.
+Okända parametrar avvisas i stället för att skapa ett implicit kontrakt.
+Metadata lagrar sorterad JSON för båda konfigurationerna, ändrad parameter och
+värden, explicit behavior-change-flagga, inputens första/sista bar, barantal och
+tidszon. Samma input och metadata reproducerar resultatet deterministiskt.
+
+`strategy_and_module_performance` innehåller total, riktning, de fyra modulerna
+och direction/module. Befintlig överlappande maskattribution bevaras och
+modulrader får inte summeras till totalen. Utöver return-måtten beräknas
+`initial_risk_pct = abs(entry_price-initial_stop)/entry_price` och `realized_R =
+return_pct/initial_risk_pct`; icke-finit, icke-positiv risk samt censurerade
+returns ger NaN. Lifecycle-tabellerna per arm lägger även till `mfe_R` endast
+när exakt `in_trade_mfe` och giltig initial risk finns. Osäkra intrabar-bounds
+bevaras och omvandlas inte till falska punktvärden.
+
+`signal_execution` räknar samtliga finala signaler samt varje resolution i
+reconciliation-kontraktet, inklusive nollor. Separata lifecycle- och stop-path-
+tabeller behåller exit reason/time, bars held, MFE/MAE med bounds,
+realized-to-MFE, MFE-minus-realized, stop source och exit timing. Alla publika
+tabeller har stabila scheman och tidszonstrogna timestampkolumner även utan
+observationer.
+
+### Paired comparison, kausalitet och begränsningar
+
+`paired_signals` använder endast befintlig provenance `(signal_time,
+direction)`. En signal som fylldes i båda armarna är `MATCHED_SIGNAL`; ensidiga
+fills är `A_ONLY_FILL`/`B_ONLY_FILL`. Övriga signalrader markeras explicit som
+execution-skillnad och tvingas inte till tradepar. Matchade fills visar exit,
+reason, return, R, bars held, exakt lifecycle-MFE och B−A-differenser där båda
+värdena är definierade. Senare trades matchas alltså aldrig på trade-id, ordning
+eller närliggande tid för att konstruera falsk one-to-one-attribution.
+
+Temporal availability ändras inte: signalen är känd vid signalbarens close,
+entry sker vid nästa open, stopuppdatering från en överlevd bar gäller först
+nästa bar och trendexit fylls vid nästa open. Lifecycle och A/B-differenser är
+retrospektiva outputs efter respektive exit eller dataslut och får inte användas
+som samtidiga signalfeatures. Detta är Research Execution Semantics, inte
+TradingView-paritet. Trust Me v2.0:s baseline och research execution-kontrakt är
+oförändrade. Nästa roadmap-steg är fortsatt Walk-forward / Out-of-sample.
