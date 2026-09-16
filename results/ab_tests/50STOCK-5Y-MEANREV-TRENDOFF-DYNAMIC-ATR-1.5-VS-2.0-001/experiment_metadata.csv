@@ -1,0 +1,2 @@
+experiment_id,module,period,timeframe,trend_exit,atr_mode,baseline_atr_multiplier,variant_atr_multiplier,created_at,result_path
+50STOCK-5Y-MEANREV-TRENDOFF-DYNAMIC-ATR-1.5-VS-2.0-001,MeanRev,5y,1d,False,Dynamic,1.5,2.0,2026-09-16T11:34:28.102446+02:00,results/ab_tests/50STOCK-5Y-MEANREV-TRENDOFF-DYNAMIC-ATR-1.5-VS-2.0-001

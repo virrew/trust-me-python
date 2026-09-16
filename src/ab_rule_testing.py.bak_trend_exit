@@ -15,7 +15,7 @@ import pandas as pd
 from src.strategy_evaluation import MODULE_BITS, evaluate_strategy
 
 
-SUPPORTED_CONFIG = {"atr_multiplier", "use_locked_atr", "use_trend_exit"}
+SUPPORTED_CONFIG = {"atr_multiplier", "use_locked_atr"}
 EXECUTION_RESOLUTIONS = (
     "FILLED", "FILLED_BUT_CENSORED_AT_END", "IGNORED_POSITION_OPEN",
     "NO_NEXT_BAR", "CONFLICTING_SIGNAL", "INVALID_ENTRY_PREREQUISITE",
@@ -73,18 +73,8 @@ def _validated_configs(baseline: Mapping[str, Any], variant: Mapping[str, Any]):
     if unknown:
         raise ValueError(f"unsupported A/B configuration: {sorted(unknown)}")
     # Defaults are part of provenance, so omitted and explicit values compare identically.
-    a = {
-        "atr_multiplier": 2.5,
-        "use_locked_atr": False,
-        "use_trend_exit": True,
-        **a,
-    }
-    b = {
-        "atr_multiplier": 2.5,
-        "use_locked_atr": False,
-        "use_trend_exit": True,
-        **b,
-    }
+    a = {"atr_multiplier": 2.5, "use_locked_atr": False, **a}
+    b = {"atr_multiplier": 2.5, "use_locked_atr": False, **b}
     changed = [key for key in sorted(a) if a[key] != b[key]]
     if len(changed) > 1:
         raise ValueError("variant must change at most one configuration parameter")
