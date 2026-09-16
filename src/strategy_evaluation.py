@@ -147,8 +147,8 @@ def _evaluation_observations(diagnostics: pd.DataFrame) -> pd.DataFrame:
         return _empty(OBSERVATION_SCHEMA, diagnostics.index.dtype)
     result = pd.DataFrame(rows)
     for column, dtype in OBSERVATION_SCHEMA.items():
-        result[column] = pd.Series(result[column], dtype=(
-            diagnostics.index.dtype if dtype == "datetime64[ns]" else dtype))
+        target = diagnostics.index.dtype if dtype == "datetime64[ns]" else dtype
+        result[column] = pd.Series(pd.array(result[column], dtype=target), index=result.index)
     return result[list(OBSERVATION_SCHEMA)]
 
 
@@ -205,8 +205,8 @@ def excursion_vs_realized(trades: pd.DataFrame, outcomes: pd.DataFrame,
         return _empty(EXCURSION_SCHEMA, timestamp_dtype)
     result = pd.DataFrame(rows)
     for column, dtype in EXCURSION_SCHEMA.items():
-        result[column] = pd.Series(result[column], dtype=(
-            timestamp_dtype if dtype == "datetime64[ns]" else dtype))
+        target = timestamp_dtype if dtype == "datetime64[ns]" else dtype
+        result[column] = pd.Series(pd.array(result[column], dtype=target), index=result.index)
     return result[list(EXCURSION_SCHEMA)]
 
 

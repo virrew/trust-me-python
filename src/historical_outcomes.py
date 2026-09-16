@@ -129,7 +129,7 @@ def build_outcome_observations(
     for column, dtype in OBSERVATION_SCHEMA.items():
         if dtype == "datetime64[ns]":
             dtype = diagnostics.index.dtype
-        result[column] = pd.Series(result[column], dtype=dtype)
+        result[column] = pd.Series(pd.array(result[column], dtype=dtype), index=result.index)
     return result[list(OBSERVATION_SCHEMA)]
 
 
@@ -238,7 +238,7 @@ def calculate_historical_outcomes(
     for column, dtype in schema.items():
         if dtype == "datetime64[ns]":
             dtype = diagnostics.index.dtype
-        result[column] = pd.Series(result[column], dtype=dtype)
+        result[column] = pd.Series(pd.array(result[column], dtype=dtype), index=result.index)
     return result[list(schema)]
 
 
