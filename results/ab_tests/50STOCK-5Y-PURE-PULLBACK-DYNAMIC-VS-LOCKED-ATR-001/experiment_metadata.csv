@@ -1,0 +1,2 @@
+experiment_id,experiment_name,experiment_type,module,period,timeframe,direction,changed_parameter,label_a,label_b,created_at,result_path
+50STOCK-5Y-PURE-PULLBACK-DYNAMIC-VS-LOCKED-ATR-001,Pure Pullback Dynamic vs Locked ATR,Pullback exit A/B,Pure Pullback,5y,1d,Long,use_locked_atr,Dynamic,Locked,2026-09-16T13:47:08.237408+02:00,results/ab_tests/50STOCK-5Y-PURE-PULLBACK-DYNAMIC-VS-LOCKED-ATR-001

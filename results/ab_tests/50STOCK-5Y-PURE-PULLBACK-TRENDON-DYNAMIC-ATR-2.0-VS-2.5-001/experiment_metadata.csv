@@ -1,0 +1,2 @@
+experiment_id,experiment_type,module,period,timeframe,direction,trend_exit,atr_mode,baseline_atr_multiplier,variant_atr_multiplier,created_at,result_path
+50STOCK-5Y-PURE-PULLBACK-TRENDON-DYNAMIC-ATR-2.0-VS-2.5-001,ATR multiplier A/B,Pure Pullback,5y,1d,Long,True,Dynamic,2.0,2.5,2026-09-16T13:57:56.886681+02:00,results/ab_tests/50STOCK-5Y-PURE-PULLBACK-TRENDON-DYNAMIC-ATR-2.0-VS-2.5-001
