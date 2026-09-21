@@ -1,3 +1,9 @@
+> **Original project description**
+>
+> This file documents the original vision for Trust Me.
+> For the current implementation and technical architecture, see the root `README.md`.
+
+
 Trust me v2.0 – Systembeskrivning
 1. Översikt
 Trust me v2.0 är ett modulärt och datadrivet handelssystem utvecklat för både intraday och swingtrading. Systemet består inte enbart av en TradingView strategi. Den långsiktiga arkitekturen bygger på tre samverkande delar:
