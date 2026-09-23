@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "65196ea4ad0f64317ea00a9b6691a22ce77d583a3416b540b3ae7209852d34bf",
+    "ab_trade_lifecycle.schema.json": "aa9a59f7deb123f6bdfd5b8c3d1690d6a532a5b8f8f402d654ff86fb16e22927",
+    "signal_fill_reconciliation.csv": "0eab48940a20e9618bffc321c4b1d008539ec1778a865d4e3bc3b5cf69bfbf2e",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "MSFT"
+}

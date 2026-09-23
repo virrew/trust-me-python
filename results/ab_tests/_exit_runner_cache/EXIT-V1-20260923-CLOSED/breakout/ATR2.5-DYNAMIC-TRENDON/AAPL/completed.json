@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "ec04003c068e0c2e6e34925915f2c77a58863daa9d20995e537ae580ae6eec98",
+    "ab_trade_lifecycle.schema.json": "e8173420672d4701c3bfdc9387f1bda265b5a8eac026d21edc1fb823d85f33a2",
+    "signal_fill_reconciliation.csv": "9cbd753c1078fe95354a67ec470cfac6c79c972fb55bfc6dde52866cbc82b390",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "AAPL"
+}

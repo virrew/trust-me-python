@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "5ea889216724f37495ff801cab306e20116e8556735bcc7c66e31ea039d77fd7",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "b51631249b3252c565558b145d2818f99422420dbb5880f602deba123baf5e52",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "SMCI"
+}

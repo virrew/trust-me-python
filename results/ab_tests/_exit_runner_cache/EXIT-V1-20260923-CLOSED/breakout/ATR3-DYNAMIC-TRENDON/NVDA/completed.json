@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "fccaad291ac783039f68fc73a520e5f96d7b2922e71d5aac630029456bbbda1d",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "9825fba39cec33f0d6f6c51bb0dd6f34e4ab6abc5141c520dc70d3b2595bce82",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 3.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "NVDA"
+}

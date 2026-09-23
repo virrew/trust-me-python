@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "d5692da806e1b935e7018ce60a1f80a8364741f3e9c060563564325bc65b1aab",
+    "ab_trade_lifecycle.schema.json": "a4ab716e13fcd63920fc2afb3103b97c74c2e3c299f1bbbcc908ec601448c53f",
+    "signal_fill_reconciliation.csv": "574af9cbbcbe61a59f67374bec22074047730411827d3202a3be5dc9ff22653d",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": true,
+    "use_trend_exit": true
+  },
+  "symbol": "AMD"
+}

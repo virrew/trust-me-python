@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "c262e8705667e534a86ed6770300c70357b12083a088ba129e9e1586e56c8cfb",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "34669a8c78cbf554ccdb5bc424f7ce03612d8d61325cb0ff4a8cfc74f909345f",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": false,
+    "use_trend_exit": false
+  },
+  "symbol": "TSM"
+}

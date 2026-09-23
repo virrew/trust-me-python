@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "e3b08790daf7f43e8fe67387ce5bf28bca65b5b7a3e9d762a4077202031321bb",
+    "ab_trade_lifecycle.schema.json": "aa9a59f7deb123f6bdfd5b8c3d1690d6a532a5b8f8f402d654ff86fb16e22927",
+    "signal_fill_reconciliation.csv": "a44ecb4752e0b65a889248f684f62d03d2dd8cedd0efa5f60675a14d09b0def4",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 3.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "GE"
+}

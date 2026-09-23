@@ -1,0 +1,4 @@
+arm,exit_reason,count
+A,ATR_STOP,203
+B,ATR_STOP,198
+B,TREND_EXIT,3

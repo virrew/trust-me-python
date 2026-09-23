@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "5b978fcfb7f45854502afcd4f30a62f7e10fe58f604b48a04e5447257c3c2d71",
+    "ab_trade_lifecycle.schema.json": "86132d422a0d241394755b9f95775f2d768e00035a06f13607a49436b090decb",
+    "signal_fill_reconciliation.csv": "0c8189d1c1d4aff68b2b0090849fd5314ba80a1e9db6c97770e6b2d4970d3517",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.25,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "LLY"
+}

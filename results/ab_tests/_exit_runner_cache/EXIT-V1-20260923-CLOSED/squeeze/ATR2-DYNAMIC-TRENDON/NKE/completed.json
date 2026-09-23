@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "9d362152579cfffc299316308f50381f7a70ff8cac99aa6bbf4e841681546920",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "ab5bcc0b94b2efa63dc3922b907a1ba22a874ca3424135dcb9d75b7e89c2f8c1",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "NKE"
+}

@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "010f8b41ab6f982294b57258356b48802670cf05cf09ee7d06484c159eeac2e9",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "c4510ce393770702d13b7a96ac95623a10f5907134c13589f24d918b0d38ed64",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": true,
+    "use_trend_exit": true
+  },
+  "symbol": "SHOP"
+}

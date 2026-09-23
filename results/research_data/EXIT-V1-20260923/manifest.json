@@ -1,0 +1,244 @@
+{
+  "cutoff": "2026-09-23",
+  "failures": [
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "NVDA"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "NVDA"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "AMD"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "AMD"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "MU"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "MU"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "AVGO"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "AVGO"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "MRVL"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "MRVL"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "QCOM"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "QCOM"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "ARM"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "ARM"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "SMCI"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "SMCI"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "TSM"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "TSM"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "ASML"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "ASML"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "AAPL"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "AAPL"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "MSFT"
+    },
+    {
+      "attempt": 2,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": true,
+      "stage": "download",
+      "symbol": "MSFT"
+    },
+    {
+      "attempt": 1,
+      "error": "/Users/victorwahlstrom/Documents/GitHub/trust-me-python/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 197, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py\", line 87, in _run_code\n    exec(code, run_globals)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 742, in <module>\n    main()\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 711, in main\n    download_one(args.download_one, args.target, args.cutoff)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 171, in download_one\n    validate_ohlcv(frame)\n  File \"/Users/victorwahlstrom/Documents/GitHub/trust-me-python/src/exit_research_runner.py\", line 154, in validate_ohlcv\n    raise ValueError(\"Nonfinite OHLCV; no imputation allowed\")\nValueError: Nonfinite OHLCV; no imputation allowed\n",
+      "retry_attempted": false,
+      "stage": "download",
+      "symbol": "GOOGL"
+    }
+  ],
+  "session": "EXIT-V1-20260923",
+  "status": "pending",
+  "symbols": {
+    "AAPL": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "AAPL"
+    },
+    "AMD": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "AMD"
+    },
+    "ARM": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "ARM"
+    },
+    "ASML": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "ASML"
+    },
+    "AVGO": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "AVGO"
+    },
+    "MRVL": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "MRVL"
+    },
+    "MSFT": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "MSFT"
+    },
+    "MU": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "MU"
+    },
+    "NVDA": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "NVDA"
+    },
+    "QCOM": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "QCOM"
+    },
+    "SMCI": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "SMCI"
+    },
+    "TSM": {
+      "retry_attempted": true,
+      "status": "failed",
+      "symbol": "TSM"
+    }
+  }
+}

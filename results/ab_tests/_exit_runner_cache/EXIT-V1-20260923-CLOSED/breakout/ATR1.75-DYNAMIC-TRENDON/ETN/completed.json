@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "1590976220175aae8bb20d762bed570587c86dc8197b52164d7169db31afa3e6",
+    "ab_trade_lifecycle.schema.json": "a4ab716e13fcd63920fc2afb3103b97c74c2e3c299f1bbbcc908ec601448c53f",
+    "signal_fill_reconciliation.csv": "0b274ba392939ee90f9d36b3f45dcc43089dfac27ae824d7a36dc08e8d7fcf19",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 1.75,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "ETN"
+}

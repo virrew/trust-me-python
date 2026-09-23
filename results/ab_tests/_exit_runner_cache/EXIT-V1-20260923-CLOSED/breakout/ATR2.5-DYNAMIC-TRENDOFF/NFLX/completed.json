@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "4d4585acf7c4c072879276b4508a9a0c0ca23e04a20e55ac4b2fb05c78ecc4c0",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "711d807b49c7fc7a7fdd06c1cde739e8e3769c3b57b8fcc5628b16bc91f11a62",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": false,
+    "use_trend_exit": false
+  },
+  "symbol": "NFLX"
+}

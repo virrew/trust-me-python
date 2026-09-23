@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "a4c427211770b8c4e41377f948bbfbe4684a1cda76c4645867a4a5e6e9a26b0e",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "5580ac4e32184daad2445e7053805f6dbfcae06dce54b8daa0d3a80e8f2b6b3e",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 1.75,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "XOM"
+}

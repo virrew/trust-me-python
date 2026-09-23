@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "8f9e3d453f13c51025c784f89279edd53a13384162ced8bf790461d85ce60e88",
+    "ab_trade_lifecycle.schema.json": "d2d5fbfe7731b3a33b97b49fd0fe7f48764b60d41daeba4f5bdd2a1106afcd26",
+    "signal_fill_reconciliation.csv": "586fc4472f7b5aac3d964219e382f31c8cec959e8b81d07db299c5472af981f2",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 1.75,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "DDOG"
+}

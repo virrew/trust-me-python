@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "415310892efb6a0f5c9931f67bfbfe84d269d39bd2114cfe89337d39a8419fe9",
+    "ab_trade_lifecycle.schema.json": "4669a9fefe283f2a3800f682100d1986add4fca8c8b8d37c0df2a27f7fd993a7",
+    "signal_fill_reconciliation.csv": "b3f5c5fb111c38eaf8528090e7e229023f4eb4de478f4ff739f7d042320a079c",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": true,
+    "use_trend_exit": true
+  },
+  "symbol": "CAT"
+}

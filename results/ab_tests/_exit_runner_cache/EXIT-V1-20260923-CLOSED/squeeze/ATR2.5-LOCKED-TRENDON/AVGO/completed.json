@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "3848a9af804fb2839bb545e8323a771751da55b124d57f60eb8940c31d18ae6f",
+    "ab_trade_lifecycle.schema.json": "e8173420672d4701c3bfdc9387f1bda265b5a8eac026d21edc1fb823d85f33a2",
+    "signal_fill_reconciliation.csv": "2c782e3a9e9a6285a898dfbfb0858e15e1729c05bdeff1bc5cea9518c663eeda",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": true,
+    "use_trend_exit": true
+  },
+  "symbol": "AVGO"
+}

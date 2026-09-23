@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "a62cd08fce29ca8e54c26314bee1b846d550aa923830eb9a7e01929ec0ddd04c",
+    "ab_trade_lifecycle.schema.json": "0651a29dfd7d1423b8095f28be8ecef9e6f4810208bd907f5d05b2da9b32c86c",
+    "signal_fill_reconciliation.csv": "8de21529f6ca3fa4040dca6d34d54d8b2adda21a9334bec4f2bc765cd1887e6d",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "HON"
+}

@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "c136c80a12562188374d095bb8ed60fe7500b2e3bb2715ce4834721427664cea",
+    "ab_trade_lifecycle.schema.json": "19a7053ebcdd5f903f64cd292080678405c03f8266addf3905fb85e377ab41f2",
+    "signal_fill_reconciliation.csv": "a4f9b68f542094d71be6cd0454a8c169585ddd3833c7e47a2c25d14c6b252748",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 3.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "CRWD"
+}

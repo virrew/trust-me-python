@@ -1,0 +1,16 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end
+2023-06-09,Long,2,1,FLAT,,FILLED,1,2023-06-12,True,False
+2023-06-26,Long,2,1,Long,1,IGNORED_POSITION_OPEN,,,,
+2023-07-31,Long,2,1,Long,1,IGNORED_POSITION_OPEN,,,,
+2023-11-03,Long,2,1,FLAT,,FILLED,2,2023-11-06,True,False
+2023-12-07,Long,2,1,Long,2,IGNORED_POSITION_OPEN,,,,
+2023-12-08,Long,2,1,Long,2,IGNORED_POSITION_OPEN,,,,
+2023-12-11,Long,2,1,Long,2,IGNORED_POSITION_OPEN,,,,
+2024-02-05,Long,2,1,FLAT,,FILLED,3,2024-02-06,True,False
+2024-02-06,Long,2,1,Long,3,IGNORED_POSITION_OPEN,,,,
+2024-02-14,Long,2,1,FLAT,,FILLED,4,2024-02-15,True,False
+2024-02-15,Long,2,1,Long,4,IGNORED_POSITION_OPEN,,,,
+2024-05-06,Long,2,1,FLAT,,FILLED,5,2024-05-07,True,False
+2024-07-16,Long,2,1,FLAT,,FILLED,6,2024-07-17,True,False
+2025-05-12,Long,2,1,FLAT,,FILLED,7,2025-05-13,True,False
+2025-05-13,Long,2,1,Long,7,IGNORED_POSITION_OPEN,,,,

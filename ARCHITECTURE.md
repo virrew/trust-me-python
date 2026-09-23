@@ -61,6 +61,8 @@ Trade Lifecycle + Signal → Fill    ✅
       ↓
 A/B Rule Testing                   ✅
       ↓
+Finite Exit Research Automation    ✅ (2026-09-23; research only)
+      ↓
 Walk-forward / Out-of-sample       ← NÄSTA
       ↓
 Scanner / watchlist / ranking
@@ -100,6 +102,8 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/strategy_evaluation.py` | Deskriptiv Strategy Evaluation: total-, riktnings- och modulattribuerad trade-performance, approved-vs-blocked paths samt MFE/MAE jämfört med realiserat trade-resultat |
 | `src/trade_lifecycle.py` | Faktisk holding-period MFE/MAE med osäkerhetsintervall, stopförlopp och separat post-exit-observation |
 | `src/ab_rule_testing.py` | Deterministisk A/B-replay av baseline och en isolerad execution-konfigurationsändring, med performance-, signal/execution-, lifecycle- och paired-vyer |
+| `src/exit_research_runner.py` | Finite, resumable Pure Breakout/Squeeze exit research; immutable Yahoo snapshots, cached existing-engine executions, canonical A/B artifacts and registry append |
+| `src/exit_research_analysis.py` | Descriptive paired/arm robustness, tail concentration, year/symbol stability and preregistered conservative support screen |
 | `src/live_scanner.py` | Tom platshållare |
 | `src/__init__.py` | Tom paketmarkör |
 | `tests/test_core.py` | 13 syntetiska pytest-tester: OHLCV-validering, trend, regim, volatilitet, momentum, volym, breakout, squeeze, pullback, moduler, score, signal och session |
@@ -925,3 +929,114 @@ retrospektiva outputs efter respektive exit eller dataslut och får inte använd
 som samtidiga signalfeatures. Detta är Research Execution Semantics, inte
 TradingView-paritet. Trust Me v2.0:s baseline och research execution-kontrakt är
 oförändrade. Nästa roadmap-steg är fortsatt Walk-forward / Out-of-sample.
+
+## 16. Finite exit research orchestration (2026-09-23)
+
+`python -m src.exit_research_runner --remaining` runs Pure Breakout then Pure
+Squeeze and writes `results/EXIT_POLICY_MATRIX_V1.md`. `--module breakout`,
+`--module squeeze`, and `--freeze` are supported. The default session is
+`EXIT-V1-20260923-CLOSED`; `--session NAME --end-before YYYY-MM-DD` explicitly
+creates a different dated research session. Do not create new sessions to search
+for a more favorable result. MeanRev and Pullback research is reused, not rerun.
+The next requested research phase is entry research; this implementation does
+not perform it, and walk-forward/OOS validation remains outstanding.
+
+**Behavior change: NO. Existing strategy behavior changed: NO.** This adds
+research orchestration and reports without changing any existing strategy,
+diagnostic, backtest or A/B function, defaults, comparison operator or reference.
+The research arms intentionally vary existing exit parameters. Their different
+results do not promote those parameters to production.
+
+### Input and temporal contracts
+
+The original Yahoo pipeline still supplies `open, high, low, close, volume`
+with its sorted `DatetimeIndex`, `auto_adjust=False`, daily interval and a 5y
+request. Snapshots retain numeric dtypes and timestamp timezone with CSV/schema
+sidecars and exact float parsing. Missing/nonfinite prices, invalid OHLC ranges,
+duplicate timestamps and negative volume are rejected rather than imputed.
+No bars inside the fixed window are removed; original indicator warm-up is
+retained. The current New York date is excluded by default for new sessions.
+
+On 2026-09-23, the initial five-year Yahoo response contained a missing final
+close on 2026-09-22 (verified for AAPL). No backtest used it. The failed first
+snapshot attempt is retained; the replacement default session has an explicit
+common cutoff **strictly before 2026-09-22**, fixed before any experiments.
+
+Pure cohorts are research execution streams:
+`long_signal & (long_active_module_mask == 2)` for Breakout and `== 4` for
+Squeeze. Module booleans are checked against the existing mapping
+Pullback=1, Breakout=2, Squeeze=4, MeanRev=8. Other final Long signals and all
+Short signals are disabled only in a copied research input. Bars, index, masks,
+scores, indicators and production calculations remain untouched. This matches
+the stored Pure Pullback methodology: filtering the broad ledger afterward
+would incorrectly retain other modules' position/path effects.
+
+`available_at = signal bar close`; entry is next open. The same backtest and
+lifecycle implementations compute initial risk, monotonic stops, next-bar stop
+updates, trend exits and censoring. Shared `_paired` and `_risk_enriched` helpers
+preserve the A/B schema and B−A convention. Regression fixtures compare all
+paired columns against `run_ab_rule_test`. Repeated exit configurations reuse
+the same execution, omitting unrelated opportunity-outcome reports. All
+robustness outputs are retrospective, never decision-time features.
+
+### Storage, recovery and validity
+
+- `results/research_data/<session>/`: frozen OHLCV, schemas, manifest with
+  symbol/date range/row count/download time/period/interval/timezone/hash, and
+  explicit download failures. Two bounded attempts per symbol; no provider fallback.
+- `results/ab_tests/<experiment_id>/`: canonical paired signals, per-symbol
+  experiment metadata, symbol/year/robustness summaries, exit reasons, extreme
+  deltas, failure tables and completion hashes. Historical files are immutable.
+- `results/ab_tests/_exit_runner_cache/<session>/`: per-symbol/configuration
+  lifecycle and reconciliation CSVs, dtype sidecars and completion markers.
+  A configuration is executed once; these are reusable raw engine outputs.
+- `results/exit_research/<session>/`: preregistered plan, source/runtime
+  provenance, historical inventory, historical robustness, and per-module
+  state, configuration/robustness summaries and report. No replacement raw
+  experiment store is introduced here.
+- `results/research_registry.csv`: new completed experiments appended using
+  the original schema, preserving historical bytes and avoiding duplicate IDs.
+
+A single process lock protects the session/registry. State is atomically
+checkpointed; final experiments publish by directory rename after their files
+are complete. Resuming verifies snapshot, cache and experiment hashes, source
+code and runtime versions. A completed compatible experiment is reused by
+snapshot/cohort/configuration identity even if its ID differs. Failed executions
+are never marked completed. Partial symbol failures remain explicit; both arms
+are compared on common successful symbols. Candidate selection requires at
+least 45/50 symbols and a consistent symbol population across comparisons.
+An unfinished snapshot cannot silently resume downloads on another calendar day.
+
+Historical broad Breakout/Squeeze artifacts remain contextual evidence: they
+replayed the full signal stream and lack a verifiable matching frozen snapshot.
+They cannot replace the new pure-only comparisons. All 15 registered MeanRev/
+Pure Pullback experiments are retained and reused as historical evidence.
+
+### Finite plan and interpretation
+
+Trend ON/OFF at Dynamic 2.5 precedes Dynamic/Locked at the supported Trend
+setting. An inconclusive decision retains historical Trend ON / Dynamic
+conventions. The only multiplier grid is 1.5, 1.75, 2.0, 2.25, 2.5, 3.0.
+Eight unique baseline/adjacent comparisons reuse six configurations. A candidate
+must pass its neighboring values and the 2.5 reference, have positive mean raw
+return and PF > 1, then pass both final interaction tests at that multiplier.
+No candidate means final interactions are not applicable and the result is
+INCONCLUSIVE. At most 12 comparisons / 10 configurations per module are allowed.
+
+The fixed descriptive screen requires >=100 closed pairs, >=20 non-ties,
+>=10 symbols and >=3 years with >=10 pairs; agreement of mean, 10% symmetric
+trim, deletion of the winning direction's best five deltas and paired majority;
+>=60% informative-symbol/eligible-year agreement; no year contributing >60%
+of positive directional gain; two of WR/median/PF not worsening; and <=10%
+one-sided fills. Thresholds are conservative research gates, not statistical
+significance or proof of absence of edge. Ties use absolute tolerance 1e-12.
+
+Returns and rates are fractions. PF divides gross positive by absolute gross
+negative closed-trade returns. Censored and one-sided fills are excluded from
+paired deltas but counted separately. All arm returns, paired return/R deltas,
+holding periods, top-1/3/5 exclusions, year/symbol results and exit distributions
+are reported; empty tables retain columns. R changes denominator with multiplier
+and never chooses a policy. Labels ROBUST/MIXED/TAIL-SENSITIVE/LOW SAMPLE are
+descriptive only. There is no transaction cost, portfolio, TradingView parity,
+statistical independence or OOS guarantee. Present-day universe selection and
+shorter IPO histories remain limitations. Adaptive hypotheses stay unimplemented.

@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "9bc40d22411417ef3a8abd198add944a33254822cdd2f2ab63f02f1f8e7dc367",
+    "ab_trade_lifecycle.schema.json": "6f84651afa605b2246286497961e6da5115dabb3104ebb21d90701fb926d9fdd",
+    "signal_fill_reconciliation.csv": "0c079ccab847535c1f2c0fb83c8313e610086b59e922b99a5040c6b69c1cc892",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 1.75,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "MRVL"
+}

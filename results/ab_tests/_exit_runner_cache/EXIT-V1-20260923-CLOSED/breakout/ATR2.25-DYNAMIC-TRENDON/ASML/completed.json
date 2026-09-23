@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "7b5ad2b8cd5e66ccd4c179a6f7804e3fea80e3c52332f73d27e6860227748fa1",
+    "ab_trade_lifecycle.schema.json": "19a7053ebcdd5f903f64cd292080678405c03f8266addf3905fb85e377ab41f2",
+    "signal_fill_reconciliation.csv": "a4234a7cc6e9475eb1dbe7b56db1dc2c766a0592b8567d10fe1d7b6dc23d7f8c",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.25,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "ASML"
+}

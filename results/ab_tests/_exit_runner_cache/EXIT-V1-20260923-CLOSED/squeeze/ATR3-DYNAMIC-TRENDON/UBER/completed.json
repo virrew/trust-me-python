@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "6ad2a938ee22c7839c94c71733e6e3b8c73f58274891c2121f5161ea6d2669d5",
+    "ab_trade_lifecycle.schema.json": "d726457d36e53866d53ae75c6f0fe7adbd4d4bbe10331f3943f6b31234f6b7cd",
+    "signal_fill_reconciliation.csv": "cae1a88f689a1aab0a52eb1bf18ab509565fb4e362f2d2ea3741d49f4d2d2340",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 3.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "UBER"
+}

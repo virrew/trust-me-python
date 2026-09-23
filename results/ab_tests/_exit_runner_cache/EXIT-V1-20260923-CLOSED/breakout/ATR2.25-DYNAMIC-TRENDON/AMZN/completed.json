@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "3aef2064f121ab7d8b0aa534bb62addded6230700ef3f349c6f8b0d769331e6c",
+    "ab_trade_lifecycle.schema.json": "febbdab4c7f05db74a434216b6142ca39fce7b9ba71bff4055ed4403550fa7ab",
+    "signal_fill_reconciliation.csv": "a0ea796dc44b219cf5fed12b1844ae2bb0dd1cb5f1dbff0902ccd6a8b391a9a3",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.25,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "AMZN"
+}

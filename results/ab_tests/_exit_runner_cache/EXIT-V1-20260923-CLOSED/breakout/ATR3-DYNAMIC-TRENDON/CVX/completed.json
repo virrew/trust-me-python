@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "29a0adc2233f4ebdd934210d3bf810992271bb9eb94f49dac55c50f7386dadfc",
+    "ab_trade_lifecycle.schema.json": "e8173420672d4701c3bfdc9387f1bda265b5a8eac026d21edc1fb823d85f33a2",
+    "signal_fill_reconciliation.csv": "05eb67ea301fa8e523ad2bc461964151acb6023ef4a9435ea9a4dad50823875d",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 3.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "CVX"
+}

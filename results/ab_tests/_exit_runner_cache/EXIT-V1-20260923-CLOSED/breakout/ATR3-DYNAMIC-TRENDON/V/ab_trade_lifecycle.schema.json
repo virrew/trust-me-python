@@ -1,0 +1,53 @@
+{
+  "dtypes": {
+    "active_module_mask": "int64",
+    "atr_at_entry": "float64",
+    "bars_held": "int64",
+    "bars_to_mfe": "Int64",
+    "censored_at_end": "bool",
+    "closed": "bool",
+    "direction": "object",
+    "entry_price": "float64",
+    "entry_time": "datetime64[ns]",
+    "excursion_data_valid": "bool",
+    "exit_price": "float64",
+    "exit_reason": "object",
+    "exit_stop_source": "object",
+    "exit_time": "datetime64[ns]",
+    "exit_timing": "object",
+    "in_trade_mae": "float64",
+    "in_trade_mae_lower": "float64",
+    "in_trade_mae_upper": "float64",
+    "in_trade_mfe": "float64",
+    "in_trade_mfe_lower": "float64",
+    "in_trade_mfe_minus_realized": "float64",
+    "in_trade_mfe_upper": "float64",
+    "initial_risk_pct": "float64",
+    "initial_stop": "float64",
+    "intrabar_exit_uncertain": "bool",
+    "mfe_R": "float64",
+    "mfe_bar": "datetime64[ns]",
+    "module_score": "int64",
+    "observed_through": "datetime64[ns]",
+    "post_exit_horizon": "int64",
+    "post_exit_mfe_from_entry": "float64",
+    "post_exit_observed_bars": "int64",
+    "post_exit_window_complete": "bool",
+    "realized_R": "float64",
+    "realized_to_in_trade_mfe": "float64",
+    "return_pct": "float64",
+    "signal_available_at": "object",
+    "signal_time": "datetime64[ns]",
+    "trade_id": "int64"
+  },
+  "object_none": {
+    "direction": [],
+    "exit_reason": [],
+    "exit_stop_source": [
+      1,
+      3
+    ],
+    "exit_timing": [],
+    "signal_available_at": []
+  }
+}

@@ -224,6 +224,10 @@ support stability checks, ties/wins by arm, and investigation of tail-sensitive
 means. The framework is descriptive: it does not automatically rank a winner,
 search a parameter grid, or promote a variant to production policy.
 
+A separate finite exit-research runner now orchestrates preregistered pure-module
+comparisons using the same execution engine. It can report a provisional
+candidate or an inconclusive result; it never changes production settings.
+
 ## Exit Research
 
 The current experiment set studies entry cohorts while varying exit behavior:
@@ -245,16 +249,16 @@ untrimmed mean is not automatically the best policy.
 
 ### Current exit research status
 
-The repository does not contain the requested `results/EXIT_POLICY_MATRIX_V1.md`;
-the following status is therefore intentionally conservative and based on the
-registered experiments and their stored CSVs.
+See [`results/EXIT_POLICY_MATRIX_V1.md`](results/EXIT_POLICY_MATRIX_V1.md) for
+the four-module matrix, evidence, sample sizes and limitations. MeanRev and
+Pullback retain their historical research status; their experiments were reused.
 
 | Module/cohort | Evidence currently stored | Status |
 | --- | --- | --- |
 | **MeanRev** | Five-year, daily, 50-symbol long-side experiments cover Trend Exit OFF; Dynamic versus Locked ATR; and Dynamic multiplier comparisons around 1.5–2.5. | **Provisional research candidate:** Trend Exit OFF, Dynamic ATR, approximately 2.0× ATR. Final interaction and out-of-sample validation are not recorded as complete. |
 | **Pure Pullback** | Five-year, daily, 50-symbol long-side experiments cover Trend Exit ON/OFF, Dynamic/Locked ATR, multiplier comparisons from 1.5–3.0, and final interaction checks at 1.5. | **Research baseline:** Trend Exit ON, Dynamic ATR, approximately 1.5× ATR. This is research evidence, not a proven production policy. |
-| **Breakout** | Breakout appears in broad all-module exit summaries, but no complete module-specific experiment sequence is registered. | **Inconclusive / pending validation.** No final policy is asserted. |
-| **Squeeze** | Squeeze appears in broad all-module exit summaries, but no complete module-specific experiment sequence is registered. | **Inconclusive / pending validation.** No final policy is asserted. |
+| **Pure Breakout** | Completed frozen-snapshot Trend/ATR-mode tests and six-point multiplier grid: 1,013 signals, 485–643 comparable pairs, 10 new comparisons. | **INCONCLUSIVE:** larger-stop means conflict with paired majority and trimmed results; no candidate passed the predefined screen. |
+| **Pure Squeeze** | Completed the same finite sequence: 282 signals, 186–203 comparable pairs, 10 new comparisons. | **INCONCLUSIVE:** one local comparison is supported, but no coherent grid candidate; important tail/year concentration. |
 
 These experiments use stored historical samples and can be sensitive to a few
 large trades. They are candidate-selection evidence only; completed
@@ -342,6 +346,38 @@ contains the same files.
 It links experiment IDs and configurations to their artifact paths so prior
 work can be found, reviewed, and reused instead of repeatedly rediscovered.
 This is also groundwork for future research automation.
+
+### Running or resuming the finite exit plan
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.exit_research_runner --remaining
+# Or resume one module:
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.exit_research_runner --module breakout
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.exit_research_runner --module squeeze
+```
+
+The default `EXIT-V1-20260923-CLOSED` session reuses its frozen Yahoo data and
+verified completed experiments. It tests only 1.5, 1.75, 2.0, 2.25, 2.5 and
+3.0 ATR, with fixed Trend/ATR-mode tests and a preregistered conservative
+candidate screen. No candidate means **INCONCLUSIVE**; the runner never extends
+the grid. Final interactions run only when a multiplier passes that screen.
+
+The common data cutoff is strictly before 2026-09-22: Yahoo returned a missing
+close on that final daily row during the initial snapshot attempt. The rejected
+attempt and errors are retained; no missing price was filled or used. The valid
+snapshot ends 2026-09-21 and contains all 50 symbols (ARM has a shorter IPO
+history). A new, explicitly authorized research session can use
+`--session NAME --end-before YYYY-MM-DD`; do not create new sessions to chase
+a favorable result.
+
+Frozen data/manifests live under `results/research_data/<session>/`. All raw
+experiment outputs remain under `results/ab_tests/`; its `_exit_runner_cache/`
+subdirectory holds reusable per-symbol executions. Plans, provenance,
+checkpoints, summaries and reports live under `results/exit_research/<session>/`.
+Source/runtime changes or checksum failures stop reuse, and incomplete snapshots
+cannot silently mix downloads from different calendar days. See
+[`ARCHITECTURE.md`](ARCHITECTURE.md#16-finite-exit-research-orchestration-2026-09-23)
+for the cohort, recovery, failure and statistical contracts.
 
 ## Current Project Status
 

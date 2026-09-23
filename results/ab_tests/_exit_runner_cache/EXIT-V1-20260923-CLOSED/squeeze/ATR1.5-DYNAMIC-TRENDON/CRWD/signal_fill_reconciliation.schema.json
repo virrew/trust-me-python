@@ -1,0 +1,20 @@
+{
+  "dtypes": {
+    "active_module_mask": "int64",
+    "active_trade_id_at_signal_close": "Int64",
+    "censored_at_end": "boolean",
+    "closed": "boolean",
+    "direction": "object",
+    "entry_time": "datetime64[ns]",
+    "module_score": "int64",
+    "position_state_at_signal_close": "object",
+    "resolution": "object",
+    "signal_time": "datetime64[ns]",
+    "trade_id": "Int64"
+  },
+  "object_none": {
+    "direction": [],
+    "position_state_at_signal_close": [],
+    "resolution": []
+  }
+}

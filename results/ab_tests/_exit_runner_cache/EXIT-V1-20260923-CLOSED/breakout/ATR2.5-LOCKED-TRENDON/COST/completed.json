@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "cd0941356c495c0b4f0a459fd8d2b75003fc25a07df607cda10fffcfb58b97c2",
+    "ab_trade_lifecycle.schema.json": "4a1deeaf12c1378e1d81391dde05269473dea120eaf15aa2468d81fd59712106",
+    "signal_fill_reconciliation.csv": "e328859727e2769002facb20563aed9fe62ddcd7322c1d62fafb331177b8a640",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": true,
+    "use_trend_exit": true
+  },
+  "symbol": "COST"
+}

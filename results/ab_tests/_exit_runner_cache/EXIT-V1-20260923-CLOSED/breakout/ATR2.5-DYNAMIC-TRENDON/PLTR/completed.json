@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "8cdb380a804b4746bce9852a5061d60940fc46064aec483ad594bfb6cdbb4c93",
+    "ab_trade_lifecycle.schema.json": "bf024532c5e85c5106d448c5ee78bdf32cafd6925c7aa05213bb9daf97e10525",
+    "signal_fill_reconciliation.csv": "603d1cd45780d7be027dd994e9fde8699a5b23b5ef3b195dc4985f38074387ff",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "PLTR"
+}

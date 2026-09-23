@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "77431e1f7fbcf7c8d5144a8f5ca35031673dbf635b0c6626067e36cf3f18fd98",
+    "ab_trade_lifecycle.schema.json": "9aa1b5274a7b3febeb947ddc1711f68fdd3b492e55b6c4d7a3edfb825fdd6303",
+    "signal_fill_reconciliation.csv": "07f3b5338103be43b0d1e6626a3bc0f388b1542d805ed7f5096e74d241ef7903",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": true,
+    "use_trend_exit": true
+  },
+  "symbol": "MS"
+}

@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "a23fd0202d76d90165f5385f2406e5f91858a4fc93732cbaecadaf6ce6654f28",
+    "ab_trade_lifecycle.schema.json": "fe6ebeebbd195cd703f21e4088717cd95045fcdf4894c151e9e9bb43449935a0",
+    "signal_fill_reconciliation.csv": "ba7ed84b5fe42c4336056d41d409424902c8fb2ed3f07a6425d29d608fb80395",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 3.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "RTX"
+}

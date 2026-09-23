@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "233f52cd5c8d3a27b7a7740b4fb7d402013fb25f09aab70407599de5e3ed92dd",
+    "ab_trade_lifecycle.schema.json": "9b367d2313f0bea22a324db029213fbc8b9d97dbd051c39668f5e9a21a74f2eb",
+    "signal_fill_reconciliation.csv": "ac6a98eac65110784d2397e8c8a31ff8a27c8df15c4ca4367169dbf7fb5748a9",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 3.0,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "PANW"
+}

@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "f8fa674e423d71a04202cf52a8d1bd55af48dafb30dd1fcf5aa6423a46b32e87",
+    "ab_trade_lifecycle.schema.json": "ca84b379061821cc0dfb62ebb7f6a3e80061c45de2de68ff3c4f6ba9fdfd1d38",
+    "signal_fill_reconciliation.csv": "422df23fbd861c786fcc8ed85b31c33358f44cfef4a9be0eeb5442026dddca5b",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "QCOM"
+}

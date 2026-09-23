@@ -1,0 +1,14 @@
+{
+  "hashes": {
+    "ab_trade_lifecycle.csv": "370c6d96568750b327b10d401968415c2d49d567bac723ed9e7593883c0ad78e",
+    "ab_trade_lifecycle.schema.json": "d726457d36e53866d53ae75c6f0fe7adbd4d4bbe10331f3943f6b31234f6b7cd",
+    "signal_fill_reconciliation.csv": "9cfdb09d7016195670293a77984c37748a5cb6cf1c735bcab882de6ade3a5da2",
+    "signal_fill_reconciliation.schema.json": "b2e89325cf489436841d817fc70e2b7e8c647d4f9c98afaa652b47e5a9811e4f"
+  },
+  "settings": {
+    "atr_multiplier": 1.75,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "symbol": "ROKU"
+}
