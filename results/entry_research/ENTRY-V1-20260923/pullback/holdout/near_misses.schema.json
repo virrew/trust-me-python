@@ -1,0 +1,15 @@
+{
+  "dtypes": {
+    "direction": "object",
+    "observation_id": "object",
+    "sole_blocker": "object",
+    "symbol": "object",
+    "timestamp": "datetime64[ns]"
+  },
+  "object_none": {
+    "direction": [],
+    "observation_id": [],
+    "sole_blocker": [],
+    "symbol": []
+  }
+}

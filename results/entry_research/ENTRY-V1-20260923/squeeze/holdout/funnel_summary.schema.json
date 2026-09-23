@@ -1,0 +1,15 @@
+{
+  "dtypes": {
+    "blocked_rate": "float64",
+    "failing": "int64",
+    "otherwise_qualified_blocked": "int64",
+    "passing": "int64",
+    "reaching": "int64",
+    "requirement": "object",
+    "scope": "object"
+  },
+  "object_none": {
+    "requirement": [],
+    "scope": []
+  }
+}

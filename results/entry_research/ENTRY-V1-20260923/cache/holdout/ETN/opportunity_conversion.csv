@@ -1,0 +1,47 @@
+symbol,direction,module,event_start,event_end,duration_bars,dominant_blocker,blocker_changed,unique_blocker_count,blocker_sequence,max_followup_bars,observed_followup_bars,followup_complete,event_open_at_data_end,converted,conversion_time,conversion_bar_position,bars_to_conversion,final_signal_at_conversion,status,converted_within_1_bar,converted_within_3_bars,converted_within_5_bars,blocker_transition_path
+ETN,Long,Pullback,2025-09-25,2025-09-25,1,Reclaim,False,1,Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+ETN,Long,Pullback,2025-10-23,2025-10-23,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-03-02,2026-03-05,4,Reclaim,False,1,Reclaim -> Reclaim -> Reclaim -> Reclaim,5,5,True,False,True,2026-03-10,116,3,True,converted,False,True,True,Reclaim
+ETN,Long,Pullback,2026-03-09,2026-03-09,1,Reclaim,False,1,Reclaim,5,5,True,False,True,2026-03-10,116,1,True,converted,True,True,True,Reclaim
+ETN,Long,Pullback,2026-03-11,2026-03-13,3,Reclaim,False,1,Reclaim -> Reclaim -> Reclaim,5,5,True,False,True,2026-03-16,120,1,True,converted,True,True,True,Reclaim
+ETN,Long,Pullback,2026-03-17,2026-03-18,2,Reclaim,False,1,Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+ETN,Long,Pullback,2026-03-23,2026-03-23,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-04-01,2026-04-01,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-05-05,2026-05-07,3,Reclaim,False,1,Reclaim -> Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+ETN,Long,Pullback,2026-05-22,2026-05-26,2,Trend,False,1,Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-06-15,2026-06-15,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-07-06,2026-07-06,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-07-09,2026-07-09,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-07-14,2026-07-14,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-07-22,2026-07-22,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-07-31,2026-07-31,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-09-08,2026-09-08,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-09-11,2026-09-11,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Pullback,2026-09-18,2026-09-18,1,Trend,False,1,Trend,5,1,False,False,,,,,,censored,False,,,Trend
+ETN,Long,Breakout,2025-09-22,2025-09-23,2,Price,False,1,Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Breakout,2025-10-29,2025-10-29,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Breakout,2025-11-25,2025-11-25,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Breakout,2025-12-02,2025-12-03,2,Price,False,1,Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Breakout,2026-01-06,2026-01-06,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Breakout,2026-01-29,2026-01-29,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Breakout,2026-02-03,2026-02-03,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Breakout,2026-02-12,2026-02-12,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Breakout,2026-03-05,2026-03-11,5,Price,False,1,Price -> Price -> Price -> Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Breakout,2026-03-13,2026-03-16,2,Price,False,1,Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Breakout,2026-04-22,2026-04-22,1,Price,False,1,Price,5,5,True,False,True,2026-04-23,147,1,True,converted,True,True,True,Price
+ETN,Long,Breakout,2026-04-24,2026-04-24,1,Price,False,1,Price,5,5,True,False,True,2026-04-30,152,4,True,converted,False,False,True,Price
+ETN,Long,Breakout,2026-05-01,2026-05-07,5,Price,False,1,Price -> Price -> Price -> Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Breakout,2026-06-18,2026-06-22,2,Trend,False,1,Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Breakout,2026-08-03,2026-08-04,2,Trend,False,1,Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Breakout,2026-09-21,2026-09-21,1,Trend,False,1,Trend,5,0,False,True,,,,,,censored,,,,Trend
+ETN,Long,Squeeze,2025-10-29,2025-10-29,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Squeeze,2025-12-17,2025-12-19,3,Price,False,1,Price -> Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ETN,Long,Squeeze,2026-01-28,2026-01-29,2,Trend,False,1,Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Squeeze,2026-02-06,2026-02-09,2,Recent Squeeze,False,1,Recent Squeeze -> Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Recent Squeeze
+ETN,Long,Squeeze,2026-02-11,2026-02-11,1,Recent Squeeze,False,1,Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Recent Squeeze
+ETN,Long,Squeeze,2026-04-08,2026-04-10,3,Trend,False,1,Trend -> Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ETN,Long,Mean Reversion,2026-02-06,2026-02-06,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+ETN,Long,Mean Reversion,2026-03-02,2026-03-02,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+ETN,Long,Mean Reversion,2026-03-10,2026-03-10,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+ETN,Long,Mean Reversion,2026-03-13,2026-03-13,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+ETN,Long,Mean Reversion,2026-04-30,2026-04-30,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold

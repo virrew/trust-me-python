@@ -1,0 +1,31 @@
+{
+  "dtypes": {
+    "censored_events": "int64",
+    "conversion_rate": "float64",
+    "conversion_rate_within_1": "float64",
+    "conversion_rate_within_3": "float64",
+    "conversion_rate_within_5": "float64",
+    "converted_events": "int64",
+    "converted_events_within_1": "int64",
+    "converted_events_within_3": "int64",
+    "converted_events_within_5": "int64",
+    "direction": "object",
+    "dominant_blocker": "object",
+    "eligible_converted_events": "int64",
+    "eligible_events": "int64",
+    "eligible_events_1": "int64",
+    "eligible_events_3": "int64",
+    "eligible_events_5": "int64",
+    "mean_bars_to_conversion": "float64",
+    "median_bars_to_conversion": "float64",
+    "module": "object",
+    "opportunity_events": "int64",
+    "scope": "object"
+  },
+  "object_none": {
+    "direction": [],
+    "dominant_blocker": [],
+    "module": [],
+    "scope": []
+  }
+}

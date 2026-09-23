@@ -1,0 +1,23 @@
+symbol,direction,module,event_start,event_end,duration_bars,dominant_blocker,blocker_changed,unique_blocker_count,blocker_sequence,max_followup_bars,observed_followup_bars,followup_complete,event_open_at_data_end,converted,conversion_time,conversion_bar_position,bars_to_conversion,final_signal_at_conversion,status,converted_within_1_bar,converted_within_3_bars,converted_within_5_bars,blocker_transition_path
+META,Long,Pullback,2025-10-08,2025-10-20,9,Reclaim,False,1,Reclaim -> Reclaim -> Reclaim -> Reclaim -> Reclaim -> Reclaim -> Reclaim -> Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+META,Long,Pullback,2025-10-22,2025-10-22,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+META,Long,Pullback,2026-03-04,2026-03-04,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Breakout,2025-10-10,2025-10-10,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+META,Long,Breakout,2025-11-12,2025-11-12,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+META,Long,Breakout,2025-11-18,2025-11-18,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+META,Long,Breakout,2025-11-25,2025-11-25,1,Volume,False,1,Volume,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Volume
+META,Long,Breakout,2025-11-28,2025-11-28,1,Volume,False,1,Volume,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Volume
+META,Long,Breakout,2026-01-26,2026-01-26,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Breakout,2026-01-29,2026-01-29,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Breakout,2026-04-08,2026-04-08,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Breakout,2026-05-27,2026-05-27,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Breakout,2026-07-01,2026-07-01,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Breakout,2026-09-21,2026-09-21,1,Trend,False,1,Trend,5,0,False,True,,,,,,censored,,,,Trend
+META,Long,Squeeze,2025-10-03,2025-10-03,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+META,Long,Squeeze,2025-10-27,2025-10-28,2,Recent Squeeze,False,1,Recent Squeeze -> Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Recent Squeeze
+META,Long,Squeeze,2025-12-05,2025-12-05,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Squeeze,2026-09-09,2026-09-09,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+META,Long,Mean Reversion,2025-10-08,2025-10-08,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+META,Long,Mean Reversion,2025-10-13,2025-10-13,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+META,Long,Mean Reversion,2025-11-10,2025-11-10,1,Slow EMA,False,1,Slow EMA,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Slow EMA
+META,Long,Mean Reversion,2025-11-21,2025-11-21,1,Slow EMA,False,1,Slow EMA,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Slow EMA

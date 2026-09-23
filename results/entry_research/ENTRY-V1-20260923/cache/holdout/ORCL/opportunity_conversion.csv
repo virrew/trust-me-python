@@ -1,0 +1,19 @@
+symbol,direction,module,event_start,event_end,duration_bars,dominant_blocker,blocker_changed,unique_blocker_count,blocker_sequence,max_followup_bars,observed_followup_bars,followup_complete,event_open_at_data_end,converted,conversion_time,conversion_bar_position,bars_to_conversion,final_signal_at_conversion,status,converted_within_1_bar,converted_within_3_bars,converted_within_5_bars,blocker_transition_path
+ORCL,Long,Pullback,2025-11-19,2025-11-19,1,Reclaim,False,1,Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+ORCL,Long,Pullback,2026-06-15,2026-06-15,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+ORCL,Long,Breakout,2025-09-22,2025-09-23,2,Price,False,1,Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ORCL,Long,Breakout,2025-09-25,2025-09-25,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ORCL,Long,Breakout,2025-10-13,2025-10-13,1,Volume,False,1,Volume,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Volume
+ORCL,Long,Breakout,2025-10-16,2025-10-16,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+ORCL,Long,Breakout,2025-11-19,2025-11-26,6,Price,False,1,Price -> Price -> Price -> Price -> Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ORCL,Long,Breakout,2025-12-08,2025-12-08,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+ORCL,Long,Breakout,2025-12-19,2025-12-19,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ORCL,Long,Breakout,2026-03-11,2026-03-11,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ORCL,Long,Breakout,2026-04-13,2026-04-16,4,Trend,False,1,Trend -> Trend -> Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ORCL,Long,Breakout,2026-05-28,2026-06-01,3,Trend,False,1,Trend -> Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ORCL,Long,Breakout,2026-08-03,2026-08-03,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ORCL,Long,Breakout,2026-09-03,2026-09-08,3,Trend,False,1,Trend -> Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+ORCL,Long,Squeeze,2025-11-05,2025-11-06,2,Price,False,1,Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+ORCL,Long,Mean Reversion,2025-09-22,2025-09-22,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+ORCL,Long,Mean Reversion,2025-10-08,2025-10-08,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+ORCL,Long,Mean Reversion,2025-12-19,2025-12-19,1,Slow EMA,False,1,Slow EMA,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Slow EMA

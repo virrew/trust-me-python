@@ -1,0 +1,5 @@
+direction,module,dominant_blocker,opportunity_events,converted_events,censored_events,eligible_events,eligible_converted_events,conversion_rate,median_bars_to_conversion,mean_bars_to_conversion,eligible_events_1,converted_events_within_1,conversion_rate_within_1,eligible_events_3,converted_events_within_3,conversion_rate_within_3,eligible_events_5,converted_events_within_5,conversion_rate_within_5,scope
+Long,Mean Reversion,Candle,3,0,0,3,0,0.0,,,3,0,0.0,3,0,0.0,3,0,0.0,existing module events including overlap; not pure signals
+Long,Mean Reversion,Oversold,455,0,8,447,0,0.0,,,451,0,0.0,449,0,0.0,447,0,0.0,existing module events including overlap; not pure signals
+Long,Mean Reversion,RSI Cross,17,3,1,15,2,13.333333333333334,1.0,1.0,17,3,17.647058823529413,15,2,13.333333333333334,15,2,13.333333333333334,existing module events including overlap; not pure signals
+Long,Mean Reversion,Slow EMA,30,0,1,29,0,0.0,,,30,0,0.0,29,0,0.0,29,0,0.0,existing module events including overlap; not pure signals

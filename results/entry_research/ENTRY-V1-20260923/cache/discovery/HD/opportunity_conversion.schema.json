@@ -1,0 +1,37 @@
+{
+  "dtypes": {
+    "bars_to_conversion": "Int64",
+    "blocker_changed": "bool",
+    "blocker_sequence": "object",
+    "blocker_transition_path": "object",
+    "conversion_bar_position": "Int64",
+    "conversion_time": "datetime64[ns]",
+    "converted": "boolean",
+    "converted_within_1_bar": "boolean",
+    "converted_within_3_bars": "boolean",
+    "converted_within_5_bars": "boolean",
+    "direction": "object",
+    "dominant_blocker": "object",
+    "duration_bars": "int64",
+    "event_end": "datetime64[ns]",
+    "event_open_at_data_end": "bool",
+    "event_start": "datetime64[ns]",
+    "final_signal_at_conversion": "boolean",
+    "followup_complete": "bool",
+    "max_followup_bars": "int64",
+    "module": "object",
+    "observed_followup_bars": "int64",
+    "status": "object",
+    "symbol": "object",
+    "unique_blocker_count": "int64"
+  },
+  "object_none": {
+    "blocker_sequence": [],
+    "blocker_transition_path": [],
+    "direction": [],
+    "dominant_blocker": [],
+    "module": [],
+    "status": [],
+    "symbol": []
+  }
+}

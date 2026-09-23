@@ -1,0 +1,11 @@
+requirement,reaching,passing,failing,blocked_rate,otherwise_qualified_blocked,scope
+sq_long_fail_trend,49604,22237,27367,0.5517095395532619,355,"all bars; conjunction display order, not causal priority"
+sq_long_fail_recent,22237,6677,15560,0.6997346764401673,601,"all bars; conjunction display order, not causal priority"
+sq_long_fail_release,6677,1474,5203,0.7792421746293245,201,"all bars; conjunction display order, not causal priority"
+sq_long_fail_price,1474,405,1069,0.7252374491180461,1004,"all bars; conjunction display order, not causal priority"
+long_fail_direction,405,405,0,0.0,0,"all bars; conjunction display order, not causal priority"
+long_fail_volatility,405,405,0,0.0,0,"all bars; conjunction display order, not causal priority"
+long_fail_candle,405,376,29,0.07160493827160494,8,"all bars; conjunction display order, not causal priority"
+long_fail_session,376,376,0,0.0,0,"all bars; conjunction display order, not causal priority"
+long_fail_confirmed,376,376,0,0.0,0,"all bars; conjunction display order, not causal priority"
+long_fail_score,236,236,0,0.0,0,derived score=1 for pure active; not a second module failure

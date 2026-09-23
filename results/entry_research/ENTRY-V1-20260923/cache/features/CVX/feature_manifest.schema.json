@@ -1,0 +1,28 @@
+{
+  "dtypes": {
+    "available_at": "object",
+    "currently_used_as_hard_filter": "bool",
+    "diagnostic_only": "bool",
+    "dtype": "object",
+    "meaning": "object",
+    "module_applicability": "object",
+    "name": "object",
+    "note": "object",
+    "numeric_shape_panel": "bool",
+    "safe_decision_time_feature": "bool",
+    "source_column": "object",
+    "source_expression": "object",
+    "source_function": "object"
+  },
+  "object_none": {
+    "available_at": [],
+    "dtype": [],
+    "meaning": [],
+    "module_applicability": [],
+    "name": [],
+    "note": [],
+    "source_column": [],
+    "source_expression": [],
+    "source_function": []
+  }
+}

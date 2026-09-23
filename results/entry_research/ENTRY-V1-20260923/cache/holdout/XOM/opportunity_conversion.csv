@@ -1,0 +1,72 @@
+symbol,direction,module,event_start,event_end,duration_bars,dominant_blocker,blocker_changed,unique_blocker_count,blocker_sequence,max_followup_bars,observed_followup_bars,followup_complete,event_open_at_data_end,converted,conversion_time,conversion_bar_position,bars_to_conversion,final_signal_at_conversion,status,converted_within_1_bar,converted_within_3_bars,converted_within_5_bars,blocker_transition_path
+XOM,Long,Pullback,2025-09-23,2025-09-24,2,Reclaim,False,1,Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+XOM,Long,Pullback,2025-09-30,2025-09-30,1,Reclaim,False,1,Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+XOM,Long,Pullback,2025-10-13,2025-10-13,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Pullback,2025-10-17,2025-10-17,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Pullback,2026-01-09,2026-01-12,2,Reclaim,False,1,Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+XOM,Long,Pullback,2026-04-13,2026-04-13,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Pullback,2026-04-22,2026-04-28,5,Reclaim,False,1,Reclaim -> Reclaim -> Reclaim -> Reclaim -> Reclaim,5,5,True,False,True,2026-04-29,151,1,True,converted,True,True,True,Reclaim
+XOM,Long,Pullback,2026-05-13,2026-05-13,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Pullback,2026-06-03,2026-06-03,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Pullback,2026-06-08,2026-06-08,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Pullback,2026-07-07,2026-07-08,2,Reclaim,False,1,Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+XOM,Long,Pullback,2026-07-10,2026-07-10,1,Reclaim,False,1,Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+XOM,Long,Pullback,2026-07-14,2026-07-14,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Pullback,2026-07-16,2026-07-16,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Pullback,2026-08-04,2026-08-05,2,Reclaim,False,1,Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+XOM,Long,Pullback,2026-09-01,2026-09-01,1,Reclaim,False,1,Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+XOM,Long,Breakout,2025-09-23,2025-09-23,1,Price,False,1,Price,5,5,True,False,True,2025-09-26,4,3,True,converted,False,True,True,Price
+XOM,Long,Breakout,2025-09-29,2025-09-30,2,Price,False,1,Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2025-10-23,2025-10-23,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Breakout,2025-11-07,2025-11-11,3,Trend,False,1,Trend -> Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Breakout,2025-11-13,2025-11-14,2,Price,False,1,Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-01-05,2026-01-05,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-01-23,2026-01-23,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-01-29,2026-01-29,1,RSI,False,1,RSI,5,5,True,False,True,2026-02-03,92,3,False,converted,False,True,True,RSI
+XOM,Long,Breakout,2026-02-06,2026-02-10,3,Volume,False,1,Volume -> Volume -> Volume,5,5,True,False,True,2026-02-11,98,1,True,converted,True,True,True,Volume
+XOM,Long,Breakout,2026-02-12,2026-02-12,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-02-27,2026-02-27,1,Price,False,1,Price,5,5,True,False,True,2026-03-02,110,1,True,converted,True,True,True,Price
+XOM,Long,Breakout,2026-03-03,2026-03-03,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-03-05,2026-03-05,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-03-12,2026-03-16,3,Price,False,1,Price -> Price -> Price,5,5,True,False,True,2026-03-17,121,1,True,converted,True,True,True,Price
+XOM,Long,Breakout,2026-03-19,2026-03-19,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-03-24,2026-03-24,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-03-27,2026-03-30,2,RSI,False,1,RSI -> RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-04-29,2026-04-29,1,Volume,False,1,Volume,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Volume
+XOM,Long,Breakout,2026-05-15,2026-05-19,3,Trend,False,1,Trend -> Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Breakout,2026-06-30,2026-06-30,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-07-07,2026-07-07,1,Volume,False,1,Volume,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Volume
+XOM,Long,Breakout,2026-07-13,2026-07-13,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-07-17,2026-07-17,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-07-23,2026-07-23,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-07-29,2026-07-29,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-07-31,2026-07-31,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-08-18,2026-08-18,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+XOM,Long,Breakout,2026-09-04,2026-09-04,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Breakout,2026-09-10,2026-09-10,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Squeeze,2025-09-25,2025-09-25,1,Price,False,1,Price,5,5,True,False,True,2025-09-26,4,1,True,converted,True,True,True,Price
+XOM,Long,Squeeze,2025-09-29,2025-09-29,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Squeeze,2026-01-05,2026-01-05,1,Recent Squeeze,False,1,Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Recent Squeeze
+XOM,Long,Squeeze,2026-01-14,2026-01-14,1,Recent Squeeze,False,1,Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Recent Squeeze
+XOM,Long,Squeeze,2026-01-21,2026-01-21,1,Recent Squeeze,False,1,Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Recent Squeeze
+XOM,Long,Squeeze,2026-03-13,2026-03-17,3,Release,False,1,Release -> Release -> Release,5,5,True,False,True,2026-03-24,126,5,True,converted,False,False,True,Release
+XOM,Long,Squeeze,2026-03-23,2026-03-23,1,Price,False,1,Price,5,5,True,False,True,2026-03-24,126,1,True,converted,True,True,True,Price
+XOM,Long,Squeeze,2026-03-25,2026-03-25,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Squeeze,2026-03-27,2026-03-30,2,Recent Squeeze,False,1,Recent Squeeze -> Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Recent Squeeze
+XOM,Long,Squeeze,2026-05-18,2026-05-19,2,Trend,False,1,Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+XOM,Long,Squeeze,2026-07-14,2026-07-14,1,Release,False,1,Release,5,5,True,False,True,2026-07-16,204,2,True,converted,False,True,True,Release
+XOM,Long,Squeeze,2026-07-20,2026-07-23,4,Recent Squeeze,True,2,Price -> Recent Squeeze -> Recent Squeeze -> Recent Squeeze,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price -> Recent Squeeze
+XOM,Long,Squeeze,2026-08-18,2026-08-18,1,Release,False,1,Release,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Release
+XOM,Long,Squeeze,2026-08-20,2026-08-24,3,Price,False,1,Price -> Price -> Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+XOM,Long,Squeeze,2026-09-21,2026-09-21,1,Price,False,1,Price,5,0,False,True,,,,,,censored,,,,Price
+XOM,Long,Mean Reversion,2025-09-23,2025-09-23,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-01-09,2026-01-09,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-01-13,2026-01-13,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-02-03,2026-02-03,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-02-06,2026-02-06,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-02-27,2026-02-27,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-03-12,2026-03-12,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-04-22,2026-04-22,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-08-10,2026-08-10,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-09-01,2026-09-01,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold
+XOM,Long,Mean Reversion,2026-09-09,2026-09-09,1,Oversold,False,1,Oversold,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Oversold

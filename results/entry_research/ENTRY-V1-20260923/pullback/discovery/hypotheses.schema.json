@@ -1,0 +1,27 @@
+{
+  "dtypes": {
+    "action": "object",
+    "discovery_a_n": "int64",
+    "discovery_b_n": "int64",
+    "discovery_delta": "float64",
+    "discovery_trimmed_delta": "float64",
+    "expected_direction": "int64",
+    "feature": "object",
+    "holdout_test": "object",
+    "hypothesis_id": "object",
+    "interpretation": "object",
+    "kind": "object",
+    "module": "object",
+    "observation": "object"
+  },
+  "object_none": {
+    "action": [],
+    "feature": [],
+    "holdout_test": [],
+    "hypothesis_id": [],
+    "interpretation": [],
+    "kind": [],
+    "module": [],
+    "observation": []
+  }
+}

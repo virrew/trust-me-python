@@ -21,3 +21,6 @@ data/
 
 # Generated exports / reports
 exports/
+
+# Runtime advisory lock (research artifacts remain versionable)
+results/.entry-research.lock

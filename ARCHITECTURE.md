@@ -63,6 +63,8 @@ A/B Rule Testing                   ✅
       ↓
 Finite Exit Research Automation    ✅ (2026-09-23; research only)
       ↓
+Finite Entry Research V1           ✅ (research only; Entry Holdout, not full OOS)
+      ↓
 Walk-forward / Out-of-sample       ← NÄSTA
       ↓
 Scanner / watchlist / ranking
@@ -1040,3 +1042,153 @@ and never chooses a policy. Labels ROBUST/MIXED/TAIL-SENSITIVE/LOW SAMPLE are
 descriptive only. There is no transaction cost, portfolio, TradingView parity,
 statistical independence or OOS guarantee. Present-day universe selection and
 shorter IPO histories remain limitations. Adaptive hypotheses stay unimplemented.
+
+## 17. Finite Entry Research V1 (2026-09-23)
+
+`src/entry_research_runner.py` and `src/entry_research_analysis.py` compose the
+existing diagnostics and Historical Outcome Engine for all four Long modules.
+This is the requested research phase after Exit V1; full walk-forward/OOS,
+production TAKE/SKIP and ML remain future work.
+
+**Behavior change: NO. Existing strategy behavior changed: NO.** As in Exit V1,
+this classification concerns unchanged existing strategy, diagnostics, outcome
+and execution behavior. The additions are research orchestration and exports;
+no production function, default, reference contract or threshold is modified.
+
+Run or resume from the project root:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.entry_research_runner --all
+# All modules still complete discovery/freeze before this module's holdout:
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.entry_research_runner --module meanrev
+```
+
+The other module arguments are `pullback`, `breakout`, and `squeeze`. The default
+entry session is `ENTRY-V1-20260923`. `--session` names a research output session,
+not a new market-data snapshot; it must not be used to chase favorable findings.
+There is no recurring scheduler or automatic continuation into a later phase.
+
+### Frozen inputs and timing
+
+The runner requires the completed canonical 50-symbol Daily snapshot
+`EXIT-V1-20260923-CLOSED`, verifying both the manifest identity and all OHLCV/schema
+hashes. No downloads occur. Its `open, high, low, close, volume`, sorted unique
+DatetimeIndex, original timezone/dtypes, gaps and warm-up remain unchanged.
+Research mode is Swing, Long enabled, Short disabled, using current defaults.
+
+`research_plan.json` is persisted before feature or label calculation, with
+source/runtime hashes, defaults, fixed horizons/barriers, feature panel, screen,
+universe, snapshot and chronological split. The final 12 calendar months are
+Entry Holdout (>= 2025-09-21, through the snapshot's 2026-09-21 end); preceding
+anchors are Discovery. Discovery OHLCV is truncated at the boundary **before**
+calling the existing outcome engine: incomplete forward windows are censored,
+not allowed to reach into holdout. Holdout diagnostics retain the original full
+historical indicator warm-up, but labels use only holdout anchors/future bars.
+This is Entry Holdout, not untouched strategy OOS, since Exit V1 used the period.
+
+All features come from contemporaneous `signal_diagnostics` columns. An automatic
+manifest records name, dtype, applicability, source assignment/expression,
+hard-filter input versus diagnostic-only status and availability. Unknown columns
+are rejected at the feature boundary. All diagnostic columns are available at
+closed input bar close; Daily `htf_*` still means input-resolution indicators.
+NaNs and missing feature-bin values are retained. Event ends, event conversion,
+forward labels and exits are absent from the feature table. Stable keys are
+`observation_id = symbol|ISO timestamp|Long`, plus symbol/timestamp/direction.
+Dates are bar labels, not invented close-clock timestamps.
+
+Labels use `calculate_historical_outcomes` without changing its definitions:
+1/3/5/10/20-bar forward return/MFE/MAE, +3%/-2% and +5%/-3% paths over 20 bars,
+complete flags and label-end bars. Anchor close is an observational reference,
+not a fill. Ambiguous/censored paths are excluded from resolved barrier-rate
+denominators. All returns/rates are fractions, except the existing event
+conversion summaries, which explicitly retain percent units (0–100).
+
+### Cohort and analysis contracts
+
+- Pure approved: final Long signal AND active mask exactly 1/2/4/8 for
+  Pullback/Breakout/Squeeze/MeanRev. Mask and activation consistency are asserted.
+- Pure active before final: the same exact mask, before independent final gates.
+- Existing module opportunity bars: exactly one existing module fail predicate;
+  the research bar cohort additionally excludes any other active module. It is
+  not falsely labeled a pure activation. The candidate envelope is <=1 module
+  failures with no other active module. Signal fraction of that envelope and
+  final-gate conversion are distinct denominators, not event conversion.
+- Strict single blocker: exactly one module or independent final requirement
+  fails, all others pass, and no other module is active. Derived score failure
+  is not double-counted when a module requirement fails. Multi-blocker bars
+  remain separate. Existing module predicates are read, never independently
+  reimplemented. The current `min_confluence=1` is asserted.
+- Research ablations are limited to independent final gates while keeping the
+  original active mask unchanged. Module requirements and derived score are
+  **NOT SAFE FOR ABLATION**; their near misses are descriptive associations.
+  Trend is the existing composite requirement; ADX is also studied numerically.
+- Sequential funnels follow diagnostic assignment order for conjunction display;
+  the order does not imply causal priority. Counts include all input bars,
+  including warm-up, with isolated otherwise-qualified counts reported separately.
+- A fixed panel of 15 scale-aware numeric features is split using discovery
+  approved-signal quintiles only. Tied edges collapse; missing values remain
+  missing. Holdout uses those exact frozen edges. Each bin has outcome statistics
+  and year/symbol detail; all other diagnostics remain in the reusable dataset.
+- Fixed poor-approved views are negative 5-bar return, negative 20-bar return,
+  and stop-before-target (+3%/-2%). False-negative tables retain blocker,
+  contemporaneous margins and multiple subsequent-outcome views. Their margin
+  bins also use discovery-approved edges. Neither cohort is a realized trade.
+- Existing event conversion (5 subsequent rows) is exported separately using the
+  unchanged engine. These events include overlaps and boundary truncation, and
+  conversion means module activation, not necessarily a final pure signal.
+
+Every filter contrast and each panel feature's highest-minus-lowest-bin contrast
+is frozen in `candidate_entry_hypotheses.csv`, including low-sample/no-action
+hypotheses. All four discovery stages finish before a hashed global freeze;
+no holdout labels can be generated before that freeze. Discovery directions,
+interpretations, primary 10-bar test and bin edges are never revised on holdout.
+The other four horizons are descriptive, not alternate winning-test selection.
+
+The descriptive screen uses >=30 complete observations per arm, >=5 observations
+per informative symbol/year, >=5 informative shared symbols, >=60% agreement,
+and mean/trim/median/winner-tail-deletion consistency. Discovery filter support
+also requires >=2 informative years and no leave-one-year/symbol-out reversal.
+Holdout replication requires discovery support, matching mean/trim/median/top-5
+sign and symbol stability without a single-year/symbol reversal; weaker evidence
+is PARTIAL, a sign reversal FAILED HOLDOUT, and small arms LOW SAMPLE. This is
+not a statistical significance test. Complete robustness outputs include
+unpaired A/B distributions, top-1/3/5 effects, trimmed means, MFE/MAE, positive
+rates and per-hypothesis year/symbol contrasts. Only actual overlapping masks
+are described, after pure research, separately with minimum-sample flags.
+
+### Storage and recovery
+
+`results/entry_research/ENTRY-V1-20260923/` contains:
+
+- Plan, state, snapshot reference, feature manifest, failure audit, frozen
+  hypotheses, aggregate holdout results and `ENTRY_RESEARCH_MATRIX_V1.md`.
+- `datasets/features/decision_time_features.csv` (features only) and
+  `published/future_outcome_labels.csv` (labels plus keys/partition only).
+  Both have schema sidecars preserving numeric and timestamp types.
+- `cache/features/<symbol>/` and `cache/{discovery,holdout}/<symbol>/` with
+  reusable, typed per-symbol features/labels and retrospective event conversion.
+- `<module>/{discovery,holdout}/`: populations, baseline/group summaries,
+  funnels, filter comparisons by horizon, strict near misses, safe ablations,
+  feature distributions/bins/groups, false-positive/negative views, hypotheses,
+  robustness and year/symbol detail. `<module>/report.md` is the human report.
+- `hypothesis_freeze/`, `combined_modules/` and `published/` with checked hashes.
+
+A process lock protects entry work and its separate registry. Atomic writes and
+per-stage completion hashes allow interrupted stages to resume without repeating
+valid completed work. Snapshot, source, environment and artifact mismatches stop
+reuse. Any symbol failure stops publication and records symbol/module/stage,
+error and attempt; no partial universe is silently promoted. Completed public
+reports and frozen hypotheses are checked too. `--module` may leave overall
+status PARTIAL until all four holdout reports exist.
+
+`results/entry_research_registry.csv` is append-only/idempotent by session and
+snapshot/hypothesis identity. The existing exit registry is preserved byte for
+byte: its execution A/B configuration fields do not represent observational
+entry studies cleanly. Existing Exit V1 artifacts and policy statuses remain
+unchanged. Secondary trade replay is optional and not used by this study.
+
+Limitations: dependent overlapping windows/signals, unpaired cohort selection,
+current-universe survivorship, market/year confounding, short ARM history,
+limited MeanRev samples, redundant feature contrasts and multiple testing.
+No result establishes profitability, Pine/TradingView parity, causal filter
+benefit, portfolio performance, untouched OOS or validated automated TAKE/SKIP.

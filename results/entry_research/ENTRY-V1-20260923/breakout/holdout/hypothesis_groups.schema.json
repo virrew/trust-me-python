@@ -1,0 +1,18 @@
+{
+  "dtypes": {
+    "a_mean": "float64",
+    "a_n": "int64",
+    "b_mean": "float64",
+    "b_n": "int64",
+    "delta": "float64",
+    "expected_direction": "int64",
+    "group": "object",
+    "group_value": "object",
+    "hypothesis_id": "object"
+  },
+  "object_none": {
+    "group": [],
+    "group_value": [],
+    "hypothesis_id": []
+  }
+}

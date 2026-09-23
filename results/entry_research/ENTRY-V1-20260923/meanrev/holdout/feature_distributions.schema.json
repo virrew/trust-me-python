@@ -1,0 +1,14 @@
+{
+  "dtypes": {
+    "count": "int64",
+    "feature": "object",
+    "mean": "float64",
+    "median": "float64",
+    "missing": "int64",
+    "q20": "float64",
+    "q80": "float64"
+  },
+  "object_none": {
+    "feature": []
+  }
+}

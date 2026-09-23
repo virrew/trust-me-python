@@ -1,0 +1,395 @@
+name,meaning,source_column,source_function,source_expression,dtype,module_applicability,available_at,safe_decision_time_feature,currently_used_as_hard_filter,diagnostic_only,numeric_shape_panel,note
+open,open,open,src/diagnostics_context.py:106,"data[""open""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+high,high,high,src/diagnostics_context.py:107,"data[""high""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+low,low,low,src/diagnostics_context.py:108,"data[""low""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+close,close,close,src/diagnostics_context.py:109,"data[""close""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+volume,volume,volume,src/diagnostics_context.py:110,"data[""volume""]",int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+is_swing,is swing,is_swing,src/diagnostics_context.py:116,is_swing,bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+allow_long,allow long,allow_long,src/diagnostics_context.py:117,allow_long,bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+allow_short,allow short,allow_short,src/diagnostics_context.py:118,allow_short,bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+in_entry_session,in entry session,in_entry_session,src/diagnostics_context.py:152,in_entry_session,bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+in_full_session,in full session,in_full_session,src/diagnostics_context.py:153,in_full_session,bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+session_ok,session ok,session_ok,src/diagnostics_context.py:161,"result[""in_entry_session""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+htf_ema_fast,htf ema fast,htf_ema_fast,src/diagnostics_context.py:176,"trend[""ema_fast""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+htf_ema_slow,htf ema slow,htf_ema_slow,src/diagnostics_context.py:177,"trend[""ema_slow""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+htf_adx,htf adx,htf_adx,src/diagnostics_context.py:178,"trend[""adx""]",float64,all/context,closed input bar close,True,True,False,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+adx_min,adx min,adx_min,src/diagnostics_context.py:186,adx_min,float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+adx_ok,adx ok,adx_ok,src/diagnostics_context.py:188,"result[""htf_adx""] > result[""adx_min""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+uptrend,uptrend,uptrend,src/diagnostics_context.py:192,"(result[""htf_ema_fast""] > result[""htf_ema_slow""])
+        & result[""adx_ok""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+downtrend,downtrend,downtrend,src/diagnostics_context.py:197,"(result[""htf_ema_fast""] < result[""htf_ema_slow""])
+        & result[""adx_ok""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+ema_spread,ema spread,ema_spread,src/diagnostics_context.py:207,"result[""htf_ema_fast""]
+        - result[""htf_ema_slow""]",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+ema_spread_pct,ema spread pct,ema_spread_pct,src/diagnostics_context.py:212,"(
+        (
+        result[""ema_spread""]
+        / result[""htf_ema_slow""]
+        )
+        * 100
+    ).where(
+        result[""htf_ema_slow""] != 0
+    )",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+adx_margin,adx margin,adx_margin,src/diagnostics_context.py:222,"result[""htf_adx""]
+        - result[""adx_min""]",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+atr,atr,atr,src/diagnostics_context.py:245,"volatility[""atr""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+atr_pct,atr pct,atr_pct,src/diagnostics_context.py:246,"volatility[""atr_pct""]",float64,all/context,closed input bar close,True,True,False,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+min_atr_pct,min atr pct,min_atr_pct,src/diagnostics_context.py:247,min_atr_pct,float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+volatility_ok,volatility ok,volatility_ok,src/diagnostics_context.py:249,"volatility[""volatility_ok""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+candle_range,candle range,candle_range,src/diagnostics_context.py:253,"volatility[""candle_range""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+max_candle_atr,max candle atr,max_candle_atr,src/diagnostics_context.py:257,max_candle_atr,float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+not_overextended,not overextended,not_overextended,src/diagnostics_context.py:259,"volatility[""not_overextended""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+atr_pct_margin,atr pct margin,atr_pct_margin,src/diagnostics_context.py:264,"result[""atr_pct""]
+        - result[""min_atr_pct""]",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+candle_range_atr,candle range atr,candle_range_atr,src/diagnostics_context.py:270,"(
+        result[""candle_range""]
+        / result[""atr""]
+    ).where(
+        result[""atr""] > 0
+    )",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+candle_atr_margin,candle atr margin,candle_atr_margin,src/diagnostics_context.py:279,"result[""max_candle_atr""]
+        - result[""candle_range_atr""]",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi,rsi,rsi,src/diagnostics_context.py:306,"momentum[""rsi""]",float64,all/context,closed input bar close,True,True,False,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_avg,rsi avg,rsi_avg,src/diagnostics_context.py:307,"momentum[""rsi_avg""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_cross_up,rsi cross up,rsi_cross_up,src/diagnostics_context.py:309,"momentum[""rsi_cross_up""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_cross_down,rsi cross down,rsi_cross_down,src/diagnostics_context.py:313,"momentum[""rsi_cross_down""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bars_since_rsi_up,bars since rsi up,bars_since_rsi_up,src/diagnostics_context.py:317,"momentum[""bars_since_rsi_up""]",float64,all/context,closed input bar close,True,True,False,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bars_since_rsi_down,bars since rsi down,bars_since_rsi_down,src/diagnostics_context.py:321,"momentum[""bars_since_rsi_down""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_up_recent,rsi up recent,rsi_up_recent,src/diagnostics_context.py:325,"momentum[""rsi_up_recent""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_down_recent,rsi down recent,rsi_down_recent,src/diagnostics_context.py:329,"momentum[""rsi_down_recent""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bars_since_oversold,bars since oversold,bars_since_oversold,src/diagnostics_context.py:333,"momentum[""bars_since_oversold""]",float64,all/context,closed input bar close,True,True,False,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bars_since_overbought,bars since overbought,bars_since_overbought,src/diagnostics_context.py:337,"momentum[""bars_since_overbought""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+was_oversold_recently,was oversold recently,was_oversold_recently,src/diagnostics_context.py:341,"momentum[""was_oversold_recently""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+was_overbought_recently,was overbought recently,was_overbought_recently,src/diagnostics_context.py:345,"momentum[""was_overbought_recently""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+confluence_window,confluence window,confluence_window,src/diagnostics_context.py:349,confluence_window,int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_distance_from_avg,rsi distance from avg,rsi_distance_from_avg,src/diagnostics_context.py:361,"result[""rsi""]
+        - result[""rsi_avg""]",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_distance_from_50,rsi distance from 50,rsi_distance_from_50,src/diagnostics_context.py:372,"result[""rsi""] - 50.0",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_distance_from_30,rsi distance from 30,rsi_distance_from_30,src/diagnostics_context.py:376,"result[""rsi""] - 30.0",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+rsi_distance_from_70,rsi distance from 70,rsi_distance_from_70,src/diagnostics_context.py:380,"result[""rsi""] - 70.0",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+average_volume,average volume,average_volume,src/diagnostics_context.py:404,"volume_result[""average_volume""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+volume_strong,volume strong,volume_strong,src/diagnostics_context.py:408,"volume_result[""volume_strong""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+volume_length,volume length,volume_length,src/diagnostics_context.py:412,volume_length,int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+use_volume_filter,use volume filter,use_volume_filter,src/diagnostics_context.py:414,use_volume_filter,bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+volume_ratio,volume ratio,volume_ratio,src/diagnostics_context.py:429,"(
+        result[""volume""]
+        / result[""average_volume""]
+    ).where(
+        result[""average_volume""] > 0
+    )",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+volume_margin,volume margin,volume_margin,src/diagnostics_context.py:442,"result[""volume""]
+        - result[""average_volume""]",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+volume_margin_pct,volume margin pct,volume_margin_pct,src/diagnostics_context.py:453,"(
+        (
+            result[""volume""]
+            - result[""average_volume""]
+        )
+        / result[""average_volume""]
+        * 100
+    ).where(
+        result[""average_volume""] > 0
+    )",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+breakout_level,breakout level,breakout_level,src/diagnostics_context.py:483,"breakout_result[""breakout_level""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+breakdown_level,breakdown level,breakdown_level,src/diagnostics_context.py:487,"breakout_result[""breakdown_level""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+breakout_lookback,breakout lookback,breakout_lookback,src/diagnostics_context.py:491,breakout_lookback,int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_breakout,distance to breakout,distance_to_breakout,src/diagnostics_context.py:502,"result[""breakout_level""]
+        - result[""close""]",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_breakdown,distance to breakdown,distance_to_breakdown,src/diagnostics_context.py:510,"result[""close""]
+        - result[""breakdown_level""]",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_breakout_atr,distance to breakout atr,distance_to_breakout_atr,src/diagnostics_context.py:521,"(
+        result[""distance_to_breakout""]
+        / result[""atr""]
+    ).where(
+        result[""atr""] > 0
+    )",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_breakdown_atr,distance to breakdown atr,distance_to_breakdown_atr,src/diagnostics_context.py:534,"(
+        result[""distance_to_breakdown""]
+        / result[""atr""]
+    ).where(
+        result[""atr""] > 0
+    )",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+price_above_breakout,price above breakout,price_above_breakout,src/diagnostics_context.py:544,"result[""close""]
+        > result[""breakout_level""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+price_below_breakdown,price below breakdown,price_below_breakdown,src/diagnostics_context.py:552,"result[""close""]
+        < result[""breakdown_level""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_basis,bb basis,bb_basis,src/diagnostics_context.py:578,"squeeze_result[""bb_basis""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_dev,bb dev,bb_dev,src/diagnostics_context.py:582,"squeeze_result[""bb_dev""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_upper,bb upper,bb_upper,src/diagnostics_context.py:586,"squeeze_result[""bb_upper""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_lower,bb lower,bb_lower,src/diagnostics_context.py:590,"squeeze_result[""bb_lower""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_width,bb width,bb_width,src/diagnostics_context.py:594,"squeeze_result[""bb_width""]",float64,all/context,closed input bar close,True,True,False,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_width_avg,bb width avg,bb_width_avg,src/diagnostics_context.py:598,"squeeze_result[""bb_width_avg""]",float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+in_squeeze,in squeeze,in_squeeze,src/diagnostics_context.py:602,"squeeze_result[""in_squeeze""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bars_since_squeeze,bars since squeeze,bars_since_squeeze,src/diagnostics_context.py:606,"squeeze_result[""bars_since_squeeze""]",float64,all/context,closed input bar close,True,True,False,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+squeeze_recent,squeeze recent,squeeze_recent,src/diagnostics_context.py:610,"squeeze_result[""squeeze_recent""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+squeeze_window,squeeze window,squeeze_window,src/diagnostics_context.py:614,squeeze_window,int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_length,bb length,bb_length,src/diagnostics_context.py:618,bb_length,int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bb_mult,bb mult,bb_mult,src/diagnostics_context.py:622,bb_mult,float64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+squeeze_threshold,squeeze threshold,squeeze_threshold,src/diagnostics_context.py:633,"result[""bb_width_avg""] * 0.7",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_squeeze,distance to squeeze,distance_to_squeeze,src/diagnostics_context.py:641,"result[""bb_width""]
+        - result[""squeeze_threshold""]",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_squeeze_pct,distance to squeeze pct,distance_to_squeeze_pct,src/diagnostics_context.py:652,"(
+        (
+            result[""bb_width""]
+            / result[""squeeze_threshold""]
+            - 1.0
+        )
+        * 100.0
+    ).where(
+        result[""squeeze_threshold""] != 0
+    )",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_upper_band_atr,distance to upper band atr,distance_to_upper_band_atr,src/diagnostics_context.py:669,"(
+        (
+            result[""bb_upper""]
+            - result[""close""]
+        )
+        / result[""atr""]
+    ).where(
+        result[""atr""] > 0
+    )",float64,all/context,closed input bar close,True,False,True,True,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+distance_to_lower_band_atr,distance to lower band atr,distance_to_lower_band_atr,src/diagnostics_context.py:685,"(
+        (
+            result[""close""]
+            - result[""bb_lower""]
+        )
+        / result[""atr""]
+    ).where(
+        result[""atr""] > 0
+    )",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+touched_ema_long,touched ema long,touched_ema_long,src/diagnostics_signals.py:130,"pullback[""touched_ema_long""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+reclaimed_long,reclaimed long,reclaimed_long,src/diagnostics_signals.py:134,"pullback[""reclaimed_long""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+touched_ema_short,touched ema short,touched_ema_short,src/diagnostics_signals.py:138,"pullback[""touched_ema_short""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+reclaimed_short,reclaimed short,reclaimed_short,src/diagnostics_signals.py:142,"pullback[""reclaimed_short""]",bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pullback_long,pullback long,pullback_long,src/diagnostics_signals.py:186,"modules[""pullback_long""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+breakout_long,breakout long,breakout_long,src/diagnostics_signals.py:187,"modules[""breakout_long""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+squeeze_long,squeeze long,squeeze_long,src/diagnostics_signals.py:188,"modules[""squeeze_long""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mean_rev_long,mean rev long,mean_rev_long,src/diagnostics_signals.py:189,"modules[""mean_rev_long""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pullback_short,pullback short,pullback_short,src/diagnostics_signals.py:191,"modules[""pullback_short""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+breakout_short,breakout short,breakout_short,src/diagnostics_signals.py:192,"modules[""breakout_short""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+squeeze_short,squeeze short,squeeze_short,src/diagnostics_signals.py:193,"modules[""squeeze_short""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mean_rev_short,mean rev short,mean_rev_short,src/diagnostics_signals.py:194,"modules[""mean_rev_short""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_score,long score,long_score,src/diagnostics_signals.py:216,"module_summary[""long_score""]",int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_module_text,long module text,long_module_text,src/diagnostics_signals.py:220,"module_summary[""long_module_text""]",object,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_score,short score,short_score,src/diagnostics_signals.py:224,"module_summary[""short_score""]",int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_module_text,short module text,short_module_text,src/diagnostics_signals.py:228,"module_summary[""short_module_text""]",object,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+min_confluence,min confluence,min_confluence,src/diagnostics_signals.py:234,1,int64,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+is_confirmed,is confirmed,is_confirmed,src/diagnostics_signals.py:268,is_confirmed,bool,all/context,closed input bar close,True,True,False,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_signal,long signal,long_signal,src/diagnostics_signals.py:270,"entry_signal[""long_signal""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_signal,short signal,short_signal,src/diagnostics_signals.py:274,"entry_signal[""short_signal""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_fail_direction,long fail direction,long_fail_direction,src/diagnostics_signals.py:293,"~result[""allow_long""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_fail_score,long fail score,long_fail_score,src/diagnostics_signals.py:297,"result[""long_score""]
+        < result[""min_confluence""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_fail_volatility,long fail volatility,long_fail_volatility,src/diagnostics_signals.py:302,"~result[""volatility_ok""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_fail_candle,long fail candle,long_fail_candle,src/diagnostics_signals.py:306,"~result[""not_overextended""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_fail_session,long fail session,long_fail_session,src/diagnostics_signals.py:310,"~result[""session_ok""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_fail_confirmed,long fail confirmed,long_fail_confirmed,src/diagnostics_signals.py:314,"~result[""is_confirmed""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_fail_count,long fail count,long_fail_count,src/diagnostics_signals.py:322,"result[""long_fail_direction""].astype(int)
+        + result[""long_fail_score""].astype(int)
+        + result[""long_fail_volatility""].astype(int)
+        + result[""long_fail_candle""].astype(int)
+        + result[""long_fail_session""].astype(int)
+        + result[""long_fail_confirmed""].astype(int)",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_score_gap,long score gap,long_score_gap,src/diagnostics_signals.py:335,"(
+        result[""min_confluence""]
+        - result[""long_score""]
+    ).clip(lower=0)",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss,long near miss,long_near_miss,src/diagnostics_signals.py:351,"(~result[""long_signal""])
+        & (result[""long_fail_count""] == 1)",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_direction,long near miss direction,long_near_miss_direction,src/diagnostics_signals.py:356,"result[""long_near_miss""]
+        & result[""long_fail_direction""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_score,long near miss score,long_near_miss_score,src/diagnostics_signals.py:361,"result[""long_near_miss""]
+        & result[""long_fail_score""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_volatility,long near miss volatility,long_near_miss_volatility,src/diagnostics_signals.py:366,"result[""long_near_miss""]
+        & result[""long_fail_volatility""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_candle,long near miss candle,long_near_miss_candle,src/diagnostics_signals.py:371,"result[""long_near_miss""]
+        & result[""long_fail_candle""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_session,long near miss session,long_near_miss_session,src/diagnostics_signals.py:376,"result[""long_near_miss""]
+        & result[""long_fail_session""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_confirmed,long near miss confirmed,long_near_miss_confirmed,src/diagnostics_signals.py:381,"result[""long_near_miss""]
+        & result[""long_fail_confirmed""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_fail_direction,short fail direction,short_fail_direction,src/diagnostics_signals.py:390,"~result[""allow_short""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_fail_score,short fail score,short_fail_score,src/diagnostics_signals.py:394,"result[""short_score""]
+        < result[""min_confluence""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_fail_volatility,short fail volatility,short_fail_volatility,src/diagnostics_signals.py:399,"~result[""volatility_ok""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_fail_candle,short fail candle,short_fail_candle,src/diagnostics_signals.py:403,"~result[""not_overextended""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_fail_session,short fail session,short_fail_session,src/diagnostics_signals.py:407,"~result[""session_ok""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_fail_confirmed,short fail confirmed,short_fail_confirmed,src/diagnostics_signals.py:411,"~result[""is_confirmed""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_fail_count,short fail count,short_fail_count,src/diagnostics_signals.py:419,"result[""short_fail_direction""].astype(int)
+        + result[""short_fail_score""].astype(int)
+        + result[""short_fail_volatility""].astype(int)
+        + result[""short_fail_candle""].astype(int)
+        + result[""short_fail_session""].astype(int)
+        + result[""short_fail_confirmed""].astype(int)",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_score_gap,short score gap,short_score_gap,src/diagnostics_signals.py:432,"(
+        result[""min_confluence""]
+        - result[""short_score""]
+    ).clip(lower=0)",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss,short near miss,short_near_miss,src/diagnostics_signals.py:441,"(~result[""short_signal""])
+        & (result[""short_fail_count""] == 1)",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_direction,short near miss direction,short_near_miss_direction,src/diagnostics_signals.py:446,"result[""short_near_miss""]
+        & result[""short_fail_direction""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_score,short near miss score,short_near_miss_score,src/diagnostics_signals.py:451,"result[""short_near_miss""]
+        & result[""short_fail_score""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_volatility,short near miss volatility,short_near_miss_volatility,src/diagnostics_signals.py:456,"result[""short_near_miss""]
+        & result[""short_fail_volatility""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_candle,short near miss candle,short_near_miss_candle,src/diagnostics_signals.py:461,"result[""short_near_miss""]
+        & result[""short_fail_candle""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_session,short near miss session,short_near_miss_session,src/diagnostics_signals.py:466,"result[""short_near_miss""]
+        & result[""short_fail_session""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_confirmed,short near miss confirmed,short_near_miss_confirmed,src/diagnostics_signals.py:471,"result[""short_near_miss""]
+        & result[""short_fail_confirmed""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_long_fail_trend,pb long fail trend,pb_long_fail_trend,src/diagnostics_signals.py:499,"~result[""uptrend""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_long_fail_slow_ema,pb long fail slow ema,pb_long_fail_slow_ema,src/diagnostics_signals.py:503,"~(
+        result[""close""] > result[""htf_ema_slow""]
+    )",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_long_fail_rsi,pb long fail rsi,pb_long_fail_rsi,src/diagnostics_signals.py:507,"~result[""rsi_up_recent""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_long_fail_touch,pb long fail touch,pb_long_fail_touch,src/diagnostics_signals.py:511,"~result[""touched_ema_long""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_long_fail_reclaim,pb long fail reclaim,pb_long_fail_reclaim,src/diagnostics_signals.py:515,"~result[""reclaimed_long""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_long_fail_mask,pb long fail mask,pb_long_fail_mask,src/diagnostics_signals.py:519,"result[""pb_long_fail_trend""].astype(int) * 1
+        + result[""pb_long_fail_slow_ema""].astype(int) * 2
+        + result[""pb_long_fail_rsi""].astype(int) * 4
+        + result[""pb_long_fail_touch""].astype(int) * 8
+        + result[""pb_long_fail_reclaim""].astype(int) * 16",int64,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_long_fail_trend,bo long fail trend,bo_long_fail_trend,src/diagnostics_signals.py:538,"~result[""uptrend""]",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_long_fail_price,bo long fail price,bo_long_fail_price,src/diagnostics_signals.py:542,"~(
+        result[""close""] > result[""breakout_level""]
+    )",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_long_fail_volume,bo long fail volume,bo_long_fail_volume,src/diagnostics_signals.py:546,"~result[""volume_strong""]",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_long_fail_rsi,bo long fail rsi,bo_long_fail_rsi,src/diagnostics_signals.py:550,"~result[""rsi_up_recent""]",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_long_fail_mask,bo long fail mask,bo_long_fail_mask,src/diagnostics_signals.py:554,"result[""bo_long_fail_trend""].astype(int) * 1
+        + result[""bo_long_fail_price""].astype(int) * 2
+        + result[""bo_long_fail_volume""].astype(int) * 4
+        + result[""bo_long_fail_rsi""].astype(int) * 8",int64,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_long_fail_trend,sq long fail trend,sq_long_fail_trend,src/diagnostics_signals.py:578,"~result[""uptrend""]",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_long_fail_recent,sq long fail recent,sq_long_fail_recent,src/diagnostics_signals.py:582,"~result[""squeeze_recent""]",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_long_fail_release,sq long fail release,sq_long_fail_release,src/diagnostics_signals.py:586,"result[""in_squeeze""]",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_long_fail_price,sq long fail price,sq_long_fail_price,src/diagnostics_signals.py:590,"~(
+        result[""close""] > result[""bb_upper""]
+    )",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_long_fail_mask,sq long fail mask,sq_long_fail_mask,src/diagnostics_signals.py:594,"result[""sq_long_fail_trend""].astype(int) * 1
+        + result[""sq_long_fail_recent""].astype(int) * 2
+        + result[""sq_long_fail_release""].astype(int) * 4
+        + result[""sq_long_fail_price""].astype(int) * 8",int64,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_long_fail_trend,mr long fail trend,mr_long_fail_trend,src/diagnostics_signals.py:613,"~result[""uptrend""]",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_long_fail_slow_ema,mr long fail slow ema,mr_long_fail_slow_ema,src/diagnostics_signals.py:617,"~(
+        result[""close""] > result[""htf_ema_slow""]
+    )",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_long_fail_oversold,mr long fail oversold,mr_long_fail_oversold,src/diagnostics_signals.py:621,"~result[""was_oversold_recently""]",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_long_fail_rsi_cross,mr long fail rsi cross,mr_long_fail_rsi_cross,src/diagnostics_signals.py:625,"~result[""rsi_cross_up""]",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_long_fail_candle,mr long fail candle,mr_long_fail_candle,src/diagnostics_signals.py:629,"~(
+        result[""close""] > result[""open""]
+    )",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_long_fail_mask,mr long fail mask,mr_long_fail_mask,src/diagnostics_signals.py:633,"result[""mr_long_fail_trend""].astype(int) * 1
+        + result[""mr_long_fail_slow_ema""].astype(int) * 2
+        + result[""mr_long_fail_oversold""].astype(int) * 4
+        + result[""mr_long_fail_rsi_cross""].astype(int) * 8
+        + result[""mr_long_fail_candle""].astype(int) * 16",int64,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_short_fail_trend,pb short fail trend,pb_short_fail_trend,src/diagnostics_signals.py:664,"~result[""downtrend""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_short_fail_slow_ema,pb short fail slow ema,pb_short_fail_slow_ema,src/diagnostics_signals.py:668,"~(
+        result[""close""] < result[""htf_ema_slow""]
+    )",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_short_fail_rsi,pb short fail rsi,pb_short_fail_rsi,src/diagnostics_signals.py:672,"~result[""rsi_down_recent""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_short_fail_touch,pb short fail touch,pb_short_fail_touch,src/diagnostics_signals.py:676,"~result[""touched_ema_short""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_short_fail_reclaim,pb short fail reclaim,pb_short_fail_reclaim,src/diagnostics_signals.py:680,"~result[""reclaimed_short""]",bool,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+pb_short_fail_mask,pb short fail mask,pb_short_fail_mask,src/diagnostics_signals.py:684,"result[""pb_short_fail_trend""].astype(int) * 1
+        + result[""pb_short_fail_slow_ema""].astype(int) * 2
+        + result[""pb_short_fail_rsi""].astype(int) * 4
+        + result[""pb_short_fail_touch""].astype(int) * 8
+        + result[""pb_short_fail_reclaim""].astype(int) * 16",int64,pullback,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_short_fail_trend,bo short fail trend,bo_short_fail_trend,src/diagnostics_signals.py:703,"~result[""downtrend""]",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_short_fail_price,bo short fail price,bo_short_fail_price,src/diagnostics_signals.py:707,"~(
+        result[""close""] < result[""breakdown_level""]
+    )",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_short_fail_volume,bo short fail volume,bo_short_fail_volume,src/diagnostics_signals.py:711,"~result[""volume_strong""]",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_short_fail_rsi,bo short fail rsi,bo_short_fail_rsi,src/diagnostics_signals.py:715,"~result[""rsi_down_recent""]",bool,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+bo_short_fail_mask,bo short fail mask,bo_short_fail_mask,src/diagnostics_signals.py:719,"result[""bo_short_fail_trend""].astype(int) * 1
+        + result[""bo_short_fail_price""].astype(int) * 2
+        + result[""bo_short_fail_volume""].astype(int) * 4
+        + result[""bo_short_fail_rsi""].astype(int) * 8",int64,breakout,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_short_fail_trend,sq short fail trend,sq_short_fail_trend,src/diagnostics_signals.py:740,"~result[""downtrend""]",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_short_fail_recent,sq short fail recent,sq_short_fail_recent,src/diagnostics_signals.py:744,"~result[""squeeze_recent""]",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_short_fail_release,sq short fail release,sq_short_fail_release,src/diagnostics_signals.py:748,"result[""in_squeeze""]",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_short_fail_price,sq short fail price,sq_short_fail_price,src/diagnostics_signals.py:752,"~(
+        result[""close""] < result[""bb_lower""]
+    )",bool,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+sq_short_fail_mask,sq short fail mask,sq_short_fail_mask,src/diagnostics_signals.py:756,"result[""sq_short_fail_trend""].astype(int) * 1
+        + result[""sq_short_fail_recent""].astype(int) * 2
+        + result[""sq_short_fail_release""].astype(int) * 4
+        + result[""sq_short_fail_price""].astype(int) * 8",int64,squeeze,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_short_fail_trend,mr short fail trend,mr_short_fail_trend,src/diagnostics_signals.py:775,"~result[""downtrend""]",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_short_fail_slow_ema,mr short fail slow ema,mr_short_fail_slow_ema,src/diagnostics_signals.py:779,"~(
+        result[""close""] < result[""htf_ema_slow""]
+    )",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_short_fail_overbought,mr short fail overbought,mr_short_fail_overbought,src/diagnostics_signals.py:783,"~result[""was_overbought_recently""]",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_short_fail_rsi_cross,mr short fail rsi cross,mr_short_fail_rsi_cross,src/diagnostics_signals.py:787,"~result[""rsi_cross_down""]",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_short_fail_candle,mr short fail candle,mr_short_fail_candle,src/diagnostics_signals.py:791,"~(
+        result[""close""] < result[""open""]
+    )",bool,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+mr_short_fail_mask,mr short fail mask,mr_short_fail_mask,src/diagnostics_signals.py:795,"result[""mr_short_fail_trend""].astype(int) * 1
+        + result[""mr_short_fail_slow_ema""].astype(int) * 2
+        + result[""mr_short_fail_overbought""].astype(int) * 4
+        + result[""mr_short_fail_rsi_cross""].astype(int) * 8
+        + result[""mr_short_fail_candle""].astype(int) * 16",int64,meanrev,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_non_score_ready,long non score ready,long_non_score_ready,src/diagnostics_signals.py:821,"result[""allow_long""]
+        & result[""volatility_ok""]
+        & result[""not_overextended""]
+        & result[""session_ok""]
+        & result[""is_confirmed""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_non_score_ready,short non score ready,short_non_score_ready,src/diagnostics_signals.py:829,"result[""allow_short""]
+        & result[""volatility_ok""]
+        & result[""not_overextended""]
+        & result[""session_ok""]
+        & result[""is_confirmed""]",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_waiting_for_score,long waiting for score,long_waiting_for_score,src/diagnostics_signals.py:841,"result[""long_non_score_ready""]
+        & (
+            result[""long_score""]
+            < result[""min_confluence""]
+        )",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_waiting_for_score,short waiting for score,short_waiting_for_score,src/diagnostics_signals.py:849,"result[""short_non_score_ready""]
+        & (
+            result[""short_score""]
+            < result[""min_confluence""]
+        )",bool,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_score_wait_bars,long score wait bars,long_score_wait_bars,src/diagnostics_signals.py:898,"consecutive_true_streak(
+            result[""long_waiting_for_score""]
+        )",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_score_wait_bars,short score wait bars,short_score_wait_bars,src/diagnostics_signals.py:904,"consecutive_true_streak(
+            result[""short_waiting_for_score""]
+        )",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_delay_on_signal,long delay on signal,long_delay_on_signal,src/diagnostics_signals.py:939,"previous_long_wait.where(
+            result[""long_signal""]
+        )",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_delay_on_signal,short delay on signal,short_delay_on_signal,src/diagnostics_signals.py:945,"previous_short_wait.where(
+            result[""short_signal""]
+        )",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_streak,long near miss streak,long_near_miss_streak,src/diagnostics_signals.py:955,"consecutive_true_streak(
+            result[""long_near_miss""]
+        )",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_streak,short near miss streak,short_near_miss_streak,src/diagnostics_signals.py:961,"consecutive_true_streak(
+            result[""short_near_miss""]
+        )",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_near_miss_streak_before_signal,long near miss streak before signal,long_near_miss_streak_before_signal,src/diagnostics_signals.py:991,"previous_long_near_miss.where(
+            result[""long_signal""]
+        )",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_near_miss_streak_before_signal,short near miss streak before signal,short_near_miss_streak_before_signal,src/diagnostics_signals.py:997,"previous_short_near_miss.where(
+            result[""short_signal""]
+        )",float64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_final_fail_mask,long final fail mask,long_final_fail_mask,src/diagnostics_signals.py:1024,"result[""long_fail_direction""].astype(int) * 1
+        + result[""long_fail_score""].astype(int) * 2
+        + result[""long_fail_volatility""].astype(int) * 4
+        + result[""long_fail_candle""].astype(int) * 8
+        + result[""long_fail_session""].astype(int) * 16
+        + result[""long_fail_confirmed""].astype(int) * 32",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_final_fail_mask,short final fail mask,short_final_fail_mask,src/diagnostics_signals.py:1037,"result[""short_fail_direction""].astype(int) * 1
+        + result[""short_fail_score""].astype(int) * 2
+        + result[""short_fail_volatility""].astype(int) * 4
+        + result[""short_fail_candle""].astype(int) * 8
+        + result[""short_fail_session""].astype(int) * 16
+        + result[""short_fail_confirmed""].astype(int) * 32",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+long_active_module_mask,long active module mask,long_active_module_mask,src/diagnostics_signals.py:1064,"result[""pullback_long""].astype(int) * 1
+        + result[""breakout_long""].astype(int) * 2
+        + result[""squeeze_long""].astype(int) * 4
+        + result[""mean_rev_long""].astype(int) * 8",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata
+short_active_module_mask,short active module mask,short_active_module_mask,src/diagnostics_signals.py:1075,"result[""pullback_short""].astype(int) * 1
+        + result[""breakout_short""].astype(int) * 2
+        + result[""squeeze_short""].astype(int) * 4
+        + result[""mean_rev_short""].astype(int) * 8",int64,all/context,closed input bar close,True,False,True,False,Hard-filter flag includes upstream gate inputs. htf_* uses Daily input; NaN retained; no event-end metadata

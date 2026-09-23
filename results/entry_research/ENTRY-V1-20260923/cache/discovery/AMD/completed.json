@@ -1,0 +1,10 @@
+{
+  "completed_at": "2026-09-23T12:49:10.074948+00:00",
+  "hashes": {
+    "labels.csv": "d3bf249086b437e2a6bbf1e698f150b5ae9f034e8b6e0356549b891fbf1fa69b",
+    "labels.schema.json": "cb87e1003390b3c8cc1e4851fed74f4030385d840e3005978fe13d1db1b15fc2",
+    "opportunity_conversion.csv": "32dc85d2b999cee33d60e55e097f0955b89a635bfcf984f776a9cc76a1252688",
+    "opportunity_conversion.schema.json": "c67604c97431e34253aeef6c2751a0d93b0279d10734c23f39f0f4d433410944"
+  },
+  "identity": "af834ee8942cfbc788ebc99d1cce6eb3e7b6586835f9874e5b77541924a9e449"
+}

@@ -1,0 +1,15 @@
+symbol,direction,module,event_start,event_end,duration_bars,dominant_blocker,blocker_changed,unique_blocker_count,blocker_sequence,max_followup_bars,observed_followup_bars,followup_complete,event_open_at_data_end,converted,conversion_time,conversion_bar_position,bars_to_conversion,final_signal_at_conversion,status,converted_within_1_bar,converted_within_3_bars,converted_within_5_bars,blocker_transition_path
+UBER,Long,Pullback,2025-10-23,2025-10-23,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Pullback,2025-10-27,2025-10-27,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Pullback,2025-11-28,2025-11-28,1,Reclaim,False,1,Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+UBER,Long,Pullback,2025-12-02,2025-12-04,3,Reclaim,False,1,Reclaim -> Reclaim -> Reclaim,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Reclaim
+UBER,Long,Pullback,2025-12-08,2025-12-08,1,RSI,False,1,RSI,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI
+UBER,Long,Pullback,2026-01-08,2026-01-08,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Breakout,2025-12-03,2025-12-03,1,Price,False,1,Price,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Price
+UBER,Long,Breakout,2026-01-06,2026-01-07,2,Trend,False,1,Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Breakout,2026-04-15,2026-04-15,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Breakout,2026-05-06,2026-05-06,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Breakout,2026-06-26,2026-06-26,1,Trend,False,1,Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Breakout,2026-08-07,2026-08-10,2,Trend,False,1,Trend -> Trend,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Trend
+UBER,Long,Mean Reversion,2025-11-26,2025-11-28,2,Slow EMA,True,2,Slow EMA -> RSI Cross,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,Slow EMA -> RSI Cross
+UBER,Long,Mean Reversion,2025-12-02,2025-12-03,2,RSI Cross,False,1,RSI Cross -> RSI Cross,5,5,True,False,False,,,,,not_converted_within_window,False,False,False,RSI Cross

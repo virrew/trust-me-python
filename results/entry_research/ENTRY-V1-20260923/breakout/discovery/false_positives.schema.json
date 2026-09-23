@@ -1,0 +1,17 @@
+{
+  "dtypes": {
+    "all_approved_poor_rate": "float64",
+    "bin": "int64",
+    "eligible": "int64",
+    "enrichment": "float64",
+    "feature": "object",
+    "outcome_view": "object",
+    "poor": "int64",
+    "poor_rate": "object"
+  },
+  "object_none": {
+    "feature": [],
+    "outcome_view": [],
+    "poor_rate": []
+  }
+}

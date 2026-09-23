@@ -1,0 +1,16 @@
+{
+  "bin_edge_hashes": {
+    "breakout": "3b78ce6dd83e1887befa9743f50dfcae60d11981d1eda1ada10af975ed923f12",
+    "meanrev": "da1c069ee862fc0dd0e3b4f5f75221a5ea57c49636d429ac0d928ee8a17694e1",
+    "pullback": "c01d255e7b5587d7194d3a84ca1d97e76c8b26d5f4109df56708b83c629895a0",
+    "squeeze": "17342409deea4eb039318720401fcdef547258778e7af890a8bfe9df82825ac3"
+  },
+  "discovery_markers": {
+    "breakout": "d0dbf66c86e8c6e216f526eed0a2279d2a3e97ecf01ad844ae2a56df8b15aa07",
+    "meanrev": "1fb7e5f249d94cf06cdcb979b95af81931ee44d130edbf92ed20d7d7f37e1275",
+    "pullback": "7e17a14729afc84c046329e166466cae8869dd7879fbbb6ab0e1f275056d905e",
+    "squeeze": "ccbae4763401ceba6a26ec44e02dd977302ac27b7fa9091fc871735e4856cc60"
+  },
+  "frozen_at": "2026-09-23T12:53:49.139926+00:00",
+  "hypotheses_sha256": "fde0abb632bb69da9998b195902f76f84ec24d1b7c9cf35fd10bad80176e6353"
+}

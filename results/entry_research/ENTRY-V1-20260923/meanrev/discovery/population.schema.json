@@ -1,0 +1,14 @@
+{
+  "dtypes": {
+    "candidate_envelope": "int64",
+    "final_gate_conversion": "float64",
+    "input_bars": "int64",
+    "opportunities": "int64",
+    "pure_active": "int64",
+    "signal_fraction_of_candidate_envelope": "float64",
+    "signals": "int64",
+    "symbols": "int64",
+    "years": "int64"
+  },
+  "object_none": {}
+}

@@ -1,0 +1,12 @@
+{
+  "completed_at": "2026-09-23T12:55:58.603056+00:00",
+  "hashes": {
+    "ENTRY_RESEARCH_MATRIX_V1.md": "ba6f58c820a92b80a9fb10e1929f215cc8251041d729551e86b58fdebdde5ff2",
+    "future_outcome_labels.csv": "f30fe3f2178af2e9219e29d0e1eb684235551af587435eeec98e781a54e2d12a",
+    "future_outcome_labels.schema.json": "fbd1d6d7489132e707802c57ff03684cea93b43eb8e52a92e61665f584ce3c16",
+    "holdout_results.csv": "6c1ef3ec17a4685eed01257df4e6a7b285b4cf8b6a4769b22a02e25ad7dcf530",
+    "holdout_results.schema.json": "b4aba7c8e526e49cb495ba0ef86975b6d64cb3760b1ee03671bb7efda7bec033",
+    "public_hashes.json": "73981d1218154e8d56b31de14700b0df79b4cf98798c4cf81f4268205f5f5c8a"
+  },
+  "identity": "af834ee8942cfbc788ebc99d1cce6eb3e7b6586835f9874e5b77541924a9e449"
+}

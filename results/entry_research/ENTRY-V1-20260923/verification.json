@@ -1,0 +1,61 @@
+{
+  "bars": 62154,
+  "baseline": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q -p no:cacheprovider",
+    "passed": 147,
+    "seconds": 13.12,
+    "warnings": 1
+  },
+  "behavior_change": "NO",
+  "checkpoints_verified": 168,
+  "continuation_note": "The previous process had already completed all stages. Continuation verified existing artifacts and ran final tests only.",
+  "decision_time_features": 191,
+  "diff_check": "PASS",
+  "discovery_recomputed_on_continuation": false,
+  "existing_strategy_behavior_changed": "NO",
+  "failed_symbols": 0,
+  "feature_label_separation": "PASS; keys only shared; original diagnostic features contain no outcomes",
+  "final_suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q -p no:cacheprovider",
+    "passed": 159,
+    "seconds": 38.09,
+    "warnings": 1
+  },
+  "frozen_hypotheses_unchanged": true,
+  "hypotheses": 98,
+  "hypotheses_sha256": "fde0abb632bb69da9998b195902f76f84ec24d1b7c9cf35fd10bad80176e6353",
+  "hypothesis_status_counts": {
+    "FAILED HOLDOUT": 9,
+    "INCONCLUSIVE": 0,
+    "LOW SAMPLE": 78,
+    "PARTIAL": 10,
+    "REPLICATED": 1
+  },
+  "integration": "Complete local frozen-data pipeline; all four modules; 50 symbols; no Yahoo redownload",
+  "next_phase": "Separately preregistered confirmatory walk-forward/out-of-sample entry research; explicitly define the research-only Breakout price hypothesis before new execution experiments. Not started.",
+  "parity": "Pine entry semantics inspected; no external TradingView/numeric parity run",
+  "production_and_exit_history_git_diff": "EMPTY",
+  "py_compile": "PASS",
+  "research_recomputed_on_continuation": false,
+  "session": "ENTRY-V1-20260923",
+  "snapshot": "EXIT-V1-20260923-CLOSED",
+  "status": "COMPLETED",
+  "symbols": 50,
+  "targeted": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_entry_research.py",
+    "passed": 12,
+    "seconds": 28.22,
+    "warnings": 1
+  },
+  "twenty_bar_censored_all_bar_labels": {
+    "discovery": 1000,
+    "holdout": 1000
+  },
+  "twenty_bar_censored_pure_holdout_signals": {
+    "breakout": 15,
+    "meanrev": 2,
+    "pullback": 1,
+    "squeeze": 5
+  },
+  "verified_at": "2026-09-23T17:02:51.341236+00:00"
+}

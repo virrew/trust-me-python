@@ -285,12 +285,34 @@ and blocked observations. They do not themselves prove that a rule is useful.
 
 ### Research and validation still to do
 
-Entry research is a major next phase: identify which poor outcomes pass, which
-poor outcomes are blocked, which favorable outcomes are accidentally blocked,
-and which contemporaneously available combinations distinguish the groups.
-Controlled entry-rule experiments, robust cohort definitions, and
-walk-forward/out-of-sample validation have not yet been completed as a general
-policy-selection system.
+Entry Research V1 studies which poor outcomes pass, which poor outcomes are
+blocked, which favorable outcomes are blocked, and which contemporaneous
+features distinguish the groups. Its finite observational study and Entry
+Holdout do not establish a general policy-selection system. Full walk-forward
+validation and any production entry-rule changes remain separate future work.
+
+### Running Entry Research V1
+
+The finite entry runner now studies all four pure Long modules on the existing
+50-symbol frozen Exit V1 history, without changing production rules:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.entry_research_runner --all
+# Resume one module's holdout/report; discovery freezes globally first:
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.entry_research_runner --module breakout
+```
+
+It exports decision-time features separately from future outcomes, analyzes
+single blockers and safe final-filter ablations, freezes discovery hypotheses
+and quintile edges, then evaluates the final 12 months as **Entry Holdout**.
+This is not untouched strategy OOS because Exit Research used the same history.
+The existing Historical Outcome Engine supplies primary evidence; no selected
+exit, parameter grid, predictive model or production TAKE/SKIP rule is introduced.
+
+See `results/entry_research/ENTRY-V1-20260923/ENTRY_RESEARCH_MATRIX_V1.md` and the
+four module reports. The separate `results/entry_research_registry.csv` preserves
+the exit registry's schema and history. [Architecture section 17](ARCHITECTURE.md#17-finite-entry-research-v1-2026-09-23)
+documents cohorts, timing, artifacts, checkpoints and limitations.
 
 ## TAKE / SKIP Research Direction
 

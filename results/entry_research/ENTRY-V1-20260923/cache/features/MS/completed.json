@@ -1,0 +1,10 @@
+{
+  "completed_at": "2026-09-23T12:47:50.232407+00:00",
+  "hashes": {
+    "feature_manifest.csv": "2c67f4b65096e51979b9842a297a37c2aba2ed3b489324cd9cf97e83faf07c9e",
+    "feature_manifest.schema.json": "e3bb111701d9fdb0539a7ee6e892698b7025e0234e99bae0fe28110ade0490ba",
+    "features.csv": "2d60569c0c623c10b01388cebacd97e877170050d7b50c5b2518552d618c12df",
+    "features.schema.json": "158f2dc05131a85016bf19735b977f9f8918e6c6f2af2f7190029db31f392916"
+  },
+  "identity": "af834ee8942cfbc788ebc99d1cce6eb3e7b6586835f9874e5b77541924a9e449"
+}

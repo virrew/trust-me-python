@@ -1,0 +1,17 @@
+{
+  "dtypes": {
+    "bin": "int64",
+    "blocker": "object",
+    "complete": "int64",
+    "feature": "object",
+    "mean": "float64",
+    "median_feature": "float64",
+    "observations": "int64",
+    "positive": "int64",
+    "positive_rate": "float64"
+  },
+  "object_none": {
+    "blocker": [],
+    "feature": []
+  }
+}
