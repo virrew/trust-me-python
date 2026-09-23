@@ -1,0 +1,2 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2026-05-26,Long,4,1,FLAT,,FILLED,1,2026-05-27,True,False,squeeze,ARM,lock25_3

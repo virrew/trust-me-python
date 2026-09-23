@@ -1,0 +1,4 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2022-01-31,Long,1,1,FLAT,,FILLED,1,2022-02-01,True,False,pullback,QCOM,time_15
+2024-04-24,Long,1,1,FLAT,,FILLED,2,2024-04-25,True,False,pullback,QCOM,time_15
+2025-11-28,Long,1,1,FLAT,,FILLED,3,2025-12-01,True,False,pullback,QCOM,time_15

@@ -1,0 +1,27 @@
+{
+  "completed_at": "2026-09-23T19:38:17.371952+00:00",
+  "hashes": {
+    "WIN_RATE_RESEARCH_MATRIX_V1.md": "9652dee6be63cee5aa4db61e1be21828d80964f36c8c64ea08605ab68fa61cc4",
+    "breakout.md": "abb15412069f72972af35f2acabfe9c35ee18fac10740661c97640ed763ae786",
+    "breakout_paired_effects.csv": "88b71f746977b47b23ac9d914f97c57fc78ded6e2691532662665cb59e59a42a",
+    "breakout_paired_effects.schema.json": "8c525c560338eb83deea98b75b2eb0a299753308a3db2bfa8051415f3b6bd667",
+    "frontier.csv": "ba8eb6ce9c47a44d7a9384a776331d4ce671f707e67a0e4717c10c38fa02cd7e",
+    "frontier.schema.json": "21054427ac88fc80e38b568b5fcb1d60af6edd14e97996372787fe32574ad36a",
+    "matrix.csv": "4b3a5481d4c3c5f14c108bc7547fa0a02f2ce1c629e8688c9097b5e342d01167",
+    "matrix.schema.json": "e7343aa13efb867cda5245117ef01a49730917bcdbbeab891557f66dd7bed628",
+    "meanrev.md": "93e4a4aeb5161739cc6c09a840e84b1b498e4d01c6af35bea5c890a4c14bf874",
+    "meanrev_paired_effects.csv": "ca3fa86510f930a5fa6a601f0ec564c150723112d07f8081eb5e560226c47a5f",
+    "meanrev_paired_effects.schema.json": "8c525c560338eb83deea98b75b2eb0a299753308a3db2bfa8051415f3b6bd667",
+    "pooled_baseline.csv": "729cb65d501bceb66d111f3f2fdb298d97ef4cb061d533bb50beb3e39a390864",
+    "pooled_baseline.schema.json": "ba916a2e30d28c2c27a3cc88d95e423f02ae936756215431042f819184cb0dae",
+    "pullback.md": "36e7eb545a7d0c0e6fdcb2408047b37d616d8039b1c5f2b890aaee95bd48f761",
+    "pullback_paired_effects.csv": "129d7bb6f0cae055ccce4cade76f74d0550601e8d573d87a95f669479e693837",
+    "pullback_paired_effects.schema.json": "8c525c560338eb83deea98b75b2eb0a299753308a3db2bfa8051415f3b6bd667",
+    "squeeze.md": "b2c2b691052d380efc21380fea109eceb13e6151cc4b2dbb37c3db17470b047e",
+    "squeeze_paired_effects.csv": "c8c6c87d69ce4f3cc885ca29e507fdc811855e994de9836cff1db9d2857b8232",
+    "squeeze_paired_effects.schema.json": "8c525c560338eb83deea98b75b2eb0a299753308a3db2bfa8051415f3b6bd667",
+    "targets.csv": "6689295d8964e8d8b33ae334ee9b17c155f3c8303fa7e1be3e8614c1e78b9828",
+    "targets.schema.json": "38f3d74978459221af7489497d28b1e2ee71242311e6b117160b47939e731f03"
+  },
+  "identity": "34f1c88aa6c9dd80e8d4ebab87be457175777edf25ab21bea0b3d635806635c9"
+}

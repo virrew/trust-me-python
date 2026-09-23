@@ -1,0 +1,5 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol
+2022-07-29,Long,4,1,FLAT,,FILLED,1,2022-08-01,True,False,squeeze,CVX
+2022-08-01,Long,4,1,Long,1,IGNORED_POSITION_OPEN,,,,,squeeze,CVX
+2026-03-13,Long,4,1,FLAT,,FILLED,2,2026-03-16,True,False,squeeze,CVX
+2026-08-18,Long,4,1,FLAT,,FILLED,3,2026-08-19,True,False,squeeze,CVX

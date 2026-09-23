@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2025-08-25,signal bar close,2025-08-26,79.0,1.8982395241880574,74.25440118952986,2,1,2025-09-02,75.0647635650434,ATR_STOP,5,True,False,-0.049813119429830244,breakout,NKE,lock25_4,IN-SAMPLE,2025,4-5

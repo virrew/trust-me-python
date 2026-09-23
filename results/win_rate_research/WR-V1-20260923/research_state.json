@@ -1,0 +1,37 @@
+{
+  "stages": {
+    "stage_1_baseline": {
+      "checksum": "ad5402f9a98fbdd01d1cd453859c8f11bffff88d4c6ca882163e3ac2993cc82e",
+      "status": "COMPLETED"
+    },
+    "stage_2_loser_taxonomy": {
+      "checksum": "2a8348edf031cb85b6fb4295d546b9ec79c99d2c9d896bb4dcbf7feba60a0181",
+      "status": "COMPLETED"
+    },
+    "stage_3_winner_survival": {
+      "checksum": "d9309a000977430a38e8d089bf945c41ef20d4c8984df9f390e643f75b732fae",
+      "status": "COMPLETED"
+    },
+    "stage_4_exit_interventions": {
+      "checksum": "e11bc188a63ee74cc2c47f565744eaea773487a052123dabf258ff8a6e7c1fef",
+      "status": "COMPLETED"
+    },
+    "stage_5_entry_interventions": {
+      "checksum": "d41213aa331659e3f8191d6f5c057017376020a7409c0948495de280db1887c6",
+      "status": "COMPLETED"
+    },
+    "stage_6_wr_frontier": {
+      "checksum": "1a78ade9fc49b953b5c51ce913b6c73e1dc4c35b62a4fbf288a12496909938ef",
+      "status": "COMPLETED"
+    },
+    "stage_7_robustness": {
+      "checksum": "1f4ce401bcfc0296a4006ea3a372ba3e1ef9076e246118a4ffc9394837500ca9",
+      "status": "COMPLETED"
+    },
+    "stage_8_final_matrix": {
+      "checksum": "4f7a8d5de1b78e7026eb42398a6515a21898df4371c95f37834637c18f388808",
+      "status": "COMPLETED"
+    }
+  },
+  "status": "COMPLETED"
+}

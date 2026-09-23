@@ -1,0 +1,13 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2022-02-02,Long,2,1,FLAT,,FILLED,1,2022-02-03,True,False,breakout,QCOM,time_15
+2023-12-11,Long,2,1,FLAT,,FILLED,2,2023-12-12,True,False,breakout,QCOM,time_15
+2024-01-18,Long,2,1,FLAT,,FILLED,3,2024-01-19,True,False,breakout,QCOM,time_15
+2024-03-01,Long,2,1,FLAT,,FILLED,4,2024-03-04,True,False,breakout,QCOM,time_15
+2024-03-04,Long,2,1,Long,4,IGNORED_POSITION_OPEN,,,,,breakout,QCOM,time_15
+2024-03-06,Long,2,1,Long,4,IGNORED_POSITION_OPEN,,,,,breakout,QCOM,time_15
+2024-03-07,Long,2,1,Long,4,IGNORED_POSITION_OPEN,,,,,breakout,QCOM,time_15
+2024-06-17,Long,2,1,FLAT,,FILLED,5,2024-06-18,True,False,breakout,QCOM,time_15
+2024-06-18,Long,2,1,Long,5,IGNORED_POSITION_OPEN,,,,,breakout,QCOM,time_15
+2025-09-18,Long,2,1,FLAT,,FILLED,6,2025-09-19,True,False,breakout,QCOM,time_15
+2025-10-22,Long,2,1,FLAT,,FILLED,7,2025-10-23,True,False,breakout,QCOM,time_15
+2026-09-21,Long,2,1,FLAT,,NO_NEXT_BAR,,,,,breakout,QCOM,time_15

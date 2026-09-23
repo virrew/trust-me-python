@@ -1,0 +1,9 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2021-11-29,Long,1,1,FLAT,,FILLED,1,2021-11-30,True,False,pullback,COP,breakeven_1
+2022-10-03,Long,1,1,FLAT,,FILLED,2,2022-10-04,True,False,pullback,COP,breakeven_1
+2022-12-27,Long,1,1,FLAT,,FILLED,3,2022-12-28,True,False,pullback,COP,breakeven_1
+2023-01-06,Long,1,1,FLAT,,FILLED,4,2023-01-09,True,False,pullback,COP,breakeven_1
+2023-01-10,Long,1,1,FLAT,,FILLED,5,2023-01-11,True,False,pullback,COP,breakeven_1
+2023-10-09,Long,1,1,FLAT,,FILLED,6,2023-10-10,True,False,pullback,COP,breakeven_1
+2023-12-19,Long,1,1,FLAT,,FILLED,7,2023-12-20,True,False,pullback,COP,breakeven_1
+2026-04-21,Long,1,1,FLAT,,FILLED,8,2026-04-22,True,False,pullback,COP,breakeven_1

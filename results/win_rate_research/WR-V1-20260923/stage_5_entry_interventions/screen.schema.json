@@ -1,0 +1,17 @@
+{
+  "dtypes": {
+    "discovery_expectancy": "float64",
+    "failed_checks": "object",
+    "module": "object",
+    "scenario": "object",
+    "survived": "bool",
+    "symbol_agreement": "float64",
+    "top5_removed_expectancy": "float64",
+    "year_agreement": "float64"
+  },
+  "object_none": {
+    "failed_checks": [],
+    "module": [],
+    "scenario": []
+  }
+}

@@ -1,0 +1,5 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-12-07,Long,2,1,FLAT,,FILLED,1,2023-12-08,True,False,breakout,ABNB,skip_distance_to_upper_band_atr_1
+2024-02-12,Long,2,1,FLAT,,FILLED,2,2024-02-13,True,False,breakout,ABNB,skip_distance_to_upper_band_atr_1
+2024-02-15,Long,2,1,Long,2,IGNORED_POSITION_OPEN,,,,,breakout,ABNB,skip_distance_to_upper_band_atr_1
+2026-08-24,Long,2,1,FLAT,,FILLED,3,2026-08-25,True,False,breakout,ABNB,skip_distance_to_upper_band_atr_1

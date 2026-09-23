@@ -1,0 +1,15 @@
+{
+  "dtypes": {
+    "disabled_rule_equivalence": "bool",
+    "module": "object",
+    "settings": "object",
+    "source": "object",
+    "symbol": "object"
+  },
+  "object_none": {
+    "module": [],
+    "settings": [],
+    "source": [],
+    "symbol": []
+  }
+}

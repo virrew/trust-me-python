@@ -1,0 +1,5 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-06-16,signal bar close,2023-06-20,42.77000045776367,1.240894902776369,39.66776320082275,4,1,2023-06-21,42.5,ATR_STOP,2,True,False,-0.006312846735419209,squeeze,UBER,lock25_1,IN-SAMPLE,2023,1-3
+2,Long,2023-07-19,signal bar close,2023-07-20,46.06999969482422,1.473768323588821,42.38557888585217,4,1,2023-07-21,46.427499771118164,ATR_STOP,2,True,False,0.0077599322479289246,squeeze,UBER,lock25_1,IN-SAMPLE,2023,1-3
+3,Long,2024-06-07,signal bar close,2024-06-10,69.27999877929688,2.0999318684433557,64.03016910818849,4,1,2024-06-13,70.35999870300293,ATR_STOP,4,True,False,0.01558891372308735,squeeze,UBER,lock25_1,IN-SAMPLE,2024,4-5
+4,Long,2024-10-14,signal bar close,2024-10-15,84.7699966430664,2.4816532389704267,78.56586354564034,4,1,2024-10-24,78.00499725341797,ATR_STOP,8,True,False,-0.07980417196585754,squeeze,UBER,lock25_1,IN-SAMPLE,2024,6-10

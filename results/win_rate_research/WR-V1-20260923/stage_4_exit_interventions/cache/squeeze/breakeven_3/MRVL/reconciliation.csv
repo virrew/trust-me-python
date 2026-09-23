@@ -1,0 +1,5 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2024-03-05,Long,4,1,FLAT,,FILLED,1,2024-03-06,True,False,squeeze,MRVL,breakeven_3
+2024-10-16,Long,4,1,FLAT,,FILLED,2,2024-10-17,True,False,squeeze,MRVL,breakeven_3
+2024-12-05,Long,4,1,FLAT,,FILLED,3,2024-12-06,True,False,squeeze,MRVL,breakeven_3
+2024-12-06,Long,4,1,Long,3,IGNORED_POSITION_OPEN,,,,,squeeze,MRVL,breakeven_3

@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2024-09-23,signal bar close,2024-09-24,254.0800018310547,10.687454125219906,227.36136651800493,4,1,2024-10-03,240.36391808623134,ATR_STOP,8,True,False,-0.05398332669228956,squeeze,TSLA,skip_bars_since_oversold_4,IN-SAMPLE,2024,6-10

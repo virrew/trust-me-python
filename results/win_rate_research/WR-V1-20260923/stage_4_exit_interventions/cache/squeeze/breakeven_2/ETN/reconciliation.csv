@@ -1,0 +1,13 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-05-30,Long,4,1,FLAT,,FILLED,1,2023-05-31,True,False,squeeze,ETN,breakeven_2
+2023-07-19,Long,4,1,Long,1,IGNORED_POSITION_OPEN,,,,,squeeze,ETN,breakeven_2
+2023-08-30,Long,4,1,FLAT,,FILLED,2,2023-08-31,True,False,squeeze,ETN,breakeven_2
+2023-08-31,Long,4,1,Long,2,IGNORED_POSITION_OPEN,,,,,squeeze,ETN,breakeven_2
+2023-09-01,Long,4,1,Long,2,IGNORED_POSITION_OPEN,,,,,squeeze,ETN,breakeven_2
+2024-09-19,Long,4,1,FLAT,,FILLED,3,2024-09-20,True,False,squeeze,ETN,breakeven_2
+2024-11-11,Long,4,1,FLAT,,FILLED,4,2024-11-12,True,False,squeeze,ETN,breakeven_2
+2025-01-22,Long,4,1,FLAT,,FILLED,5,2025-01-23,True,False,squeeze,ETN,breakeven_2
+2025-01-23,Long,4,1,Long,5,IGNORED_POSITION_OPEN,,,,,squeeze,ETN,breakeven_2
+2025-06-30,Long,4,1,FLAT,,FILLED,6,2025-07-01,True,False,squeeze,ETN,breakeven_2
+2025-09-15,Long,4,1,FLAT,,FILLED,7,2025-09-16,True,False,squeeze,ETN,breakeven_2
+2025-09-16,Long,4,1,Long,7,IGNORED_POSITION_OPEN,,,,,squeeze,ETN,breakeven_2

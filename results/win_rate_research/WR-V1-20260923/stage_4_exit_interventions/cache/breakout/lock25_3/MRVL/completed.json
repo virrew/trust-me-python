@@ -1,0 +1,10 @@
+{
+  "completed_at": "2026-09-23T19:34:52.704508+00:00",
+  "hashes": {
+    "reconciliation.csv": "1833d237f845e4705e4e91093efdf7bb43e3eba3bd2b03b7e08834a1c759cc28",
+    "reconciliation.schema.json": "83c787213a209fabb5b3b778c318f9f45dc7b7fa1940c8e78afb2b985448032e",
+    "trades.csv": "c6cdb48d664072c171e3c14c79b59d0a585ba31e65a62213e4c80c6efff50366",
+    "trades.schema.json": "736efaa39832a82ce3f5ac2a75d5aa008c24dc9bc03c81a8b43cce4406244e3b"
+  },
+  "identity": "34f1c88aa6c9dd80e8d4ebab87be457175777edf25ab21bea0b3d635806635c9"
+}

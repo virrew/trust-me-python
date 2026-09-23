@@ -1,0 +1,16 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol
+2022-11-15,Long,2,1,FLAT,,FILLED,1,2022-11-16,True,False,breakout,WMT
+2023-04-21,Long,2,1,FLAT,,FILLED,2,2023-04-24,True,False,breakout,WMT
+2023-08-31,Long,2,1,FLAT,,FILLED,3,2023-09-01,True,False,breakout,WMT
+2023-09-07,Long,2,1,Long,3,IGNORED_POSITION_OPEN,,,,,breakout,WMT
+2024-02-01,Long,2,1,FLAT,,FILLED,4,2024-02-02,True,False,breakout,WMT
+2024-02-02,Long,2,1,Long,4,IGNORED_POSITION_OPEN,,,,,breakout,WMT
+2024-05-31,Long,2,1,FLAT,,FILLED,5,2024-06-03,True,False,breakout,WMT
+2024-07-05,Long,2,1,FLAT,,FILLED,6,2024-07-08,True,False,breakout,WMT
+2024-08-15,Long,2,1,FLAT,,FILLED,7,2024-08-16,True,False,breakout,WMT
+2024-10-23,Long,2,1,FLAT,,FILLED,8,2024-10-24,True,False,breakout,WMT
+2024-11-19,Long,2,1,Long,8,IGNORED_POSITION_OPEN,,,,,breakout,WMT
+2024-11-21,Long,2,1,Long,8,IGNORED_POSITION_OPEN,,,,,breakout,WMT
+2024-11-22,Long,2,1,Long,8,IGNORED_POSITION_OPEN,,,,,breakout,WMT
+2025-01-10,Long,2,1,FLAT,,FILLED,9,2025-01-13,True,False,breakout,WMT
+2025-01-24,Long,2,1,Long,9,IGNORED_POSITION_OPEN,,,,,breakout,WMT

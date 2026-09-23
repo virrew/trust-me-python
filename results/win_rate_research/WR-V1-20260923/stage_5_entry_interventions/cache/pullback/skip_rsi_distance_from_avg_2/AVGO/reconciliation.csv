@@ -1,0 +1,12 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2022-02-01,Long,1,1,FLAT,,FILLED,1,2022-02-02,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2023-08-21,Long,1,1,FLAT,,FILLED,2,2023-08-22,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2024-04-25,Long,1,1,FLAT,,FILLED,3,2024-04-26,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2024-06-04,Long,1,1,FLAT,,FILLED,4,2024-06-05,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2024-06-05,Long,1,1,Long,4,IGNORED_POSITION_OPEN,,,,,pullback,AVGO,skip_rsi_distance_from_avg_2
+2024-07-31,Long,1,1,FLAT,,FILLED,5,2024-08-01,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2024-08-13,Long,1,1,FLAT,,FILLED,6,2024-08-14,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2024-09-11,Long,1,1,FLAT,,FILLED,7,2024-09-12,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2025-04-24,Long,1,1,FLAT,,FILLED,8,2025-04-25,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2026-06-18,Long,1,1,FLAT,,FILLED,9,2026-06-22,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2
+2026-07-09,Long,1,1,FLAT,,FILLED,10,2026-07-10,True,False,pullback,AVGO,skip_rsi_distance_from_avg_2

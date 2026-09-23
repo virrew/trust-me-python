@@ -1,0 +1,8 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2021-12-07,Long,1,1,FLAT,,FILLED,1,2021-12-08,True,False,pullback,XOM,skip_bb_width_5
+2022-07-20,Long,1,1,FLAT,,FILLED,2,2022-07-21,True,False,pullback,XOM,skip_bb_width_5
+2022-12-13,Long,1,1,FLAT,,FILLED,3,2022-12-14,True,False,pullback,XOM,skip_bb_width_5
+2023-03-03,Long,1,1,FLAT,,FILLED,4,2023-03-06,True,False,pullback,XOM,skip_bb_width_5
+2023-10-18,Long,1,1,FLAT,,FILLED,5,2023-10-19,True,False,pullback,XOM,skip_bb_width_5
+2024-05-31,Long,1,1,FLAT,,FILLED,6,2024-06-03,True,False,pullback,XOM,skip_bb_width_5
+2026-04-29,Long,1,1,FLAT,,FILLED,7,2026-04-30,True,False,pullback,XOM,skip_bb_width_5

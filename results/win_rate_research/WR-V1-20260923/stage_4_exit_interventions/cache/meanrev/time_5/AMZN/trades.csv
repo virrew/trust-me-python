@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2025-03-05,signal bar close,2025-03-06,204.39999389648438,6.573198643960128,191.25359660856412,8,1,2025-03-10,192.12549285387874,ATR_STOP,3,True,False,-0.06005137675699679,meanrev,AMZN,time_5,IN-SAMPLE,2025,1-3

@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-10-02,signal bar close,2023-10-03,230.47000122070312,3.4061016821556307,223.65779785639185,8,1,2023-10-19,234.77024390875175,ATR_STOP,13,True,False,0.018658578840074824,meanrev,V,breakeven_3,IN-SAMPLE,2023,11-15

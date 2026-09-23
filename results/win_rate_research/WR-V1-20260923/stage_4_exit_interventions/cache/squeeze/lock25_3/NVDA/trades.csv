@@ -1,0 +1,4 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-03-23,signal bar close,2023-03-24,27.0310001373291,1.0404282048244933,24.429929625267867,4,1,2023-04-05,26.82900047302246,ATR_STOP,9,True,False,-0.007472889026687746,squeeze,NVDA,lock25_3,IN-SAMPLE,2023,6-10
+2,Long,2023-05-08,signal bar close,2023-05-09,28.89900016784668,0.8749568555544898,26.711608028960455,4,1,2023-05-31,37.99862094750213,ATR_STOP,16,True,False,0.3148766644798937,squeeze,NVDA,lock25_3,IN-SAMPLE,2023,16+
+3,Long,2025-06-30,signal bar close,2025-07-01,156.2899932861328,3.822257822515931,146.734348729843,4,1,2025-07-07,157.46249389648438,ATR_STOP,4,True,False,0.007502083695179129,squeeze,NVDA,lock25_3,IN-SAMPLE,2025,4-5

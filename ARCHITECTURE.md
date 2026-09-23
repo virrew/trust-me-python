@@ -65,6 +65,8 @@ Finite Exit Research Automation    ✅ (2026-09-23; research only)
       ↓
 Finite Entry Research V1           ✅ (research only; Entry Holdout, not full OOS)
       ↓
+Trade Quality / Win Rate V1        ✅ (eight resumable research stages; no production changes)
+      ↓
 Walk-forward / Out-of-sample       ← NÄSTA
       ↓
 Scanner / watchlist / ranking
@@ -1192,3 +1194,121 @@ current-universe survivorship, market/year confounding, short ARM history,
 limited MeanRev samples, redundant feature contrasts and multiple testing.
 No result establishes profitability, Pine/TradingView parity, causal filter
 benefit, portfolio performance, untouched OOS or validated automated TAKE/SKIP.
+
+## 18. Trade Quality & Win Rate Research V1 (2026-09-23)
+
+`src/win_rate_research_runner.py` and `src/win_rate_research_analysis.py` add
+research-only trade-path analysis after Entry V1. **Behavior change: NO.
+Existing strategy behavior changed: NO.** This classification follows the
+requested scope: existing production strategy, diagnostics, execution functions,
+defaults and authoritative references remain unchanged. The new isolated
+research arms deliberately test alternative exits and entry skipping; none is
+promoted to production. Walk-forward/OOS remains outstanding.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.win_rate_research_runner --all
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.win_rate_research_runner --stage 1
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.win_rate_research_runner --resume
+```
+
+The default output session is `results/win_rate_research/WR-V1-20260923/`.
+Eight stages cover baseline, loser taxonomy, winner survival, finite exit
+interventions, existing entry hypotheses, a gated combined frontier, robustness,
+and the final matrix. A requested single stage requires all predecessors;
+`--resume` verifies and skips completed stages, starting calculations at the
+first incomplete one. Source/runtime/input changes or corrupt completed
+artifacts fail closed. They are not silently recalculated under a new identity.
+
+### Inputs, availability and cohorts
+
+The canonical 50-symbol `EXIT-V1-20260923-CLOSED` snapshot is hash verified.
+Completed Entry V1 features, frozen discovery bin edges, discovery negative-20
+poor-region enrichment and hypothesis artifacts are reused; neither Entry V1
+nor Exit V1 discovery is rerun. Existing Breakout/Squeeze lifecycle caches supply
+the reference and all stored predefined exit configurations. MeanRev/Pullback
+are aligned once to this common frozen snapshot, since their historical
+experiments lack compatible frozen input identity. No network is used.
+
+OHLCV/index/timezone/dtypes and indicator warm-up remain unchanged. Pure Long
+streams gate the current final signal by exact module mask (8/1/2/4), checking
+mask consistency. There is one position per symbol per independent module
+stream; pooling modules is not a portfolio or the broad-strategy win rate.
+Short interventions are explicitly unsupported, not silently reinterpreted.
+
+Reference policies are MeanRev Dynamic 2 / Trend OFF (PROVISIONAL), Pullback
+Dynamic 1.5 / Trend ON (RESEARCH BASELINE), and Breakout/Squeeze Dynamic 2.5 /
+Trend ON as unresolved references. Their Exit V1 INCONCLUSIVE status remains;
+full cached configuration/year/symbol sensitivity is exported.
+
+All entry features are available at signal bar close; entries fill next open.
+The isolated research replay consumes existing signals, and its disabled-rule
+ledger/reconciliation is checked against every reference stream. Synthetic
+regressions also compare full state traces with the original engine. Stops
+check the active start-of-bar level before examining a surviving bar's high.
+Protection updates only at survived close, becoming active next bar. Gap stops
+fill at open. Time failures schedule next-open exits. Censoring, zero-return
+accounting and changed position occupancy/re-entry effects are preserved.
+
+### Finite plan and retrospective outputs
+
+The plan is written before trade calculation. There are 12 exit interventions:
+break-even or 25% of running achieved MFE locked after 1/2/3/4% MFE; failure
+checks after 5/10/15 survived bars when MFE <0.5%; and a 3-bar early failure
+check requiring MFE <0.5%, MAE <=-2%, and a negative close return. The first two
+families tighten the existing ATR stop; the latter exit at next open.
+
+Entry skips are limited to at most three Entry V1 discovery regions per module,
+using that prior report's negative-20 enrichment >1 and >=30 observations,
+ranked by enrichment with deterministic ties. Existing quintile edges are
+frozen; missing feature values are retained. This is exploratory reuse of
+previously observed research, not independent confirmation. No feature
+threshold search, ML or production TAKE/SKIP change occurs.
+
+Loss categories prioritize known >=2% giveback, 0.5–2% small giveback, near-flat
+first 10 bars, early <=-2% failure within three bars, and remaining never-worked
+paths. Cross-boundary MFE uncertainty has its own category. Bad-entry-like paths
+are descriptive proxies, not causal attribution. Existing lifecycle MFE/MAE
+bounds remain authoritative on intrabar stop bars. Thresholds 0.5/1/2/3/4%
+are exported as definite/possible reach counts; these are not executable rescue
+rates. Stop-timing causation is not inferred merely from stop exits.
+
+Winner tables preserve one-based holding-bar timing, first observed positive
+close, known/possible threshold timing, MAE/MFE bounds and 1/2/3% stop tolerance.
+MAE before positive close uses completed bars before that first-positive bar,
+without inventing intrabar order. Not-hit/unknown timing counts accompany
+conditional quantiles. All path fields, outcomes, classifications, lifecycle
+and reconciliation final status are retrospective, never decision-time features.
+
+Returns/rates are fractions. PF is gross positive return / absolute gross
+negative return; zeros are neither wins nor losses but stay in the closed-trade
+WR denominator. Paired rescue and winner destruction match symbol/module/signal
+time; new or removed fills are explicitly one-sided. CSV/schema sidecars retain
+stable tables for empty cohorts and absent combined scenarios.
+
+### Selection, robustness and recovery
+
+Discovery selection uses only trades closed before the existing Entry Holdout
+boundary; crossing/censored trades cannot contaminate the selection. Screens
+require >=100 trades, >=70% reference trade count, WR +2 percentage points,
+positive expectancy >=90% reference, PF >1 and >=90% reference, mean winner
+>=75% reference, >=10 symbols and >=3 years with >=5 trades per arm, >=60%
+WR/expectancy agreement, and positive expectancy after deleting the top five
+winners. At most one combined scenario per module uses the highest-discovery-
+expectancy surviving exit and entry (identifier breaks ties). A failed family
+means no combination, not an invitation to search further.
+
+All scenarios retain year/symbol/partition metrics, leave-one-year/symbol-out,
+worst/5% tail returns, and removal of top 1/3/5 positive trades. Historical ROBUST
+would require both chronological screens plus leave-group stability;
+Breakout/Squeeze remain capped INCONCLUSIVE without resolved exit policy.
+No previously seen period is described as untouched OOS. No CONFIRMATORY DATA
+exists in this snapshot. Thresholds and status labels are descriptive research
+gates, not statistical significance or proof of strategy edge.
+
+A process lock protects WR sessions. Atomic files, per-symbol checkpoints,
+per-stage completion hashes and `research_state.json` support interrupted runs.
+Every stage includes raw CSV and summaries; stages 6–8 retain the full frontier,
+robustness and module matrix. The final report is
+`WIN_RATE_RESEARCH_MATRIX_V1.md`, with separate module reports. Existing research
+registries and historical artifacts are immutable inputs, not overwritten.
+There is no scheduler or automatic next research phase.

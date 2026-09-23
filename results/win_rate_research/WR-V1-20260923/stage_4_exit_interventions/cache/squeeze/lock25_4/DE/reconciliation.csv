@@ -1,0 +1,6 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2022-11-25,Long,4,1,FLAT,,FILLED,1,2022-11-28,True,False,squeeze,DE,lock25_4
+2022-11-28,Long,4,1,Long,1,IGNORED_POSITION_OPEN,,,,,squeeze,DE,lock25_4
+2023-07-20,Long,4,1,FLAT,,FILLED,2,2023-07-21,True,False,squeeze,DE,lock25_4
+2023-07-24,Long,4,1,Long,2,IGNORED_POSITION_OPEN,,,,,squeeze,DE,lock25_4
+2025-01-23,Long,4,1,FLAT,,FILLED,3,2025-01-24,True,False,squeeze,DE,lock25_4

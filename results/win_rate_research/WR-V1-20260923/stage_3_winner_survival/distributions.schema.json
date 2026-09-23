@@ -1,0 +1,20 @@
+{
+  "dtypes": {
+    "feature": "object",
+    "mean": "float64",
+    "median": "float64",
+    "module": "object",
+    "not_observed": "int64",
+    "observed": "int64",
+    "outcome": "object",
+    "q25": "float64",
+    "q75": "float64",
+    "q90": "float64",
+    "total": "int64"
+  },
+  "object_none": {
+    "feature": [],
+    "module": [],
+    "outcome": []
+  }
+}

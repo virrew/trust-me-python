@@ -1,0 +1,201 @@
+module,symbol,disabled_rule_equivalence,settings,source
+meanrev,NVDA,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,AMD,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,MU,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,AVGO,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,MRVL,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,QCOM,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,ARM,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,SMCI,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,TSM,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,ASML,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,AAPL,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,MSFT,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,GOOGL,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,META,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,AMZN,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,NFLX,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,ORCL,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,CRM,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,NOW,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,PLTR,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,TSLA,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,COIN,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,HOOD,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,ROKU,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,SHOP,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,UBER,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,ABNB,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,CRWD,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,PANW,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,DDOG,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,JPM,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,GS,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,MS,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,BAC,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,V,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,MA,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,CAT,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,GE,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,DE,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,ETN,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,HON,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,RTX,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,XOM,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,CVX,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,COP,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,LLY,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,COST,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,WMT,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,HD,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+meanrev,NKE,True,"{""atr_multiplier"": 2.0, ""use_locked_atr"": false, ""use_trend_exit"": false}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,NVDA,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,AMD,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,MU,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,AVGO,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,MRVL,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,QCOM,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,ARM,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,SMCI,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,TSM,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,ASML,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,AAPL,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,MSFT,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,GOOGL,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,META,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,AMZN,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,NFLX,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,ORCL,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,CRM,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,NOW,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,PLTR,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,TSLA,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,COIN,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,HOOD,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,ROKU,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,SHOP,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,UBER,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,ABNB,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,CRWD,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,PANW,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,DDOG,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,JPM,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,GS,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,MS,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,BAC,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,V,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,MA,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,CAT,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,GE,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,DE,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,ETN,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,HON,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,RTX,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,XOM,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,CVX,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,COP,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,LLY,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,COST,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,WMT,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,HD,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+pullback,NKE,True,"{""atr_multiplier"": 1.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun
+breakout,NVDA,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,AMD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,MU,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,AVGO,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,MRVL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,QCOM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,ARM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,SMCI,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,TSM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,ASML,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,AAPL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,MSFT,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,GOOGL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,META,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,AMZN,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,NFLX,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,ORCL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,CRM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,NOW,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,PLTR,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,TSLA,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,COIN,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,HOOD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,ROKU,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,SHOP,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,UBER,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,ABNB,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,CRWD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,PANW,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,DDOG,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,JPM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,GS,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,MS,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,BAC,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,V,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,MA,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,CAT,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,GE,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,DE,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,ETN,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,HON,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,RTX,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,XOM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,CVX,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,COP,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,LLY,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,COST,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,WMT,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,HD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+breakout,NKE,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,NVDA,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,AMD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,MU,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,AVGO,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,MRVL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,QCOM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,ARM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,SMCI,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,TSM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,ASML,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,AAPL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,MSFT,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,GOOGL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,META,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,AMZN,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,NFLX,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,ORCL,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,CRM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,NOW,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,PLTR,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,TSLA,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,COIN,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,HOOD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,ROKU,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,SHOP,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,UBER,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,ABNB,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,CRWD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,PANW,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,DDOG,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,JPM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,GS,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,MS,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,BAC,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,V,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,MA,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,CAT,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,GE,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,DE,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,ETN,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,HON,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,RTX,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,XOM,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,CVX,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,COP,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,LLY,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,COST,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,WMT,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,HD,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1
+squeeze,NKE,True,"{""atr_multiplier"": 2.5, ""use_locked_atr"": false, ""use_trend_exit"": true}",REUSED EXIT V1

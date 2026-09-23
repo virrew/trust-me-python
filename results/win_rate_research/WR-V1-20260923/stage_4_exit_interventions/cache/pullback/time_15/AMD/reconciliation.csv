@@ -1,0 +1,6 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2021-12-15,Long,1,1,FLAT,,FILLED,1,2021-12-16,True,False,pullback,AMD,time_15
+2021-12-21,Long,1,1,FLAT,,FILLED,2,2021-12-22,True,False,pullback,AMD,time_15
+2024-05-24,Long,1,1,FLAT,,FILLED,3,2024-05-28,True,False,pullback,AMD,time_15
+2025-12-01,Long,1,1,FLAT,,FILLED,4,2025-12-02,True,False,pullback,AMD,time_15
+2025-12-05,Long,1,1,FLAT,,FILLED,5,2025-12-08,True,False,pullback,AMD,time_15

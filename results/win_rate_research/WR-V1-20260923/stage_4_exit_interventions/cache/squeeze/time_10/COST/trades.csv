@@ -1,0 +1,5 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2024-05-08,signal bar close,2024-05-09,763.7999877929688,12.512038711840354,732.5198910133679,4,1,2024-05-31,789.3629109708728,ATR_STOP,16,True,False,0.03346808534492007,squeeze,COST,time_10,IN-SAMPLE,2024,16+
+2,Long,2024-11-11,signal bar close,2024-11-12,935.9500122070312,16.179407982006442,895.5014922520152,4,1,2024-12-13,969.7335377974794,ATR_STOP,23,True,False,0.03609543795056358,squeeze,COST,time_10,IN-SAMPLE,2024,16+
+3,Long,2025-01-30,signal bar close,2025-01-31,976.239990234375,17.173278073744605,933.3067950500135,4,1,2025-02-21,1033.0169565657125,ATR_STOP,15,True,False,0.058158820473751094,squeeze,COST,time_10,IN-SAMPLE,2025,11-15
+4,Long,2025-06-03,signal bar close,2025-06-04,1055.0,21.838526584529497,1000.4036835386762,4,1,2025-06-09,1005.6226691731905,ATR_STOP,4,True,False,-0.04680315718180994,squeeze,COST,time_10,IN-SAMPLE,2025,4-5

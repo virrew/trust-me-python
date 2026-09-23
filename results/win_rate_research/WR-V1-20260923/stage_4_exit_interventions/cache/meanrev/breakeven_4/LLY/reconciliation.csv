@@ -1,0 +1,4 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2022-01-28,Long,8,1,FLAT,,FILLED,1,2022-01-31,True,False,meanrev,LLY,breakeven_4
+2024-08-06,Long,8,1,FLAT,,FILLED,2,2024-08-07,True,False,meanrev,LLY,breakeven_4
+2024-11-08,Long,8,1,FLAT,,FILLED,3,2024-11-11,True,False,meanrev,LLY,breakeven_4

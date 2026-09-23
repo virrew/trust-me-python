@@ -1,0 +1,3 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-03-31,signal bar close,2023-04-03,198.22000122070312,4.686892760827779,186.50276931863368,4,1,2023-04-11,187.72780432295306,ATR_STOP,6,True,False,-0.05293207967478408,squeeze,CRM,skip_bars_since_oversold_4,IN-SAMPLE,2023,6-10
+2,Long,2024-03-01,signal bar close,2024-03-04,314.57000732421875,7.360602577463386,296.16850088056026,4,1,2024-03-05,299.82895481459394,ATR_STOP,2,True,False,-0.0468609599338935,squeeze,CRM,skip_bars_since_oversold_4,IN-SAMPLE,2024,1-3

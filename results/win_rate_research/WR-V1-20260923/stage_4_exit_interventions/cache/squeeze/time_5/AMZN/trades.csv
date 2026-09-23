@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2024-04-05,signal bar close,2024-04-08,186.89999389648438,3.5365470224977615,178.05862634023998,4,1,2024-04-17,181.00104140363655,ATR_STOP,8,True,False,-0.031562079644127716,squeeze,AMZN,time_5,IN-SAMPLE,2024,6-10

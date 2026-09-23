@@ -1,0 +1,3 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2026-07-09,Long,1,1,FLAT,,FILLED,1,2026-07-10,True,False,pullback,ARM,time_10
+2026-08-06,Long,1,1,FLAT,,FILLED,2,2026-08-07,True,False,pullback,ARM,time_10

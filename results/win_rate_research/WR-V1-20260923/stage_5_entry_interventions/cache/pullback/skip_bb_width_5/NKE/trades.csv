@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2021-12-21,signal bar close,2021-12-22,167.24000549316406,4.522850908873096,160.45572912985443,1,1,2021-12-23,166.25,TREND_EXIT,2,True,False,-0.00591966910216668,pullback,NKE,skip_bb_width_5,IN-SAMPLE,2021,1-3

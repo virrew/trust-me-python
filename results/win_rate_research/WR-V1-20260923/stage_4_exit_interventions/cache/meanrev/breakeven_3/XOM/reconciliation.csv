@@ -1,0 +1,2 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-03-20,Long,8,1,FLAT,,FILLED,1,2023-03-21,True,False,meanrev,XOM,breakeven_3

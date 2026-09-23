@@ -1,0 +1,8 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-08-23,Long,1,1,FLAT,,FILLED,1,2023-08-24,True,False,pullback,META,lock25_2
+2023-08-29,Long,1,1,FLAT,,FILLED,2,2023-08-30,True,False,pullback,META,lock25_2
+2024-05-08,Long,1,1,FLAT,,FILLED,3,2024-05-09,True,False,pullback,META,lock25_2
+2024-05-09,Long,1,1,Long,3,IGNORED_POSITION_OPEN,,,,,pullback,META,lock25_2
+2024-08-06,Long,1,1,FLAT,,FILLED,4,2024-08-07,True,False,pullback,META,lock25_2
+2025-01-02,Long,1,1,FLAT,,FILLED,5,2025-01-03,True,False,pullback,META,lock25_2
+2025-01-15,Long,1,1,FLAT,,FILLED,6,2025-01-16,True,False,pullback,META,lock25_2

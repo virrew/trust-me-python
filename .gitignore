@@ -24,3 +24,6 @@ exports/
 
 # Runtime advisory lock (research artifacts remain versionable)
 results/.entry-research.lock
+
+# Win Rate research process lock
+results/win_rate_research/.runner.lock

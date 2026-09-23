@@ -1,0 +1,5 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-12-13,signal bar close,2023-12-14,138.88999938964844,4.624759875871318,127.32809969997014,4,1,2024-01-02,140.4202982091685,ATR_STOP,12,True,False,0.011018063404456324,squeeze,AMD,time_5,IN-SAMPLE,2023,11-15
+2,Long,2024-01-18,signal bar close,2024-01-19,165.8000030517578,5.887986733321248,151.0800362184547,4,1,2024-01-31,165.74000549316406,ATR_STOP,9,True,False,-0.0003618670536152946,squeeze,AMD,time_5,IN-SAMPLE,2024,6-10
+3,Long,2024-03-05,signal bar close,2024-03-06,210.42999267578125,8.09964066596078,190.1808910108793,4,1,2024-03-11,203.00999450683594,ATR_STOP,4,True,False,-0.03526112449368202,squeeze,AMD,time_5,IN-SAMPLE,2024,4-5
+4,Long,2024-05-20,signal bar close,2024-05-21,164.0,6.079141715867058,148.80214571033235,4,1,2024-05-24,161.41000366210938,TREND_EXIT,4,True,False,-0.015792660596894104,squeeze,AMD,time_5,IN-SAMPLE,2024,4-5

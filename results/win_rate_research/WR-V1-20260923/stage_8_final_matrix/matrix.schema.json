@@ -1,0 +1,25 @@
+{
+  "dtypes": {
+    "bad_entry_like_fraction": "float64",
+    "baseline_trades": "int64",
+    "baseline_wr": "float64",
+    "dead_fraction": "float64",
+    "expectancy": "float64",
+    "giveback_fraction": "float64",
+    "highest_observed_scenario": "object",
+    "highest_observed_wr": "float64",
+    "largest_category": "object",
+    "module": "object",
+    "pf": "float64",
+    "robust_supported_wr": "float64",
+    "status": "object",
+    "trades": "int64",
+    "uncertain_fraction": "float64"
+  },
+  "object_none": {
+    "highest_observed_scenario": [],
+    "largest_category": [],
+    "module": [],
+    "status": []
+  }
+}

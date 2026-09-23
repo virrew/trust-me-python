@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2024-05-24,signal bar close,2024-05-28,169.4199981689453,6.5863743634747305,159.54043662373323,1,1,2024-05-29,164.34862486642973,ATR_STOP,2,True,False,-0.029933734844327042,pullback,AMD,skip_bb_width_5,IN-SAMPLE,2024,1-3

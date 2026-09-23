@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-12-15,signal bar close,2023-12-18,747.3699951171875,13.363883010454536,713.9602875910512,4,1,2024-01-02,730.0,ATR_STOP,10,True,False,-0.023241493812531044,squeeze,ASML,breakeven_2,IN-SAMPLE,2023,6-10

@@ -1,0 +1,5 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-03-21,Long,8,1,FLAT,,FILLED,1,2023-03-22,True,False,meanrev,CAT,time_5
+2024-12-24,Long,8,1,FLAT,,FILLED,2,2024-12-26,True,False,meanrev,CAT,time_5
+2025-01-13,Long,8,1,FLAT,,FILLED,3,2025-01-14,True,False,meanrev,CAT,time_5
+2026-08-03,Long,8,1,FLAT,,FILLED,4,2026-08-04,True,False,meanrev,CAT,time_5

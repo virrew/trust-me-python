@@ -1,0 +1,7 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-12-28,Long,2,1,FLAT,,FILLED,1,2023-12-29,True,False,breakout,ARM,skip_distance_to_upper_band_atr_1
+2024-03-25,Long,2,1,FLAT,,FILLED,2,2024-03-26,True,False,breakout,ARM,skip_distance_to_upper_band_atr_1
+2024-07-05,Long,2,1,FLAT,,FILLED,3,2024-07-08,True,False,breakout,ARM,skip_distance_to_upper_band_atr_1
+2024-09-13,Long,2,1,FLAT,,FILLED,4,2024-09-16,True,False,breakout,ARM,skip_distance_to_upper_band_atr_1
+2025-06-23,Long,2,1,FLAT,,FILLED,5,2025-06-24,True,False,breakout,ARM,skip_distance_to_upper_band_atr_1
+2025-06-24,Long,2,1,Long,5,IGNORED_POSITION_OPEN,,,,,breakout,ARM,skip_distance_to_upper_band_atr_1

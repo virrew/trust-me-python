@@ -1,0 +1,9 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-08-23,Long,1,1,FLAT,,FILLED,1,2023-08-24,True,False,pullback,NFLX,breakeven_2
+2024-05-06,Long,1,1,FLAT,,FILLED,2,2024-05-07,True,False,pullback,NFLX,breakeven_2
+2025-01-17,Long,1,1,FLAT,,FILLED,3,2025-01-21,True,False,pullback,NFLX,breakeven_2
+2025-03-17,Long,1,1,FLAT,,FILLED,4,2025-03-18,True,False,pullback,NFLX,breakeven_2
+2025-03-19,Long,1,1,FLAT,,FILLED,5,2025-03-20,True,False,pullback,NFLX,breakeven_2
+2025-07-21,Long,1,1,FLAT,,FILLED,6,2025-07-22,True,False,pullback,NFLX,breakeven_2
+2025-08-08,Long,1,1,FLAT,,FILLED,7,2025-08-11,True,False,pullback,NFLX,breakeven_2
+2025-10-08,Long,1,1,FLAT,,FILLED,8,2025-10-09,True,False,pullback,NFLX,breakeven_2

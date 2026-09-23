@@ -1,0 +1,5 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2022-07-21,signal bar close,2022-07-22,5.0920000076293945,0.24010260700380753,4.491743490119876,4,1,2022-08-30,6.6474511525410875,ATR_STOP,28,True,False,0.305469588095276,squeeze,SMCI,early_3,IN-SAMPLE,2022,16+
+2,Long,2022-10-21,signal bar close,2022-10-24,6.510000228881836,0.3547244673075326,5.623189060613004,4,1,2022-11-03,7.587588899860725,ATR_STOP,9,True,False,0.16552820784830846,squeeze,SMCI,early_3,IN-SAMPLE,2022,6-10
+3,Long,2023-07-14,signal bar close,2023-07-17,29.90999984741211,1.61667002948544,25.86832477369851,4,1,2023-07-20,28.503659177396038,ATR_STOP,4,True,False,-0.04701907981245779,squeeze,SMCI,early_3,IN-SAMPLE,2023,4-5
+4,Long,2025-07-29,signal bar close,2025-07-30,59.560001373291016,2.7150217288964367,52.77244705104992,4,1,2025-08-01,55.325484460219144,ATR_STOP,3,True,False,-0.07109665573263046,squeeze,SMCI,early_3,IN-SAMPLE,2025,1-3

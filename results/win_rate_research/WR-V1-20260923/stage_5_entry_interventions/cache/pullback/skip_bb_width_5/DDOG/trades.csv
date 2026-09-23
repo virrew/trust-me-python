@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2024-06-13,signal bar close,2024-06-14,118.5,3.923555165730061,112.61466725140491,1,1,2024-06-17,117.05999755859375,TREND_EXIT,2,True,False,-0.01215191933676163,pullback,DDOG,skip_bb_width_5,IN-SAMPLE,2024,1-3

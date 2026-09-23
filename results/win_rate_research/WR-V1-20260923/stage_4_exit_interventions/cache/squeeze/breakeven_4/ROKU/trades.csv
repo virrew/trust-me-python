@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2026-06-15,signal bar close,2026-06-16,138.25,6.7926990609899125,121.26825234752522,4,1,2026-09-02,154.77000427246094,ATR_STOP,55,True,False,0.11949370178995244,squeeze,ROKU,breakeven_4,ENTRY HOLDOUT / EXIT-USED HISTORY,2026,16+

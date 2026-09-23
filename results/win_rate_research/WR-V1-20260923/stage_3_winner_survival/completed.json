@@ -1,0 +1,12 @@
+{
+  "completed_at": "2026-09-23T19:32:43.159974+00:00",
+  "hashes": {
+    "distributions.csv": "9098d4f177ca1dd1967477d9e17fe20ce09e9b17217f999428a3fd1cd8f217fd",
+    "distributions.schema.json": "dabd98883ac01f345478bcb1e46bc15e603f5b6829dc8a1bf32f02b54f5d831e",
+    "stop_tolerance.csv": "69bc8944aeed9d1290ce19c457de322b9d92e2a85e15df7e1ff3c29a1fc765a1",
+    "stop_tolerance.schema.json": "0d01b4827bd61df3a75b2d7d66836b111b7cbdebd3b36f8fa4f1631446271574",
+    "winners.csv": "6b47d8ff93e3b0da6fd69b9959980656e282b0d8368c6fa7feae82ae54f45791",
+    "winners.schema.json": "c4f3454057356dd8c3797dabb836eee46608ae1d641c40a5b43934a044b53bdd"
+  },
+  "identity": "34f1c88aa6c9dd80e8d4ebab87be457175777edf25ab21bea0b3d635806635c9"
+}

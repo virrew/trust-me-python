@@ -1,0 +1,6 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2022-05-02,Long,1,1,FLAT,,FILLED,1,2022-05-03,True,False,pullback,CVX,skip_candle_range_atr_4
+2022-10-04,Long,1,1,FLAT,,FILLED,2,2022-10-05,True,False,pullback,CVX,skip_candle_range_atr_4
+2022-12-21,Long,1,1,FLAT,,FILLED,3,2022-12-22,True,False,pullback,CVX,skip_candle_range_atr_4
+2022-12-23,Long,1,1,FLAT,,FILLED,4,2022-12-27,True,False,pullback,CVX,skip_candle_range_atr_4
+2025-02-10,Long,1,1,FLAT,,FILLED,5,2025-02-11,True,False,pullback,CVX,skip_candle_range_atr_4

@@ -1,0 +1,12 @@
+{
+  "completed_at": "2026-09-23T19:32:42.744041+00:00",
+  "hashes": {
+    "losses.csv": "e84f3f211ecd88b874a31535753a639e67567d4da33dae35141288f8821177b0",
+    "losses.schema.json": "c3643ce0c70ef11e0dcf7f61fc39b5a49b2ed495556d0f3f4e0d31b453326be9",
+    "rescue_bounds.csv": "fb86ebc4c3dec92d6a443e087f0614dc03e490797485b1003773785ca2ad148d",
+    "rescue_bounds.schema.json": "e00892921a4295b917072a530a93612a23e46a0564330ab61c222e4aa4468350",
+    "taxonomy.csv": "0a59468db5763512271fa371c3622f8947b89f1910f9ef0c3780353843a30f06",
+    "taxonomy.schema.json": "81dfbe48028733565627db4adf7fb2bcc871e4ef83b253b90c7970d84f018f77"
+  },
+  "identity": "34f1c88aa6c9dd80e8d4ebab87be457175777edf25ab21bea0b3d635806635c9"
+}

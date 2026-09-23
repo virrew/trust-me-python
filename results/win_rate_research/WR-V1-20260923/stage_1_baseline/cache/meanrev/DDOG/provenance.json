@@ -1,0 +1,9 @@
+{
+  "disabled_rule_equivalence": true,
+  "settings": {
+    "atr_multiplier": 2.0,
+    "use_locked_atr": false,
+    "use_trend_exit": false
+  },
+  "source": "NEW SNAPSHOT ALIGNMENT; prior historical experiment not rerun"
+}

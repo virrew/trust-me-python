@@ -1,0 +1,5 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-12-13,signal bar close,2023-12-14,139.60000610351562,2.606964448506845,133.0825949822485,4,1,2024-01-02,141.1046423256959,ATR_STOP,12,True,False,0.010778195962717563,squeeze,QCOM,breakeven_2,IN-SAMPLE,2023,11-15
+2,Long,2024-01-23,signal bar close,2024-01-24,154.7899932861328,3.321169846715108,146.48706866934504,4,1,2024-01-26,152.2100067138672,ATR_STOP,3,True,False,-0.01666765736914566,squeeze,QCOM,breakeven_2,IN-SAMPLE,2024,1-3
+3,Long,2025-09-22,signal bar close,2025-09-23,169.82000732421875,3.5110564037918275,161.04236631473918,4,1,2025-09-25,169.82000732421875,ATR_STOP,3,True,False,0.0,squeeze,QCOM,breakeven_2,ENTRY HOLDOUT / EXIT-USED HISTORY,2025,1-3
+4,Long,2026-09-10,signal bar close,2026-09-11,178.25,7.029821416288945,160.67544645927762,4,1,2026-09-14,170.77999877929688,ATR_STOP,2,True,False,-0.04190744022834858,squeeze,QCOM,breakeven_2,ENTRY HOLDOUT / EXIT-USED HISTORY,2026,1-3

@@ -1,0 +1,12 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2023-05-26,Long,2,1,FLAT,,FILLED,1,2023-05-30,True,False,breakout,CRM,lock25_1
+2023-05-30,Long,2,1,Long,1,IGNORED_POSITION_OPEN,,,,,breakout,CRM,lock25_1
+2023-05-31,Long,2,1,FLAT,,FILLED,2,2023-06-01,True,False,breakout,CRM,lock25_1
+2024-01-11,Long,2,1,FLAT,,FILLED,3,2024-01-12,True,False,breakout,CRM,lock25_1
+2024-01-29,Long,2,1,FLAT,,FILLED,4,2024-01-30,True,False,breakout,CRM,lock25_1
+2024-02-26,Long,2,1,FLAT,,FILLED,5,2024-02-27,True,False,breakout,CRM,lock25_1
+2024-10-02,Long,2,1,FLAT,,FILLED,6,2024-10-03,True,False,breakout,CRM,lock25_1
+2024-10-04,Long,2,1,Long,6,IGNORED_POSITION_OPEN,,,,,breakout,CRM,lock25_1
+2024-10-29,Long,2,1,FLAT,,FILLED,7,2024-10-30,True,False,breakout,CRM,lock25_1
+2024-11-06,Long,2,1,FLAT,,FILLED,8,2024-11-07,True,False,breakout,CRM,lock25_1
+2024-12-04,Long,2,1,FLAT,,FILLED,9,2024-12-05,True,False,breakout,CRM,lock25_1

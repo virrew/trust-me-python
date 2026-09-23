@@ -1,0 +1,11 @@
+{
+  "dtypes": {
+    "loser_to_nonloss": "Int64",
+    "loser_to_win": "Int64",
+    "scenario": "object",
+    "winner_destroyed": "Int64"
+  },
+  "object_none": {
+    "scenario": []
+  }
+}

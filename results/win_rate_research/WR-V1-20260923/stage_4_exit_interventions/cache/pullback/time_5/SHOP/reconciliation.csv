@@ -1,0 +1,7 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2021-12-07,Long,1,1,FLAT,,FILLED,1,2021-12-08,True,False,pullback,SHOP,time_5
+2024-02-14,Long,1,1,FLAT,,FILLED,2,2024-02-15,True,False,pullback,SHOP,time_5
+2024-09-11,Long,1,1,FLAT,,FILLED,3,2024-09-12,True,False,pullback,SHOP,time_5
+2025-01-21,Long,1,1,FLAT,,FILLED,4,2025-01-22,True,False,pullback,SHOP,time_5
+2025-11-24,Long,1,1,FLAT,,FILLED,5,2025-11-25,True,False,pullback,SHOP,time_5
+2026-09-21,Long,1,1,FLAT,,NO_NEXT_BAR,,,,,pullback,SHOP,time_5

@@ -1,0 +1,22 @@
+{
+  "dtypes": {
+    "_merge": "category",
+    "closed_a": "bool",
+    "closed_b": "bool",
+    "loser_to_nonloss": "boolean",
+    "loser_to_win": "boolean",
+    "matched_closed": "boolean",
+    "module": "object",
+    "return_pct_a": "float64",
+    "return_pct_b": "float64",
+    "scenario": "object",
+    "signal_time": "datetime64[ns]",
+    "symbol": "object",
+    "winner_destroyed": "boolean"
+  },
+  "object_none": {
+    "module": [],
+    "scenario": [],
+    "symbol": []
+  }
+}

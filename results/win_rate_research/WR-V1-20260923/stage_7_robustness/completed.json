@@ -1,0 +1,20 @@
+{
+  "completed_at": "2026-09-23T19:38:14.927733+00:00",
+  "hashes": {
+    "assessment.csv": "f410ccf4ad204f9710d4e752797526e6afce912c95c182b23583e7cbde01bfba",
+    "assessment.schema.json": "437370ee6d214b5e73245ba3781ff7b68f27e280aad9addf4b9e8609976382c7",
+    "by_module_scenario_partition.csv": "0ddc7c67ded7278e0f3b978bd70282492eabf97194e5250ab99fa9dbf8753e43",
+    "by_module_scenario_partition.schema.json": "660fa3c58b89eeeeaff54166589d7e89130b8cce2cf576e7c306ed72c67377bb",
+    "by_module_scenario_symbol.csv": "1f20bed04cd1b8d193f1714e97285e65c378785334ce3cb00d438bb27bbe9dc3",
+    "by_module_scenario_symbol.schema.json": "176c1a7f5e07004bde0a22a6733c9ea9baded7ce2c77ee2e09d88b5597aa20b6",
+    "by_module_scenario_year.csv": "2e38d626920b3740bed4145134665e2b73e8fa088daca1e88d16907d945ff85f",
+    "by_module_scenario_year.schema.json": "55baacf535bc1565d8e06f0be82609f04c563c7d6c17a79bce6bea3f81d696b2",
+    "leave_group_out.csv": "0b3286e2de37060e0711bc5b00f098fa876cfb10c721f80dcc3c622a8ca05c55",
+    "leave_group_out.schema.json": "820788ff737d2ff2ed89069f38f0ffb6aac37045a0c16e4c7ef4dc901b174f04",
+    "tail_removal.csv": "7745b4fcaad4f12afdd4013934f088f9268ad73f663eaf9acfd2cae0e5d13019",
+    "tail_removal.schema.json": "5ca0b0a7aa8d898ea5fb9ef652b47e99704424cac313a691c9637fef29af0f40",
+    "targets.csv": "6689295d8964e8d8b33ae334ee9b17c155f3c8303fa7e1be3e8614c1e78b9828",
+    "targets.schema.json": "38f3d74978459221af7489497d28b1e2ee71242311e6b117160b47939e731f03"
+  },
+  "identity": "34f1c88aa6c9dd80e8d4ebab87be457175777edf25ab21bea0b3d635806635c9"
+}

@@ -1,0 +1,7 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2021-11-05,Long,1,1,FLAT,,FILLED,1,2021-11-08,True,False,pullback,RTX,skip_rsi_distance_from_avg_2
+2022-05-27,Long,1,1,FLAT,,FILLED,2,2022-05-31,True,False,pullback,RTX,skip_rsi_distance_from_avg_2
+2024-11-08,Long,1,1,FLAT,,FILLED,3,2024-11-11,True,False,pullback,RTX,skip_rsi_distance_from_avg_2
+2025-04-11,Long,1,1,FLAT,,FILLED,4,2025-04-14,True,False,pullback,RTX,skip_rsi_distance_from_avg_2
+2025-05-01,Long,1,1,FLAT,,FILLED,5,2025-05-02,True,False,pullback,RTX,skip_rsi_distance_from_avg_2
+2026-04-06,Long,1,1,FLAT,,FILLED,6,2026-04-07,True,False,pullback,RTX,skip_rsi_distance_from_avg_2

@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2022-01-31,signal bar close,2022-02-01,72.2300033569336,4.5226591308554385,63.18468509522272,8,1,2022-02-11,69.68032315168864,ATR_STOP,9,True,False,-0.03529946125913064,meanrev,MRVL,time_10,IN-SAMPLE,2022,6-10

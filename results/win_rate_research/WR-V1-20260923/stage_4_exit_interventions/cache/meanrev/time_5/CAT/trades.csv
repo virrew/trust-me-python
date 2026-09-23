@@ -1,0 +1,5 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2023-03-21,signal bar close,2023-03-22,225.1699981689453,7.1012864584637265,210.96742525201785,8,1,2023-04-04,221.92075328029873,ATR_STOP,10,True,False,-0.014430185704441323,meanrev,CAT,time_5,IN-SAMPLE,2023,6-10
+2,Long,2024-12-24,signal bar close,2024-12-26,365.04998779296875,8.558889150101932,347.9322094927649,8,1,2025-01-10,356.17807086316685,ATR_STOP,10,True,False,-0.024303293320019015,meanrev,CAT,time_5,IN-SAMPLE,2024,6-10
+3,Long,2025-01-13,signal bar close,2025-01-14,365.489990234375,7.9400159562186,349.6099583219378,8,1,2025-01-27,393.129722384908,ATR_STOP,9,True,False,0.07562377326068126,meanrev,CAT,time_5,IN-SAMPLE,2025,6-10
+4,Long,2026-08-03,signal bar close,2026-08-04,922.0,40.74044270028756,840.5191145994249,8,1,2026-08-07,848.8977905449727,ATR_STOP,4,True,False,-0.07928656123104905,meanrev,CAT,time_5,ENTRY HOLDOUT / EXIT-USED HISTORY,2026,4-5

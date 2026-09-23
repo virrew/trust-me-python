@@ -1,0 +1,13 @@
+scenario,loser_to_win,loser_to_nonloss,winner_destroyed
+breakeven_1,0,62,46
+breakeven_2,0,35,27
+breakeven_3,0,19,11
+breakeven_4,0,11,4
+early_3,0,0,0
+lock25_1,66,66,15
+lock25_2,40,40,7
+lock25_3,21,21,2
+lock25_4,12,12,2
+time_10,0,0,0
+time_15,0,0,0
+time_5,0,0,0

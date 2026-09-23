@@ -1,0 +1,9 @@
+{
+  "disabled_rule_equivalence": true,
+  "settings": {
+    "atr_multiplier": 2.5,
+    "use_locked_atr": false,
+    "use_trend_exit": true
+  },
+  "source": "REUSED EXIT V1"
+}

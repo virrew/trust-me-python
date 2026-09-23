@@ -1,0 +1,14 @@
+{
+  "dtypes": {
+    "definitely_reached": "int64",
+    "interpretation": "object",
+    "module": "object",
+    "possibly_reached": "int64",
+    "threshold": "float64",
+    "total_losses": "int64"
+  },
+  "object_none": {
+    "interpretation": [],
+    "module": []
+  }
+}

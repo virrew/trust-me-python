@@ -1,0 +1,14 @@
+{
+  "dtypes": {
+    "adverse_threshold": "float64",
+    "definitely_touched": "int64",
+    "fraction_definite": "float64",
+    "fraction_possible": "float64",
+    "module": "object",
+    "possibly_touched": "int64",
+    "winners": "int64"
+  },
+  "object_none": {
+    "module": []
+  }
+}

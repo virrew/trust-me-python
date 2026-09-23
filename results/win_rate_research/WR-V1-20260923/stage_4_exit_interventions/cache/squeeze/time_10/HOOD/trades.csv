@@ -1,0 +1,5 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2024-02-14,signal bar close,2024-02-15,13.399999618530273,0.568390610443271,11.979023092422096,4,1,2024-03-19,17.189698448084922,ATR_STOP,23,True,False,0.2828133535402524,squeeze,HOOD,time_10,IN-SAMPLE,2024,16+
+2,Long,2024-09-17,signal bar close,2024-09-18,22.700000762939453,0.9646032774094827,20.288492569415745,4,1,2024-10-31,26.020000457763672,ATR_STOP,32,True,False,0.14625548824846413,squeeze,HOOD,time_10,IN-SAMPLE,2024,16+
+3,Long,2025-01-16,signal bar close,2025-01-17,47.7400016784668,2.5205583826639417,41.438605721806944,4,1,2025-02-19,58.774241475406725,ATR_STOP,22,True,False,0.23113195242967377,squeeze,HOOD,time_10,IN-SAMPLE,2025,16+
+4,Long,2025-07-02,signal bar close,2025-07-03,95.48999786376953,5.008303157666893,82.9692399696023,4,1,2025-07-22,100.87886117480262,ATR_STOP,13,True,False,0.05643379863429354,squeeze,HOOD,time_10,IN-SAMPLE,2025,11-15

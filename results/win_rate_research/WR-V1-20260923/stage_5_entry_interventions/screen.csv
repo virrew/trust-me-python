@@ -1,0 +1,10 @@
+module,scenario,survived,failed_checks,top5_removed_expectancy,symbol_agreement,year_agreement,discovery_expectancy
+pullback,skip_bb_width_5,False,wr,0.008521917905041311,0.6,0.8,0.014641748663119207
+pullback,skip_rsi_distance_from_avg_2,False,"wr,symbol,year",0.006442323592733442,0.5,0.4,0.013592961741514491
+pullback,skip_candle_range_atr_4,False,"wr,symbol,year",0.008025404857979462,0.48,0.4,0.014685728141995591
+breakout,skip_bars_since_rsi_up_5,False,"wr,expectancy,symbol,year,tail",-0.0015769571695295975,0.5581395348837209,0.4,0.003905190249211454
+breakout,skip_candle_range_atr_3,False,"wr,symbol,year,tail",-0.0008524205929049489,0.48717948717948717,0.2,0.005043752916558828
+breakout,skip_distance_to_upper_band_atr_1,False,"wr,symbol,year",0.0005201581580578953,0.48717948717948717,0.4,0.006397373397480749
+squeeze,skip_bars_since_oversold_4,False,symbol,0.0007240388370312547,1.0,0.75,0.014462983138751622
+squeeze,skip_bars_since_rsi_up_5,False,"symbol,tail",-0.001904933092083171,1.0,0.75,0.008446319152264344
+squeeze,skip_candle_range_atr_2,False,"wr,symbol,year,tail",-0.0001618931249263182,0.25,0.5,0.011673238062217388

@@ -1,0 +1,37 @@
+{
+  "dtypes": {
+    "active_module_mask": "int64",
+    "atr_at_entry": "float64",
+    "bars_held": "int64",
+    "censored_at_end": "bool",
+    "closed": "bool",
+    "direction": "object",
+    "entry_price": "float64",
+    "entry_time": "datetime64[ns]",
+    "exit_price": "float64",
+    "exit_reason": "object",
+    "exit_time": "datetime64[ns]",
+    "holding_bucket": "object",
+    "initial_stop": "float64",
+    "module": "object",
+    "module_score": "int64",
+    "partition": "object",
+    "return_pct": "float64",
+    "scenario": "object",
+    "signal_available_at": "object",
+    "signal_time": "datetime64[ns]",
+    "symbol": "object",
+    "trade_id": "int64",
+    "year": "int32"
+  },
+  "object_none": {
+    "direction": [],
+    "exit_reason": [],
+    "holding_bucket": [],
+    "module": [],
+    "partition": [],
+    "scenario": [],
+    "signal_available_at": [],
+    "symbol": []
+  }
+}

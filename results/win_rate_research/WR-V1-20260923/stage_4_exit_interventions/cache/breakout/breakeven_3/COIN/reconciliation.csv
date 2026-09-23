@@ -1,0 +1,13 @@
+signal_time,direction,active_module_mask,module_score,position_state_at_signal_close,active_trade_id_at_signal_close,resolution,trade_id,entry_time,closed,censored_at_end,module,symbol,scenario
+2021-11-08,Long,2,1,FLAT,,FILLED,1,2021-11-09,True,False,breakout,COIN,breakeven_3
+2021-12-27,Long,2,1,FLAT,,FILLED,2,2021-12-28,True,False,breakout,COIN,breakeven_3
+2023-12-01,Long,2,1,FLAT,,FILLED,3,2023-12-04,True,False,breakout,COIN,breakeven_3
+2023-12-04,Long,2,1,Long,3,IGNORED_POSITION_OPEN,,,,,breakout,COIN,breakeven_3
+2023-12-19,Long,2,1,FLAT,,FILLED,4,2023-12-20,True,False,breakout,COIN,breakeven_3
+2023-12-22,Long,2,1,Long,4,IGNORED_POSITION_OPEN,,,,,breakout,COIN,breakeven_3
+2023-12-27,Long,2,1,Long,4,IGNORED_POSITION_OPEN,,,,,breakout,COIN,breakeven_3
+2024-02-27,Long,2,1,FLAT,,FILLED,5,2024-02-28,True,False,breakout,COIN,breakeven_3
+2024-03-04,Long,2,1,Long,5,IGNORED_POSITION_OPEN,,,,,breakout,COIN,breakeven_3
+2024-11-08,Long,2,1,FLAT,,FILLED,6,2024-11-11,True,False,breakout,COIN,breakeven_3
+2024-11-11,Long,2,1,Long,6,IGNORED_POSITION_OPEN,,,,,breakout,COIN,breakeven_3
+2025-07-10,Long,2,1,FLAT,,FILLED,7,2025-07-11,True,False,breakout,COIN,breakeven_3

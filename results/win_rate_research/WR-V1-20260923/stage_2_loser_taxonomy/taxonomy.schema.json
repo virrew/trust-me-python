@@ -1,0 +1,13 @@
+{
+  "dtypes": {
+    "category": "object",
+    "count": "int64",
+    "fraction": "float64",
+    "module": "object",
+    "total_losses": "int64"
+  },
+  "object_none": {
+    "category": [],
+    "module": []
+  }
+}

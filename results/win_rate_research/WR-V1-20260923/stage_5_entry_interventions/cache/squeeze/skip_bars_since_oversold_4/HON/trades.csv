@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2025-07-03,signal bar close,2025-07-07,237.1045379638672,3.5166060875709975,228.3130227449397,4,1,2025-07-16,230.38482169295722,ATR_STOP,8,True,False,-0.0283407324407009,squeeze,HON,skip_bars_since_oversold_4,IN-SAMPLE,2025,6-10

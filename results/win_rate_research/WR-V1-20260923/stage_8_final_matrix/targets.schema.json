@@ -1,0 +1,16 @@
+{
+  "dtypes": {
+    "any_predefined_reached": "bool",
+    "expectancy": "float64",
+    "module": "object",
+    "profit_factor": "float64",
+    "robust_reached": "bool",
+    "scenario": "object",
+    "target": "float64",
+    "trades": "int64"
+  },
+  "object_none": {
+    "module": [],
+    "scenario": []
+  }
+}

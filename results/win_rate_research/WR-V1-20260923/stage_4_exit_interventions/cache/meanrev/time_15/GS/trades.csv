@@ -1,0 +1,2 @@
+trade_id,direction,signal_time,signal_available_at,entry_time,entry_price,atr_at_entry,initial_stop,active_module_mask,module_score,exit_time,exit_price,exit_reason,bars_held,closed,censored_at_end,return_pct,module,symbol,scenario,partition,year,holding_bucket
+1,Long,2026-03-17,signal bar close,2026-03-18,801.0,30.904161285187925,739.1916774296242,8,1,2026-04-29,904.2586079766618,ATR_STOP,30,True,False,0.128912119821051,meanrev,GS,time_15,ENTRY HOLDOUT / EXIT-USED HISTORY,2026,16+
