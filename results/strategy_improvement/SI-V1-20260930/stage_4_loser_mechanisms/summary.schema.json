@@ -1,0 +1,24 @@
+{
+  "dtypes": {
+    "ambiguous": "int64",
+    "bad_from_start": "int64",
+    "bad_from_start_share": "float64",
+    "losses": "int64",
+    "material_first": "int64",
+    "material_first_share": "float64",
+    "median_bars_peak_exit": "float64",
+    "median_giveback": "float64",
+    "median_mfe": "float64",
+    "median_peak_age": "float64",
+    "module": "object",
+    "partition": "object",
+    "post_peak_decay": "int64",
+    "stop_after_material": "int64",
+    "worked_then_failed": "int64",
+    "worked_then_failed_share": "float64"
+  },
+  "object_none": {
+    "module": [],
+    "partition": []
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "dtypes": {
+    "baseline_ledger_equal": "bool",
+    "module": "object",
+    "symbol": "object"
+  },
+  "object_none": {
+    "module": [],
+    "symbol": []
+  }
+}

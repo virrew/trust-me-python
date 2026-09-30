@@ -1,0 +1,26 @@
+{
+  "dtypes": {
+    "continuation_status": "object",
+    "entry": "object",
+    "frozen_stage_status": "object",
+    "lifecycle": "object",
+    "module": "object"
+  },
+  "object_none": {
+    "continuation_status": [],
+    "entry": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "frozen_stage_status": [],
+    "lifecycle": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "module": []
+  }
+}

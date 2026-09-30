@@ -1,0 +1,19 @@
+{
+  "completed_at": "2026-09-30T12:43:35.064219+00:00",
+  "hashes": {
+    "STRATEGY_IMPROVEMENT_MATRIX_V1.md": "235abab1153534e410fdffc79ba8ecf293a433f4db6bcb76608a6687d322daff",
+    "breakout.md": "d8ea12fcef74052bed83a59051c8ad064866b4d5cc929b8d6792f5e6d0b55ff2",
+    "candidate_comparisons.csv": "0571591d61bd32c28975261d28a6565cb2b95e5bc63ff37d55d9650155bdb18a",
+    "candidate_comparisons.schema.json": "a1b4de969f0a3078de279021cd3c6f73c9f192da7954ce946ac62c79d774bd8f",
+    "meanrev.md": "c7f4a52deefcaad8cbf3cc6927a0e9489ec37617709a6363e9168e6d41874440",
+    "module_answers.csv": "6c87e5f57a454cb91feb82d728748de3ad187224cdbb36bfd4e90631be0c8d76",
+    "module_answers.schema.json": "ca9f88d9ae871093217eade91df76181eb26b8e7ee2b6d80e4027ee6138175a2",
+    "pullback.md": "41ad3554783683bf57a0e50dbb1013f2037a740061168c248e06d4df96716b68",
+    "research_answers.csv": "c7e53773ebebbf7978ced29519321dbc78744ca912de0e818d3de851f9121a40",
+    "research_answers.schema.json": "7db8c0d4ffd19cfac97297683d11d2f09a25715ebb3d24b16eea444a6c8950c6",
+    "squeeze.md": "f52a7bae761218d6d76bdad1c4b282619097e361f1b00afa65d8cdcb1967d09a",
+    "summary.csv": "ba76619f5096a853dc1fb3e502d4bb6d21f95b3b4c890f800ed4ad93234c6e44",
+    "summary.schema.json": "e39a872bc541c8bcf9b94af922ebbaaff6fcd2fbe79fe322d1c0c4d64a565b55"
+  },
+  "identity": "aac3c71e8f93917ac7b77ec88073a78d80cd9df57793421722aca27c64bd5bed"
+}

@@ -1,0 +1,21 @@
+module,scenario,family,period,expectancy,survived,failed_checks,top5_removed_expectancy,symbol_agreement,symbol_eligible,year_agreement,year_eligible
+pullback,giveback,lifecycle,DISCOVERY,0.008939211668026591,False,"wr,expectancy,pf,winner_size,large_winners,tail,year",0.0031650953658305756,0.6451612903225806,31,0.2,5
+pullback,giveback,lifecycle,ENTRY HOLDOUT,0.002375396205219068,False,"sample,winner_size,loser_size,tail,symbol,year",-0.007211044374766335,1.0,5,1.0,2
+pullback,stalled,lifecycle,DISCOVERY,0.012175209907705067,False,"wr,expectancy,pf,loser_size,tail",0.006460144668276906,0.9354838709677419,31,0.6,5
+pullback,stalled,lifecycle,ENTRY HOLDOUT,0.0008852581091085487,False,"sample,wr,expectancy,pf,tail,symbol,year",-0.008922443913221504,1.0,5,1.0,2
+pullback,adaptive,lifecycle,DISCOVERY,0.012365826591435196,False,"wr,loser_size",0.006654239758644448,1.0,31,1.0,5
+pullback,adaptive,lifecycle,ENTRY HOLDOUT,0.0008852581091085487,False,"sample,wr,expectancy,pf,tail,symbol,year",-0.008922443913221504,1.0,5,1.0,2
+breakout,giveback,lifecycle,DISCOVERY,0.0025784057238837413,False,"expectancy,pf,winner_size,large_winners,tail,year",-0.0016711688536021198,0.6818181818181818,44,0.2,5
+breakout,giveback,lifecycle,ENTRY HOLDOUT,-0.00245597570046098,False,"expectancy,pf,winner_size,large_winners,tail,symbol,year",-0.012410495988711742,0.625,8,0.5,2
+breakout,stalled,lifecycle,DISCOVERY,0.004589096674724654,False,"wr,winner_size,loser_size,tail",-0.000575626913725687,0.9318181818181818,44,0.6,5
+breakout,stalled,lifecycle,ENTRY HOLDOUT,-0.004903047099597537,False,"losers,wr,expectancy,pf,winner_size,loser_size,tail,symbol,year",-0.015856085085374602,1.0,8,0.5,2
+breakout,adaptive,lifecycle,DISCOVERY,0.004673649313164914,False,"winner_size,loser_size,tail",-0.00047741293841341753,0.9318181818181818,44,0.8,5
+breakout,adaptive,lifecycle,ENTRY HOLDOUT,-0.004594717049681952,False,"expectancy,pf,winner_size,loser_size,tail,symbol,year",-0.015624897557886876,1.0,8,0.5,2
+squeeze,giveback,lifecycle,DISCOVERY,0.0016432612191982427,False,"expectancy,pf,winner_size,loser_size,large_winners,tail,year",-0.006727520089597201,0.8,10,0.25,4
+squeeze,giveback,lifecycle,ENTRY HOLDOUT,-0.010472534416837858,False,"sample,expectancy,pf,winner_size,large_winners,tail,symbol,year",-0.02280667835178944,,0,1.0,2
+squeeze,stalled,lifecycle,DISCOVERY,0.007274878402290886,False,"winners,losers,wr,expectancy,pf,tail,year",-0.0034979157202434177,0.8,10,0.5,4
+squeeze,stalled,lifecycle,ENTRY HOLDOUT,-0.014705017296712659,False,"sample,expectancy,pf,winner_size,loser_size,tail,symbol,year",-0.031740570270903615,,0,0.5,2
+squeeze,adaptive,lifecycle,DISCOVERY,0.00733211662044749,False,"wr,expectancy,pf,tail,year",-0.0034387695614815947,0.8,10,0.5,4
+squeeze,adaptive,lifecycle,ENTRY HOLDOUT,-0.014859713966311023,False,"sample,wr,expectancy,pf,winner_size,tail,symbol,year",-0.03191943829512672,,0,0.5,2
+breakout,relax_price,entry,DISCOVERY,0.004562022747368148,False,"count,losers,winner_size,symbol",0.0024517776458291576,0.3181818181818182,44,0.6,5
+breakout,relax_price,entry,ENTRY HOLDOUT,-0.001302793790957169,False,"count,losers,expectancy,pf,winner_size,tail,symbol,year",-0.005904646500082793,0.625,8,0.5,2

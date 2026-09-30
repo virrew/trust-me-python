@@ -1,0 +1,14 @@
+{
+  "dtypes": {
+    "module": "object",
+    "never_reached_definite": "int64",
+    "never_reached_possible": "int64",
+    "never_share_lower": "float64",
+    "never_share_upper": "float64",
+    "threshold": "float64",
+    "total": "int64"
+  },
+  "object_none": {
+    "module": []
+  }
+}

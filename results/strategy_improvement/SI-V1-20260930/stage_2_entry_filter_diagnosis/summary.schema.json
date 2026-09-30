@@ -1,0 +1,25 @@
+{
+  "dtypes": {
+    "accepted_weak_regions": "object",
+    "approved_trade_count": "int64",
+    "classification": "object",
+    "entry_v1_discovery": "object",
+    "entry_v1_holdout": "object",
+    "false_negative_interpretation": "object",
+    "false_positive_classification": "object",
+    "false_positive_interpretation": "object",
+    "filter": "object",
+    "module": "object"
+  },
+  "object_none": {
+    "accepted_weak_regions": [],
+    "classification": [],
+    "entry_v1_discovery": [],
+    "entry_v1_holdout": [],
+    "false_negative_interpretation": [],
+    "false_positive_classification": [],
+    "false_positive_interpretation": [],
+    "filter": [],
+    "module": []
+  }
+}

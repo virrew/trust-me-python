@@ -1,0 +1,14 @@
+{
+  "dtypes": {
+    "family": "object",
+    "module": "object",
+    "reason": "object",
+    "status": "object"
+  },
+  "object_none": {
+    "family": [],
+    "module": [],
+    "reason": [],
+    "status": []
+  }
+}

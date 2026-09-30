@@ -1,0 +1,97 @@
+{
+  "availability": "Entry panel at signal close; causal path only at survived close; final/forward labels in separate files; no imputation",
+  "behavior_change": "NO",
+  "confirmation": "ALL CURRENT HISTORY HAS ALREADY BEEN TOUCHED BY PREVIOUS RESEARCH. No untouched OOS or confirmatory data.",
+  "created_at": "2026-09-30T12:37:13.187933+00:00",
+  "discovery": "signal and closed exit before holdout; crossing/censored trades excluded from selection",
+  "execution": "Long only, next open entries/market exits, survived-close stop updates effective next bar, stops before current high, gap at open, trend priority; no costs/sizing/portfolio",
+  "existing_strategy_behavior_changed": "NO",
+  "finite_plan": {
+    "combination": "Only independently discovery-screened families; highest discovery expectancy then id in each family; at most one entry+exit per module",
+    "early_failure": "No new early-failure family without a previously replicated decision-time pattern; descriptive failures alone are insufficient",
+    "lifecycle": "Require >=20 discovery material-giveback losers and >=20 winners. Activation is smallest of 1/2/3/4% >= median loser known MFE, capped at 4%. Winner-path q75 material giveback rounded up to .50/.65/.80 (cap .80); stall q75 rounded up to 3/5/10 (cap 10). Three families: close giveback, stalled giveback, 10% running-MFE lock after stall. Quantiles use winners after the selected activation level.",
+    "max_combination_per_module": 1,
+    "max_lifecycle_per_module": 3,
+    "max_rejection_per_module": 1,
+    "max_relaxation": 1,
+    "rejection": "Only WR V1 previously frozen Entry V1 regions; >=30 discovery trades inside and outside, negative inside expectancy, lower WR/PF/MFE or worse MAE, >=60% lower-expectancy agreement across >=5 symbols and >=2 years with >=5 trades/arm. At most one by lowest inside expectancy, then id.",
+    "relaxation": "Only replicated bo_long_fail_price strict sole blocker; all other independent gates pass, no other active modules. Original mask/score remain unchanged; synthetic signal is explicitly experimental.",
+    "selection": "Only stage 1-5 IN-SAMPLE rows; no post-replay threshold edits"
+  },
+  "holdout": "signal >= boundary; full historical indicator warm-up retained",
+  "holdout_start": "2025-09-21 00:00:00",
+  "identity": {
+    "git_commit": "14dc1659a824ad7142693e3ed55de879077881a3",
+    "previous_plan": "34f1c88aa6c9dd80e8d4ebab87be457175777edf25ab21bea0b3d635806635c9",
+    "previous_stages": {
+      "stage_1_baseline": "ad5402f9a98fbdd01d1cd453859c8f11bffff88d4c6ca882163e3ac2993cc82e",
+      "stage_2_loser_taxonomy": "2a8348edf031cb85b6fb4295d546b9ec79c99d2c9d896bb4dcbf7feba60a0181",
+      "stage_3_winner_survival": "d9309a000977430a38e8d089bf945c41ef20d4c8984df9f390e643f75b732fae",
+      "stage_4_exit_interventions": "e11bc188a63ee74cc2c47f565744eaea773487a052123dabf258ff8a6e7c1fef",
+      "stage_5_entry_interventions": "d41213aa331659e3f8191d6f5c057017376020a7409c0948495de280db1887c6",
+      "stage_6_wr_frontier": "1a78ade9fc49b953b5c51ce913b6c73e1dc4c35b62a4fbf288a12496909938ef",
+      "stage_7_robustness": "1f4ce401bcfc0296a4006ea3a372ba3e1ef9076e246118a4ffc9394837500ca9",
+      "stage_8_final_matrix": "4f7a8d5de1b78e7026eb42398a6515a21898df4371c95f37834637c18f388808"
+    },
+    "runtime": {
+      "numpy": "2.0.2",
+      "pandas": "2.3.3",
+      "python": "3.9.6 (default, Nov 11 2024, 03:15:38) \n[Clang 16.0.0 (clang-1600.0.26.6)]"
+    },
+    "snapshot": "b3208fa046c8a09e6067f5dbfa8ffafd11b1d4855662d79b9e42b5cc8d5300d3",
+    "sources": {
+      "src/strategy_improvement_analysis.py": "b6c69e4319c130aeb122f45f8e7551050b0d15362cfd79c3844dea969c4acc02",
+      "src/strategy_improvement_execution.py": "35ac2c4d697ab7a7609674dc1622b8f7ab39e98076a00b3608e5cf8c837bfe6e",
+      "src/strategy_improvement_runner.py": "0a5f8dbedd8334a5719436a17ec557de38e420ae13e007ec2f3c85eab1e03f11"
+    }
+  },
+  "modules": {
+    "breakout": 2,
+    "meanrev": 8,
+    "pullback": 1,
+    "squeeze": 4
+  },
+  "peak_timing": "Existing zero-based bars_to_mfe retained; new peak_age_exact is one-based; uncertainty remains NA",
+  "policies": {
+    "breakout": {
+      "atr_multiplier": 2.5,
+      "use_locked_atr": false,
+      "use_trend_exit": true
+    },
+    "meanrev": {
+      "atr_multiplier": 2.0,
+      "use_locked_atr": false,
+      "use_trend_exit": false
+    },
+    "pullback": {
+      "atr_multiplier": 1.5,
+      "use_locked_atr": false,
+      "use_trend_exit": true
+    },
+    "squeeze": {
+      "atr_multiplier": 2.5,
+      "use_locked_atr": false,
+      "use_trend_exit": true
+    }
+  },
+  "screen": {
+    "agreement": ">=60% WR and expectancy nondecrease in >=10 symbols and >=3 years, >=5 trades/arm/group",
+    "count_ratio": [
+      0.7,
+      1.3
+    ],
+    "expectancy": "positive and strictly above baseline",
+    "large_winner_truncation": "<=10% of matched >=10% winners lose >25% of return",
+    "losers": "count <= baseline; mean and median loss no larger",
+    "median_trade": ">=baseline",
+    "min_trades": 100,
+    "pf": ">1 and strictly above baseline",
+    "tail": "expectancy after removing top5 positive trades > max(0, baseline same exclusion)",
+    "winner_destruction": "<=10% matched winners",
+    "winners": "count >= baseline; mean and median >=90% baseline",
+    "wr_delta": 0.02
+  },
+  "snapshot": "EXIT-V1-20260923-CLOSED",
+  "statistical_limits": "Correlated/overlapping trades, reused historical universe, multiple comparisons, no causal identification, no significance or TradingView parity",
+  "version": 1
+}

@@ -1,0 +1,25 @@
+{
+  "dtypes": {
+    "actionable_crossings": "int64",
+    "censored": "int64",
+    "closed": "int64",
+    "final_win_rate": "float64",
+    "mean_additional_mfe": "float64",
+    "median_bars_to_next_high": "float64",
+    "median_final_return": "float64",
+    "median_giveback_before_next_high": "float64",
+    "median_remaining_upside_lower": "float64",
+    "median_remaining_upside_upper": "float64",
+    "module": "object",
+    "next_high_observed": "int64",
+    "partition": "object",
+    "possibly_reached": "int64",
+    "probability_loss": "float64",
+    "reached_known": "int64",
+    "threshold": "float64"
+  },
+  "object_none": {
+    "module": [],
+    "partition": []
+  }
+}

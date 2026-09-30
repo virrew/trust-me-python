@@ -1,0 +1,16 @@
+{
+  "completed_at": "2026-09-30T12:41:38.453018+00:00",
+  "hashes": {
+    "candidate_rules.csv": "a09649ce1f0d6c9740b45c40dd7da09cf0405e0e145ab1bacc0f1297d466c6c8",
+    "candidate_rules.schema.json": "527208c62ffcc8f578ebd6ce89649ef73cb5c9a177869aeb34aeb38df42c6d14",
+    "candidate_strategy_improvements.json": "7992a5bb7537c1cb0dc4a4976af104d9b391a2236b8413258d8c9385acfc9b21",
+    "candidate_strategy_improvements.sha256": "0e380d7fa61d05af25ed9a12d5905cb54c0ed7c7afb8b54a5f6baaa9f42c7e40",
+    "entry_region_evidence.csv": "19d9091ca2f2fca6ae4325c8b83d2db74cb6ad5481106b1d04739d30806cdf89",
+    "entry_region_evidence.schema.json": "13b888f951549114e8473644b20658ee5f865f9cbc0435ce0616d2a0f5b59d94",
+    "summary.csv": "fa49173127463cce407f24e678a8f00e5f321e48cf16882ce79d896a7f36d1ce",
+    "summary.schema.json": "02bb032a1999d81fb568d319520a377be383c24464b38e0db85f5221465afcdc",
+    "winner_exposure_estimates.csv": "d5f729c087bc60d0c7e0e2a96d22fdd70085daef56ed81ee067ec03045087e53",
+    "winner_exposure_estimates.schema.json": "0ff75a99d392b11cefa5dc67a703e905871529b918092fbf98982fefd15b5625"
+  },
+  "identity": "aac3c71e8f93917ac7b77ec88073a78d80cd9df57793421722aca27c64bd5bed"
+}

@@ -1,0 +1,10 @@
+module,candidate,feature,bin,discovery_inside,discovery_outside,inside_expectancy,outside_expectancy,passed,failed_checks,symbol_agreement,year_agreement
+pullback,skip_bb_width_5,bb_width,5,55,224,0.00268337772649084,0.014641748663119207,False,"negative,symbol",,0.75
+pullback,skip_rsi_distance_from_avg_2,rsi_distance_from_avg,2,57,222,0.00555058357755641,0.014013307259346772,False,"negative,symbol",,0.8
+pullback,skip_candle_range_atr_4,candle_range_atr,4,54,225,0.0008375408150642824,0.015031601206587676,False,"negative,symbol,year",,0.5
+breakout,skip_bars_since_rsi_up_5,bars_since_rsi_up,5,29,382,0.0014647575649932862,0.004575441406764847,False,"sample,negative,symbol,year",,0.5
+breakout,skip_candle_range_atr_3,candle_range_atr,3,78,333,-0.004830325012928862,0.006507693506839125,False,symbol,1.0,0.75
+breakout,skip_distance_to_upper_band_atr_1,distance_to_upper_band_atr,1,66,345,-0.008627868633831994,0.006839814251019966,False,"symbol,year",1.0,0.5
+squeeze,skip_bars_since_oversold_4,bars_since_oversold,4,35,120,-0.015563996195486892,0.014462983138751622,False,symbol,,1.0
+squeeze,skip_bars_since_rsi_up_5,bars_since_rsi_up,5,22,133,0.00306625738895433,0.008446319152264344,False,"sample,negative,symbol",,0.6666666666666666
+squeeze,skip_candle_range_atr_2,candle_range_atr,2,30,125,-0.0037583302368446167,0.010428544135307931,False,symbol,,0.6666666666666666

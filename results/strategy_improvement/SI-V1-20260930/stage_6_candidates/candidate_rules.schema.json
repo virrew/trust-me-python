@@ -1,0 +1,14 @@
+{
+  "dtypes": {
+    "definition": "object",
+    "family": "object",
+    "module": "object",
+    "scenario": "object"
+  },
+  "object_none": {
+    "definition": [],
+    "family": [],
+    "module": [],
+    "scenario": []
+  }
+}

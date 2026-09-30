@@ -1,0 +1,30 @@
+{
+  "dtypes": {
+    "average_holding": "float64",
+    "average_return": "float64",
+    "censored": "int64",
+    "expectancy": "float64",
+    "expected_shortfall05": "float64",
+    "losers": "int64",
+    "mean_loser": "float64",
+    "mean_winner": "float64",
+    "median_holding": "float64",
+    "median_loser": "float64",
+    "median_return": "float64",
+    "median_winner": "float64",
+    "module": "object",
+    "p05_return": "float64",
+    "partition": "object",
+    "profit_factor": "float64",
+    "ties": "int64",
+    "top5_share_gross_profit": "float64",
+    "trades": "int64",
+    "win_rate": "float64",
+    "winners": "int64",
+    "worst_return": "float64"
+  },
+  "object_none": {
+    "module": [],
+    "partition": []
+  }
+}

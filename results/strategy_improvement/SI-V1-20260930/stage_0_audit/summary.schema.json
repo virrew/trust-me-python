@@ -1,0 +1,12 @@
+{
+  "dtypes": {
+    "result": "object",
+    "source": "object",
+    "topic": "object"
+  },
+  "object_none": {
+    "result": [],
+    "source": [],
+    "topic": []
+  }
+}

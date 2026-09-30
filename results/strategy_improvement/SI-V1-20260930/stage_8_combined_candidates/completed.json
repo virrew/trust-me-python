@@ -1,0 +1,22 @@
+{
+  "completed_at": "2026-09-30T12:43:28.137614+00:00",
+  "hashes": {
+    "combined_candidates.json": "76014410f93388d02c4b40822f6dcac8c88d8024ec431492b93703d784422e97",
+    "combined_candidates.sha256": "4e8ecf7b92d9096b2c8cc21cd1fd7df0cf68f95869b268732ea10cb7573ef0f3",
+    "pairs.csv": "5011db7bd12190abc5764177c9859ccf168bd79f42c57b9cd8ee653d55a28457",
+    "pairs.schema.json": "a861720f95ca2b3e40f6a28e2f832644a03eba03c54c34a3698caaf18d5dd9c2",
+    "reconciliation.csv": "d29a604f235632891a8771fbb42166b297aed60e6003c91b9e9910afb65f39c6",
+    "reconciliation.schema.json": "83c787213a209fabb5b3b778c318f9f45dc7b7fa1940c8e78afb2b985448032e",
+    "screen.csv": "a355fdc341729850048cbbb1802de33c7d4d0b7bcc7fde09aa8875f140319937",
+    "screen.schema.json": "1964b2c07d9f719bea09fe38e49202dc333a558a3c08b0e0598af289e6e9bade",
+    "selection.csv": "e1b036f894b91667863fa3b1dd3cd4423dc421a54f11f128772fb65a7a6ec8a1",
+    "selection.schema.json": "5feff70de8496c1a3b69b604ca22959e68cbce0791ada840c17902079287bbd6",
+    "summary.csv": "ff7c8cc482234ded463f543d5a1b884da5b29429a09554c3e7f718681a628a8d",
+    "summary.schema.json": "2a98751a6b993d1f30c04418e4cbbc61a2124714b222b6897c7b6c2b27b62fe8",
+    "tail_removal.csv": "a40907d743c474dd6a5bd61f42d7c5db8b2c0d4d325c14aa29916bff8a5e9eb5",
+    "tail_removal.schema.json": "70ece96eff4bbb0de688a2680c7a51a96f566153179fb79318304661ceb6b35f",
+    "trades.csv": "66501b0a82116f9d2734c7a39493b7d4648b31e9be2748467d33b6d709346154",
+    "trades.schema.json": "dc3f97c83603dda24551792f9624398744b4027d0997680f1ae985ddf1ae85a2"
+  },
+  "identity": "aac3c71e8f93917ac7b77ec88073a78d80cd9df57793421722aca27c64bd5bed"
+}

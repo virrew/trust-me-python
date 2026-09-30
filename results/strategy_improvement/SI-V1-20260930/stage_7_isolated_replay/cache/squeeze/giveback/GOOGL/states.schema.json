@@ -1,0 +1,32 @@
+{
+  "dtypes": {
+    "active_stop": "float64",
+    "age": "int64",
+    "available_at": "object",
+    "bar_time": "datetime64[ns]",
+    "bars_since_mfe_high": "int64",
+    "close_relative_entry": "float64",
+    "close_relative_peak": "float64",
+    "current_atr": "float64",
+    "distance_to_active_stop": "float64",
+    "giveback": "float64",
+    "giveback_fraction": "float64",
+    "last_high_age": "int64",
+    "low_return": "float64",
+    "mfe_retention": "float64",
+    "module": "object",
+    "new_mfe_high": "bool",
+    "running_mae": "float64",
+    "running_mfe": "float64",
+    "running_return": "float64",
+    "signal_time": "datetime64[ns]",
+    "stop_for_next_bar": "float64",
+    "symbol": "object",
+    "trade_id": "int64"
+  },
+  "object_none": {
+    "available_at": [],
+    "module": [],
+    "symbol": []
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "dtypes": {
+    "answer": "object",
+    "module": "object",
+    "number": "int64",
+    "question": "object"
+  },
+  "object_none": {
+    "answer": [],
+    "module": [],
+    "question": []
+  }
+}

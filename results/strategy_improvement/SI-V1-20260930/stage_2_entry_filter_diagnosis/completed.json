@@ -1,0 +1,18 @@
+{
+  "completed_at": "2026-09-30T12:41:26.786185+00:00",
+  "hashes": {
+    "accepted_region_metrics.csv": "04a485216664b47592b7c41617334a1295080a9732c742967ed2fca413d8d5e6",
+    "accepted_region_metrics.schema.json": "9fe52aa5e24d69a6f19c42443c93b1cbf22380e624e29b0100aa4f1d9fdd4e41",
+    "approved_trade_bins.csv": "1427b19877be55ef7be7b23aaecfe97300581e9a091995c7a41228d0cff73388",
+    "approved_trade_bins.schema.json": "cc79daac3e841721cb6d802bb0e759c3618b77f8fd7827fb2de462d87dc23629",
+    "blocked_opportunity_outcomes.csv": "6af1d1c31e430ab0cb3b50586f0f5be998a445a7de04c23f78a1a19d024722a0",
+    "blocked_opportunity_outcomes.schema.json": "51e082d8d7ce188342dc36ec43f9cb634237decfecbd4cf4ed415af2aa701d4e",
+    "filter_allowed_regions.csv": "720010af808cbcc035335f46cbeb0197ca1d6804b2bcf9a578841b84a0bccbf8",
+    "filter_allowed_regions.schema.json": "c1601afdb1703c812a043568d50a4a2434e079f407918b3d7bda5549c4ace239",
+    "filter_contrasts.csv": "e140b7ff0ea553cdbac38cfff69fc383bdafd8c99b0cb549d00bb43b5c0073fc",
+    "filter_contrasts.schema.json": "52a31c406b39d95a951b8b31635829216f5fe78ca1b0d5cdf7b101da1658cb44",
+    "summary.csv": "e4eb9e2aa4bb6484af5b6c771f9666b0d6598da617ad65922e9fc229ea70ac21",
+    "summary.schema.json": "664a49065767075464e30623357a09ace62c6e5c4223da5ecce58a8b89eb781a"
+  },
+  "identity": "aac3c71e8f93917ac7b77ec88073a78d80cd9df57793421722aca27c64bd5bed"
+}

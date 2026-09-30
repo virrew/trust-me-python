@@ -1,0 +1,22 @@
+{
+  "dtypes": {
+    "bin": "int64",
+    "candidate": "object",
+    "discovery_inside": "int64",
+    "discovery_outside": "int64",
+    "failed_checks": "object",
+    "feature": "object",
+    "inside_expectancy": "float64",
+    "module": "object",
+    "outside_expectancy": "float64",
+    "passed": "bool",
+    "symbol_agreement": "float64",
+    "year_agreement": "float64"
+  },
+  "object_none": {
+    "candidate": [],
+    "failed_checks": [],
+    "feature": [],
+    "module": []
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "dtypes": {
+    "count": "int64",
+    "mechanism": "object",
+    "module": "object",
+    "partition": "object"
+  },
+  "object_none": {
+    "mechanism": [],
+    "module": [],
+    "partition": []
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "dtypes": {
+    "answer": "object",
+    "question": "object"
+  },
+  "object_none": {
+    "answer": [],
+    "question": []
+  }
+}

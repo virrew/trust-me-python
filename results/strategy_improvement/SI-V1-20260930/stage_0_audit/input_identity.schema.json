@@ -1,0 +1,10 @@
+{
+  "dtypes": {
+    "path": "object",
+    "sha256": "object"
+  },
+  "object_none": {
+    "path": [],
+    "sha256": []
+  }
+}

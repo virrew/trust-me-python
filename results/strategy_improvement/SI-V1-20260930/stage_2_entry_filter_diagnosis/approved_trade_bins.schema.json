@@ -1,0 +1,24 @@
+{
+  "dtypes": {
+    "bars_held": "int64",
+    "bin": "int64",
+    "closed": "bool",
+    "feature": "object",
+    "in_trade_mae_upper": "float64",
+    "in_trade_mfe_lower": "float64",
+    "mechanism": "object",
+    "module": "object",
+    "partition": "object",
+    "return_pct": "float64",
+    "signal_time": "datetime64[ns]",
+    "symbol": "object",
+    "year": "int32"
+  },
+  "object_none": {
+    "feature": [],
+    "mechanism": [],
+    "module": [],
+    "partition": [],
+    "symbol": []
+  }
+}

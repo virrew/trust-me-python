@@ -67,6 +67,8 @@ Finite Entry Research V1           ✅ (research only; Entry Holdout, not full O
       ↓
 Trade Quality / Win Rate V1        ✅ (eight resumable research stages; no production changes)
       ↓
+Strategy Improvement / Lifecycle  ✅ (eleven resumable research stages; isolated scenarios)
+      ↓
 Walk-forward / Out-of-sample       ← NÄSTA
       ↓
 Scanner / watchlist / ranking
@@ -1312,3 +1314,144 @@ robustness and module matrix. The final report is
 `WIN_RATE_RESEARCH_MATRIX_V1.md`, with separate module reports. Existing research
 registries and historical artifacts are immutable inputs, not overwritten.
 There is no scheduler or automatic next research phase.
+
+## 19. Strategy Improvement / Trade Lifecycle Research V1 (2026-09-30)
+
+`src/strategy_improvement_runner.py`, `src/strategy_improvement_analysis.py` and
+`src/strategy_improvement_execution.py` compose the completed Exit, Entry and
+Win Rate studies. **Behavior change: NO. Existing strategy behavior changed:
+NO.** This is the requested classification for unchanged existing production
+behavior, defaults, authoritative references and earlier research artifacts.
+The new, explicitly isolated experimental arms intentionally have alternative
+entry/exit behavior; none is automatically promoted.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.strategy_improvement_runner --all
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.strategy_improvement_runner --stage 0
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.strategy_improvement_runner --resume
+```
+
+The session is `results/strategy_improvement/SI-V1-20260930/`. Stages 0–10 cover
+audit, canonical lifecycle data, entry diagnosis, MFE paths, loss mechanisms,
+winner preservation, candidate freeze, isolated replay, gated combinations,
+historical robustness and the final matrix. Each writes CSVs/schema sidecars,
+summaries, a verified completion hash and atomic `research_state.json`. Resume
+rebuilds state from verified markers and skips completed stages, including after
+an interruption between marker and state writes. A process lock prevents two
+writers. Corrupt inputs/outputs or changed source/runtime identities fail closed.
+The plan identifies the exact git commit and new source hashes; prior registries
+remain immutable inputs. Final reports and candidate JSON/hash are also checked
+when publishing or resuming. No scheduler or subsequent research phase starts.
+
+### Reused inputs and temporal boundaries
+
+The existing `WinRateRunner` input validator and diagnostics cache are consumed
+read-only. The full canonical 50-symbol `EXIT-V1-20260923-CLOSED` OHLCV snapshot,
+Entry V1 feature/bin/label artifacts and all completed WR stage markers are
+verified. No network, new Yahoo data, indicator seed, timezone, row ordering,
+module bit, strategy predicate or warm-up changes occur. Reference policies
+remain MeanRev Dynamic 2 / Trend OFF (PROVISIONAL), Pullback Dynamic 1.5 / Trend
+ON (RESEARCH BASELINE), Breakout/Squeeze Dynamic 2.5 / Trend ON (INCONCLUSIVE).
+Baseline ledgers are checked against WR V1 for every symbol/module.
+
+Discovery selection requires a closed trade with both signal and exit before
+2025-09-21. Boundary/censored trades cannot select rules. Entry Holdout anchors
+are at or after that date, retaining indicator warm-up. **ALL CURRENT HISTORY
+HAS ALREADY BEEN TOUCHED BY PREVIOUS RESEARCH.** This is not untouched OOS,
+confirmation, statistical significance or a claim of causal filter benefit.
+
+### Dataset and availability contracts
+
+Keys are `(module, symbol, signal_time)`; per-bar tables add `bar_time` and
+one-based holding `age`. Existing zero-based `bars_to_mfe` is preserved.
+`peak_age_exact = bars_to_mfe + 1`; ambiguous peaks remain missing.
+
+- `decision_time_entry_features.csv`: existing contemporaneous diagnostics,
+  including all filter booleans and fixed numeric panel, available at signal
+  close. No future label, final status, exit time or partition is a feature.
+- `decision_time_states.csv`: only survived closes, with running MFE/MAE,
+  current close return, strict new-high flag (ties do not reset it), time since
+  last high, absolute/fractional giveback, signed MFE retention, ATR, stop active
+  at bar start, stop for next bar and distance from close to active stop.
+  Current ATR is available at close; the old active stop was known at bar start.
+- `retrospective_trade_labels.csv`: existing lifecycle MFE/MAE bounds, WR taxonomy,
+  actual exits and outcomes, exact peak timing, giveback, magnitude buckets and
+  descriptive mechanism flags. `canonical_trades_RETROSPECTIVE.csv` joins a
+  prefixed entry panel for inspection only and is explicitly not a feature input.
+- `future_state_labels.csv`: final return, remaining holding/MFE bounds and
+  next-high targets at 3/5/10 bars, separate from state features. Exit is a
+  competing event. An ambiguous stop-bar possible high is not a definite hit;
+  unresolved censoring and ambiguous next-high outcomes remain missing.
+
+Full OHLC from an intrabar exit cannot enter causal state. Only known open/fill
+endpoints enter definite lifecycle excursion; full stop-bar high/low remain
+possible bounds under the existing lifecycle engine. Peak-bar low is excluded
+from strict post-peak decline because its order is unknown. Temporary giveback
+before a next high uses the current close and full intervening completed bars,
+excluding that next-high bar's low. First-threshold tables distinguish survived
+close crossings from exit-endpoint-only crossings, which cannot protect the
+trade retroactively. Empirical curves report dependent state-row denominators,
+unique-trade counts and missing targets, not independent predictive estimates.
+
+Rates/returns are fractions. Zero returns remain non-winners in the closed-trade
+WR denominator. MFE retention is signed return / exact positive MFE; ambiguous
+ratios are missing with denominators exported. Captured favorable excursion is
+max(realized return, 0), measured in return units. Counts pooled across independent
+module streams are not portfolio performance. Empty outputs retain columns.
+
+### Finite research interventions and screens
+
+The machine-readable plan freezes the small selection recipe before new path
+analysis. Stage 6 alone defines candidates after stages 1–5, using discovery
+only, and writes `candidate_strategy_improvements.json` plus SHA256 before any
+evaluation. Candidates are never retuned using replay results.
+
+At most three lifecycle candidates per module require >=20 discovery winners
+and >=20 material (known MFE >=2%) giveback losers. Activation is the first of
+1/2/3/4% at or above median loser known MFE, capped at 4%. At least 20 winner
+paths must reach it. Winner-path q75 maximum close giveback rounds up to
+50/65/80%, and q75 maximum stall rounds up to 3/5/10 bars; caps are explicit.
+The three policies are next-open giveback exit, next-open stalled-giveback exit,
+and a stop locking 10% of running MFE after the stall. No rule uses final MFE.
+
+At most one rejection per module may reuse a WR V1 frozen Entry V1 region.
+It requires >=30 discovery trades inside/outside, negative inside expectancy,
+lower WR and worse MFE or MAE, plus >=60% worse-expectancy agreement across
+>=5 symbols and >=2 years with >=5 trades per arm. No new early-failure rule
+is inferred from the loss taxonomy alone.
+
+Only the previously replicated `bo_long_fail_price` hypothesis can add an entry
+relaxation arm. This reuses Entry V1's strict sole-blocker cohort: every other
+independent gate passes, no other module is active, and derived score is not
+double-counted. **These added rows are experimental opportunities, not Pure
+activations or a safe unchanged-module ablation.** Their original mask/score
+(normally zero) remain in the ledger; `research_signal_source` distinguishes
+them. The strategy's module predicates and all production signals are unchanged.
+
+The isolated Long replay shares accounting/schema helpers with backtest and
+reuses lifecycle/outcome calculations. Its small execution loop is separate to
+preserve the source identities of completed WR runs. Full disabled-rule
+ledger/state/reconciliation equivalence, prefix tests and actual baseline
+ledger checks constrain drift. Entry and market exits fill next open; stops
+are tested before reading a surviving bar's high. Protection updates at close
+and starts next bar; gaps fill at open. Existing trend decisions have priority
+over a simultaneous research market exit. All scenarios replay occupancy and
+re-entry; A/B pairing is by signal provenance, never trade order.
+
+The multi-objective discovery screen requires >=100 trades in both arms,
+70–130% of baseline count, no fewer winners/no more losers, WR +2pp, strictly
+improved positive expectancy and PF >1, mean and median winners >=90% baseline,
+no larger mean/median losses, nondecreasing median trade, <=10% winner destruction
+and <=10% truncation of matched >=10% winners by >25% of return. Expectancy after
+top-five positive trades are removed must beat max(0, equivalently trimmed
+baseline). At least 60% WR/expectancy agreement is required across >=10 symbols
+and >=3 years with >=5 trades per arm. These are conservative descriptive gates.
+
+Only independently surviving entry/lifecycle families can combine; discovery
+expectancy then identifier chooses at most one combination per module. Every
+tested scenario retains raw trades, reconciliation, paired rescue/damage and
+one-sided fills, top-1/3/5 sensitivity, year/symbol/regime/partition metrics and
+leave-one-year/symbol-out results. Baseline-path trigger exposure is distinct
+from actual winner damage. Historical status labels never imply validation;
+Breakout/Squeeze cannot become ROBUST HISTORICALLY while reference exits remain
+unresolved. No strategy/ML/scanner/universe-filtering phase follows automatically.

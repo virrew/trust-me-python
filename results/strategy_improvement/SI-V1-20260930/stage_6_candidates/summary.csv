@@ -1,0 +1,14 @@
+module,family,status,reason
+meanrev,lifecycle,LOW SAMPLE,Requires 20 discovery winners and 20 material-giveback losers
+meanrev,entry_rejection,INCONCLUSIVE,Existing WR finite regions only; no further threshold search
+meanrev,early_failure,INCONCLUSIVE,No replicated contemporaneous early-failure pattern; taxonomy alone does not authorize a new rule
+pullback,lifecycle,THREE FROZEN CANDIDATES,"Discovery only: level=0.02, giveback=0.8, stall=3; winner tolerance caps are explicit"
+pullback,entry_rejection,INCONCLUSIVE,Existing WR finite regions only; no further threshold search
+pullback,early_failure,INCONCLUSIVE,No replicated contemporaneous early-failure pattern; taxonomy alone does not authorize a new rule
+breakout,lifecycle,THREE FROZEN CANDIDATES,"Discovery only: level=0.03, giveback=0.8, stall=5; winner tolerance caps are explicit"
+breakout,entry_rejection,INCONCLUSIVE,Existing WR finite regions only; no further threshold search
+breakout,early_failure,INCONCLUSIVE,No replicated contemporaneous early-failure pattern; taxonomy alone does not authorize a new rule
+squeeze,lifecycle,THREE FROZEN CANDIDATES,"Discovery only: level=0.03, giveback=0.8, stall=10; winner tolerance caps are explicit"
+squeeze,entry_rejection,INCONCLUSIVE,Existing WR finite regions only; no further threshold search
+squeeze,early_failure,INCONCLUSIVE,No replicated contemporaneous early-failure pattern; taxonomy alone does not authorize a new rule
+breakout,entry_relaxation,ONE FROZEN CANDIDATE,No invented price threshold; test full removal in the strict sole-blocker envelope

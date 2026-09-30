@@ -1,0 +1,39 @@
+{
+  "dtypes": {
+    "_merge": "category",
+    "closed_a": "object",
+    "closed_b": "object",
+    "giveback_loser_rescued": "boolean",
+    "in_trade_mfe_lower_a": "float64",
+    "in_trade_mfe_lower_b": "float64",
+    "in_trade_mfe_upper_a": "float64",
+    "in_trade_mfe_upper_b": "float64",
+    "large_winner_truncated": "boolean",
+    "loser_to_nonloss": "boolean",
+    "loser_to_win": "boolean",
+    "matched_closed": "boolean",
+    "mechanism_a": "object",
+    "mechanism_b": "object",
+    "mfe_retention_exact_a": "float64",
+    "mfe_retention_exact_b": "float64",
+    "module": "object",
+    "return_delta": "float64",
+    "return_pct_a": "float64",
+    "return_pct_b": "float64",
+    "scenario": "object",
+    "signal_time": "datetime64[ns]",
+    "symbol": "object",
+    "winner_cut_25pct": "boolean",
+    "winner_damaged": "boolean",
+    "winner_destroyed": "boolean"
+  },
+  "object_none": {
+    "closed_a": [],
+    "closed_b": [],
+    "mechanism_a": [],
+    "mechanism_b": [],
+    "module": [],
+    "scenario": [],
+    "symbol": []
+  }
+}

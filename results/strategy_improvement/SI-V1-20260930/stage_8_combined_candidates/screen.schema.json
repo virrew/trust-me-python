@@ -1,0 +1,30 @@
+{
+  "dtypes": {
+    "expectancy": "object",
+    "failed_checks": "object",
+    "family": "object",
+    "module": "object",
+    "period": "object",
+    "scenario": "object",
+    "survived": "object",
+    "symbol_agreement": "object",
+    "symbol_eligible": "object",
+    "top5_removed_expectancy": "object",
+    "year_agreement": "object",
+    "year_eligible": "object"
+  },
+  "object_none": {
+    "expectancy": [],
+    "failed_checks": [],
+    "family": [],
+    "module": [],
+    "period": [],
+    "scenario": [],
+    "survived": [],
+    "symbol_agreement": [],
+    "symbol_eligible": [],
+    "top5_removed_expectancy": [],
+    "year_agreement": [],
+    "year_eligible": []
+  }
+}

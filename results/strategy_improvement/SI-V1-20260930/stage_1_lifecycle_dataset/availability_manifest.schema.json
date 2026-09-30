@@ -1,0 +1,12 @@
+{
+  "dtypes": {
+    "available_at": "object",
+    "file": "object",
+    "role": "object"
+  },
+  "object_none": {
+    "available_at": [],
+    "file": [],
+    "role": []
+  }
+}

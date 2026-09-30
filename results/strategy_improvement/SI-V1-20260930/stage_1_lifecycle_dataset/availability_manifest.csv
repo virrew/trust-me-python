@@ -1,0 +1,6 @@
+file,role,available_at
+decision_time_entry_features.csv,features,signal bar close
+decision_time_states.csv,features,survived bar close
+retrospective_trade_labels.csv,labels,exit bar close / censored observed end
+future_state_labels.csv,labels,"future horizon/exit, never state time"
+canonical_trades_RETROSPECTIVE.csv,joined retrospective export; NOT feature input,after exit

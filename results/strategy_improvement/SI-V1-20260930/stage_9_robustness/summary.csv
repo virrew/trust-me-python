@@ -1,0 +1,11 @@
+module,scenario,status,discovery_survived,holdout_survived,discovery_failed,holdout_failed,year_stable,symbol_stable,symbol_agreement,year_agreement,untouched_oos
+pullback,giveback,FAILED,False,False,"wr,expectancy,pf,winner_size,large_winners,tail,year","sample,winner_size,loser_size,tail,symbol,year",False,False,0.6451612903225806,0.2,False
+pullback,stalled,FAILED,False,False,"wr,expectancy,pf,loser_size,tail","sample,wr,expectancy,pf,tail,symbol,year",False,False,0.9354838709677419,0.6,False
+pullback,adaptive,MIXED,False,False,"wr,loser_size","sample,wr,expectancy,pf,tail,symbol,year",True,True,1.0,1.0,False
+breakout,giveback,TAIL-SENSITIVE,False,False,"expectancy,pf,winner_size,large_winners,tail,year","expectancy,pf,winner_size,large_winners,tail,symbol,year",False,False,0.6818181818181818,0.2,False
+breakout,stalled,TAIL-SENSITIVE,False,False,"wr,winner_size,loser_size,tail","losers,wr,expectancy,pf,winner_size,loser_size,tail,symbol,year",False,False,0.9318181818181818,0.6,False
+breakout,adaptive,TAIL-SENSITIVE,False,False,"winner_size,loser_size,tail","expectancy,pf,winner_size,loser_size,tail,symbol,year",False,False,0.9318181818181818,0.8,False
+squeeze,giveback,TAIL-SENSITIVE,False,False,"expectancy,pf,winner_size,loser_size,large_winners,tail,year","sample,expectancy,pf,winner_size,large_winners,tail,symbol,year",False,False,0.8,0.25,False
+squeeze,stalled,TAIL-SENSITIVE,False,False,"winners,losers,wr,expectancy,pf,tail,year","sample,expectancy,pf,winner_size,loser_size,tail,symbol,year",False,False,0.8,0.5,False
+squeeze,adaptive,TAIL-SENSITIVE,False,False,"wr,expectancy,pf,tail,year","sample,wr,expectancy,pf,winner_size,tail,symbol,year",False,False,0.8,0.5,False
+breakout,relax_price,MIXED,False,False,"count,losers,winner_size,symbol","count,losers,expectancy,pf,winner_size,tail,symbol,year",False,False,0.3181818181818182,0.6,False

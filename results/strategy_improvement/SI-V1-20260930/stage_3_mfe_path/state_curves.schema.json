@@ -1,0 +1,30 @@
+{
+  "dtypes": {
+    "closed_rows": "int64",
+    "eligible_10": "int64",
+    "eligible_3": "int64",
+    "eligible_5": "int64",
+    "giveback_bin": "object",
+    "median_remaining_mfe_lower": "float64",
+    "mfe_bin": "object",
+    "module": "object",
+    "partition": "object",
+    "probability_new_high_10": "object",
+    "probability_new_high_3": "object",
+    "probability_new_high_5": "object",
+    "stall_bin": "object",
+    "state_rows": "int64",
+    "unique_trades": "int64",
+    "winner_probability": "float64"
+  },
+  "object_none": {
+    "giveback_bin": [],
+    "mfe_bin": [],
+    "module": [],
+    "partition": [],
+    "probability_new_high_10": [],
+    "probability_new_high_3": [],
+    "probability_new_high_5": [],
+    "stall_bin": []
+  }
+}

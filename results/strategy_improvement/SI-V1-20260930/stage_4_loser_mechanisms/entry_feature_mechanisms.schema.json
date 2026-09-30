@@ -1,0 +1,23 @@
+{
+  "dtypes": {
+    "field": "object",
+    "mean": "float64",
+    "mechanism": "object",
+    "median": "float64",
+    "missing": "int64",
+    "module": "object",
+    "observed": "int64",
+    "partition": "object",
+    "q10": "float64",
+    "q25": "float64",
+    "q75": "float64",
+    "q90": "float64",
+    "total": "int64"
+  },
+  "object_none": {
+    "field": [],
+    "mechanism": [],
+    "module": [],
+    "partition": []
+  }
+}

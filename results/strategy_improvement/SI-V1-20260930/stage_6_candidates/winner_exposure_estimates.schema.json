@@ -1,0 +1,23 @@
+{
+  "dtypes": {
+    "exposed": "boolean",
+    "final_return": "float64",
+    "first_exposure_age": "float64",
+    "interpretation": "object",
+    "large_winner": "bool",
+    "module": "object",
+    "outcome": "object",
+    "partition": "object",
+    "scenario": "object",
+    "signal_time": "datetime64[ns]",
+    "symbol": "object"
+  },
+  "object_none": {
+    "interpretation": [],
+    "module": [],
+    "outcome": [],
+    "partition": [],
+    "scenario": [],
+    "symbol": []
+  }
+}

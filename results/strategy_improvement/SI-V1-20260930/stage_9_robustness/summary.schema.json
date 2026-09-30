@@ -1,0 +1,23 @@
+{
+  "dtypes": {
+    "discovery_failed": "object",
+    "discovery_survived": "bool",
+    "holdout_failed": "object",
+    "holdout_survived": "bool",
+    "module": "object",
+    "scenario": "object",
+    "status": "object",
+    "symbol_agreement": "float64",
+    "symbol_stable": "bool",
+    "untouched_oos": "bool",
+    "year_agreement": "float64",
+    "year_stable": "bool"
+  },
+  "object_none": {
+    "discovery_failed": [],
+    "holdout_failed": [],
+    "module": [],
+    "scenario": [],
+    "status": []
+  }
+}

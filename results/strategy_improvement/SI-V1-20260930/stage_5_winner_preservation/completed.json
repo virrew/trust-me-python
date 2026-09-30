@@ -1,0 +1,14 @@
+{
+  "completed_at": "2026-09-30T12:41:33.096752+00:00",
+  "hashes": {
+    "prior_intervention_summary.csv": "adf77c66348bb3519e3fa95ca3a2d9fecbc057679cd588faaa69b73813645c1c",
+    "prior_intervention_summary.schema.json": "0faee28f7dcb8e8757396cb57369112b5948ac7fa295872a3d0aef292827891f",
+    "prior_winner_destruction.csv": "6bb535b13b784d8363f743f0d2e5ae235d4a2cf5d34518f258bad810815e14a9",
+    "prior_winner_destruction.schema.json": "b833f0e3c27925eaa83ff4a5a35904546947d57de6dd3e2be875bd7992d20749",
+    "summary.csv": "4661159a1002e2f5dc0de246532c2836f1cef8839f8bc1021ca984bebc359709",
+    "summary.schema.json": "88841f0b2b4883f4b61061e329b1c0c607bc0e28927d8bd97d0e3736d507f12d",
+    "winners.csv": "714af07ef4450b2f430795961e1a1f4784f5ac30832120ac61d7f5219f5f655a",
+    "winners.schema.json": "1c34d56bdad4a31b30a75e980dfb0a2153f800327d2deb1aa12f325438e69fa7"
+  },
+  "identity": "aac3c71e8f93917ac7b77ec88073a78d80cd9df57793421722aca27c64bd5bed"
+}

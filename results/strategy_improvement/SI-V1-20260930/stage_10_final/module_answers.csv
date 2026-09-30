@@ -1,0 +1,101 @@
+module,number,question,answer
+meanrev,1,What currently causes most losses?,"Largest descriptive category: SMALL_PROFIT_GIVEBACK; this is a path description, not an identified cause."
+meanrev,2,What fraction of losers never worked?,5/28 (17.9%) never reached even a possible +0.5%.
+meanrev,3,What fraction became materially profitable first?,11/28 (39.3%) definitely reached +2%; 23/28 (82.1%) reached +0.5%.
+meanrev,4,Typical loser MFE?,Median known lower bound 1.37%; upper bounds remain in raw labels.
+meanrev,5,Typical winner MFE?,Median known lower bound 12.29%.
+meanrev,6,Typical winner MFE peak?,Exact median holding bar 10.5; 1 of 27 peaks ambiguous.
+meanrev,7,Typical loser MFE peak?,Exact median holding bar 1.0; 0 of 28 peaks ambiguous.
+meanrev,8,Typical winner giveback?,Median surrendered return 5.96%; median exact-MFE fraction 54.0%.
+meanrev,9,Typical loser giveback?,Median surrendered return 6.17%; median exact-MFE fraction 414.8%.
+meanrev,10,How much positive excursion is surrendered?,Across closed independent trades: mean known MFE minus realized return 6.33%; this is not capturable portfolio profit.
+meanrev,11,Which entry filters appear too strict?,None with fully replicated strictness evidence.
+meanrev,12,Which accepted regions appear too loose?,No previously frozen region passed the repeated weak-lifecycle discovery screen; unconfirmed associations remain in stage 2.
+meanrev,13,Best isolated entry intervention?,NONE by discovery expectancy only; this ranking is descriptive and never a production recommendation.
+meanrev,14,Best lifecycle intervention?,NONE by discovery expectancy only; all tested candidates and failed gates are shown below.
+meanrev,15,How many losers did the displayed lifecycle candidate rescue?,No candidate: insufficient discovery mechanism sample.
+meanrev,16,How many winners did it damage?,No new intervention tested.
+meanrev,17,Effect on WR?,No proposed change.
+meanrev,18,Effect on PF?,No proposed change.
+meanrev,19,Effect on expectancy?,No proposed change.
+meanrev,20,Effect on mean / median winner?,Baseline 7.11%/4.91%.
+meanrev,21,Effect on mean / median loser?,Baseline -4.22%/-3.62%.
+meanrev,22,Effect on median trade?,Baseline -0.01%.
+meanrev,23,Effect on tail dependence?,Small sample; prior interventions did not clear all gates.
+meanrev,24,Is a combined Strategy V2 candidate justified?,NO COMBINATION: independent discovery screen failed
+meanrev,25,What remains unresolved?,"Causal entry vs management attribution, cost sensitivity, unseen-data replication, intrabar order, and regime stability. MeanRev sample remains limited."
+pullback,1,What currently causes most losses?,"Largest descriptive category: SMALL_PROFIT_GIVEBACK; this is a path description, not an identified cause."
+pullback,2,What fraction of losers never worked?,59/208 (28.4%) never reached even a possible +0.5%.
+pullback,3,What fraction became materially profitable first?,60/208 (28.8%) definitely reached +2%; 144/208 (69.2%) reached +0.5%.
+pullback,4,Typical loser MFE?,Median known lower bound 1.13%; upper bounds remain in raw labels.
+pullback,5,Typical winner MFE?,Median known lower bound 8.08%.
+pullback,6,Typical winner MFE peak?,Exact median holding bar 6.0; 3 of 155 peaks ambiguous.
+pullback,7,Typical loser MFE peak?,Exact median holding bar 1.0; 17 of 208 peaks ambiguous.
+pullback,8,Typical winner giveback?,Median surrendered return 4.26%; median exact-MFE fraction 51.0%.
+pullback,9,Typical loser giveback?,Median surrendered return 3.65%; median exact-MFE fraction 245.3%.
+pullback,10,How much positive excursion is surrendered?,Across closed independent trades: mean known MFE minus realized return 4.35%; this is not capturable portfolio profit.
+pullback,11,Which entry filters appear too strict?,None with fully replicated strictness evidence.
+pullback,12,Which accepted regions appear too loose?,No previously frozen region passed the repeated weak-lifecycle discovery screen; unconfirmed associations remain in stage 2.
+pullback,13,Best isolated entry intervention?,NONE by discovery expectancy only; this ranking is descriptive and never a production recommendation.
+pullback,14,Best lifecycle intervention?,adaptive by discovery expectancy only; all tested candidates and failed gates are shown below.
+pullback,15,How many losers did the displayed lifecycle candidate rescue?,"3 to winners, 3 to non-loss; denominator 208 matched historical losers; all-baseline rescue rate 1.4%."
+pullback,16,How many winners did it damage?,"0 earned less, 0 became non-winners, 0 large winners lost >25% of return. 0 original winners lost their fill."
+pullback,17,Effect on WR?,42.70% → 43.53% (+0.83 percentage points).
+pullback,18,Effect on PF?,1.617 → 1.623 (+0.005).
+pullback,19,Effect on expectancy?,0.97% → 0.97% (+0.01%).
+pullback,20,Effect on mean / median winner?,5.92%/2.95% → 5.82%/2.83%.
+pullback,21,Effect on mean / median loser?,-2.73%/-2.15% → -2.76%/-2.17%.
+pullback,22,Effect on median trade?,-0.68% → -0.61% (+0.07%).
+pullback,23,Effect on tail dependence?,Top-five winners share gross profit: 17.7% → 17.7%; status MIXED. Exact top-1/3/5 deletion results are in stage 9.
+pullback,24,Is a combined Strategy V2 candidate justified?,NO COMBINATION: independent discovery screen failed
+pullback,25,What remains unresolved?,"Causal entry vs management attribution, cost sensitivity, unseen-data replication, intrabar order, and regime stability. No untested lifecycle threshold is promoted."
+breakout,1,What currently causes most losses?,"Largest descriptive category: MAJOR_GIVEBACK; this is a path description, not an identified cause."
+breakout,2,What fraction of losers never worked?,47/324 (14.5%) never reached even a possible +0.5%.
+breakout,3,What fraction became materially profitable first?,169/324 (52.2%) definitely reached +2%; 276/324 (85.2%) reached +0.5%.
+breakout,4,Typical loser MFE?,Median known lower bound 2.11%; upper bounds remain in raw labels.
+breakout,5,Typical winner MFE?,Median known lower bound 11.25%.
+breakout,6,Typical winner MFE peak?,Exact median holding bar 12.0; 7 of 223 peaks ambiguous.
+breakout,7,Typical loser MFE peak?,Exact median holding bar 2.0; 2 of 324 peaks ambiguous.
+breakout,8,Typical winner giveback?,Median surrendered return 6.67%; median exact-MFE fraction 59.1%.
+breakout,9,Typical loser giveback?,Median surrendered return 6.39%; median exact-MFE fraction 274.2%.
+breakout,10,How much positive excursion is surrendered?,Across closed independent trades: mean known MFE minus realized return 7.38%; this is not capturable portfolio profit.
+breakout,11,Which entry filters appear too strict?,bo_long_fail_price
+breakout,12,Which accepted regions appear too loose?,No previously frozen region passed the repeated weak-lifecycle discovery screen; unconfirmed associations remain in stage 2.
+breakout,13,Best isolated entry intervention?,relax_price by discovery expectancy only; this ranking is descriptive and never a production recommendation.
+breakout,14,Best lifecycle intervention?,adaptive by discovery expectancy only; all tested candidates and failed gates are shown below.
+breakout,15,How many losers did the displayed lifecycle candidate rescue?,"19 to winners, 19 to non-loss; denominator 324 matched historical losers; all-baseline rescue rate 5.9%."
+breakout,16,How many winners did it damage?,"8 earned less, 1 became non-winners, 3 large winners lost >25% of return. 0 original winners lost their fill."
+breakout,17,Effect on WR?,40.77% → 43.94% (+3.17 percentage points).
+breakout,18,Effect on PF?,1.114 → 1.119 (+0.005).
+breakout,19,Effect on expectancy?,0.29% → 0.29% (+0.00%).
+breakout,20,Effect on mean / median winner?,7.05%/3.88% → 6.28%/3.03%.
+breakout,21,Effect on mean / median loser?,-4.36%/-4.01% → -4.40%/-4.05%.
+breakout,22,Effect on median trade?,-1.32% → -1.04% (+0.28%).
+breakout,23,Effect on tail dependence?,Top-five winners share gross profit: 14.0% → 14.4%; status TAIL-SENSITIVE. Exact top-1/3/5 deletion results are in stage 9.
+breakout,24,Is a combined Strategy V2 candidate justified?,NO COMBINATION: independent discovery screen failed
+breakout,25,What remains unresolved?,"Causal entry vs management attribution, cost sensitivity, unseen-data replication, intrabar order, and regime stability. Exit-policy uncertainty remains INCONCLUSIVE."
+squeeze,1,What currently causes most losses?,"Largest descriptive category: MAJOR_GIVEBACK; this is a path description, not an identified cause."
+squeeze,2,What fraction of losers never worked?,22/128 (17.2%) never reached even a possible +0.5%.
+squeeze,3,What fraction became materially profitable first?,73/128 (57.0%) definitely reached +2%; 105/128 (82.0%) reached +0.5%.
+squeeze,4,Typical loser MFE?,Median known lower bound 2.35%; upper bounds remain in raw labels.
+squeeze,5,Typical winner MFE?,Median known lower bound 12.54%.
+squeeze,6,Typical winner MFE peak?,Exact median holding bar 16.0; 1 of 66 peaks ambiguous.
+squeeze,7,Typical loser MFE peak?,Exact median holding bar 2.0; 6 of 128 peaks ambiguous.
+squeeze,8,Typical winner giveback?,Median surrendered return 6.56%; median exact-MFE fraction 53.7%.
+squeeze,9,Typical loser giveback?,Median surrendered return 5.63%; median exact-MFE fraction 226.2%.
+squeeze,10,How much positive excursion is surrendered?,Across closed independent trades: mean known MFE minus realized return 7.00%; this is not capturable portfolio profit.
+squeeze,11,Which entry filters appear too strict?,None with fully replicated strictness evidence.
+squeeze,12,Which accepted regions appear too loose?,No previously frozen region passed the repeated weak-lifecycle discovery screen; unconfirmed associations remain in stage 2.
+squeeze,13,Best isolated entry intervention?,NONE by discovery expectancy only; this ranking is descriptive and never a production recommendation.
+squeeze,14,Best lifecycle intervention?,adaptive by discovery expectancy only; all tested candidates and failed gates are shown below.
+squeeze,15,How many losers did the displayed lifecycle candidate rescue?,"2 to winners, 2 to non-loss; denominator 128 matched historical losers; all-baseline rescue rate 1.6%."
+squeeze,16,How many winners did it damage?,"3 earned less, 2 became non-winners, 0 large winners lost >25% of return. 0 original winners lost their fill."
+squeeze,17,Effect on WR?,34.02% → 34.02% (+0.00 percentage points).
+squeeze,18,Effect on PF?,1.144 → 1.131 (-0.013).
+squeeze,19,Effect on expectancy?,0.35% → 0.32% (-0.03%).
+squeeze,20,Effect on mean / median winner?,8.18%/5.36% → 8.06%/5.21%.
+squeeze,21,Effect on mean / median loser?,-3.69%/-3.17% → -3.67%/-3.17%.
+squeeze,22,Effect on median trade?,-1.93% → -1.93% (+0.00%).
+squeeze,23,Effect on tail dependence?,Top-five winners share gross profit: 30.6% → 31.1%; status TAIL-SENSITIVE. Exact top-1/3/5 deletion results are in stage 9.
+squeeze,24,Is a combined Strategy V2 candidate justified?,NO COMBINATION: independent discovery screen failed
+squeeze,25,What remains unresolved?,"Causal entry vs management attribution, cost sensitivity, unseen-data replication, intrabar order, and regime stability. Exit-policy uncertainty remains INCONCLUSIVE."

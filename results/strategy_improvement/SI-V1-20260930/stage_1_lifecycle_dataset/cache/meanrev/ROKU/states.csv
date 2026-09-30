@@ -1,0 +1,1 @@
+trade_id,bar_time,age,available_at,running_return,running_mfe,running_mae,new_mfe_high,last_high_age,bars_since_mfe_high,giveback,giveback_fraction,mfe_retention,close_relative_entry,close_relative_peak,current_atr,low_return,active_stop,stop_for_next_bar,distance_to_active_stop,signal_time,module,symbol

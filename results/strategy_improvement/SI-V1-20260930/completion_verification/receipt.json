@@ -1,0 +1,41 @@
+{
+  "baseline_tests": 178,
+  "behavior_change": "NO",
+  "combination_status": {
+    "breakout": "NO ADMISSIBLE COMBINATION",
+    "meanrev": "NO ADMISSIBLE COMBINATION",
+    "pullback": "NO ADMISSIBLE COMBINATION",
+    "squeeze": "NO ADMISSIBLE COMBINATION"
+  },
+  "created_at": "2026-09-30T13:54:03.659544+00:00",
+  "existing_strategy_behavior_changed": "NO",
+  "final_focused_tests": 23,
+  "final_full_tests": 201,
+  "git_commit": "14dc1659a824ad7142693e3ed55de879077881a3",
+  "hashes": {
+    "STRATEGY_IMPROVEMENT_MATRIX_V1.md": "235abab1153534e410fdffc79ba8ecf293a433f4db6bcb76608a6687d322daff",
+    "candidate_strategy_improvements.json": "7992a5bb7537c1cb0dc4a4976af104d9b391a2236b8413258d8c9385acfc9b21",
+    "candidate_strategy_improvements.sha256": "0e380d7fa61d05af25ed9a12d5905cb54c0ed7c7afb8b54a5f6baaa9f42c7e40",
+    "completion_verification/VERIFICATION_V1.md": "f009d42bff4b206312dda2a6b61d86700f4e61b88d0d49fd98decffbc9ff1018",
+    "completion_verification/combination_status.csv": "336f8a80301086c89023987d50f745861169c02df76dab571d21fb1b56835fc4",
+    "completion_verification/combination_status.schema.json": "a8bc6540058e1303455b0b7a4430b71135405c04dbf10cbcc0304c20672b81d8",
+    "research_plan.json": "aac3c71e8f93917ac7b77ec88073a78d80cd9df57793421722aca27c64bd5bed",
+    "research_state.json": "c8563eeff417215b61f32cf8e1f1a9928c5653a22a04719dbc401f89bf1661bb",
+    "stage_0_audit/completed.json": "7f98adcdaab633ed408c922b2fca6f910a27be2fe4bccf79e29b47b1610df2f5",
+    "stage_10_final/completed.json": "e7e5f93f9c4989d64aa5e8e274d8ae325128676fba57f3f041d1e610c14b10ca",
+    "stage_1_lifecycle_dataset/completed.json": "ae40fd2a7b52e3215dd5145c7883bc0d1cccb3255f015ab637fdec12514c1043",
+    "stage_2_entry_filter_diagnosis/completed.json": "adc82e69d48bebade923d98173c68d2e4b6f1c100f323c227503ca81a56be56a",
+    "stage_3_mfe_path/completed.json": "9971da85899de29966531f4c0b392e071201fc1d446f08758e41dee35ecac346",
+    "stage_4_loser_mechanisms/completed.json": "6b685c55359834146000453867209418ce1fa296344f880e6431a531cad8f2e5",
+    "stage_5_winner_preservation/completed.json": "474e135f26202260a6bcf4e75e37fb523f0f0e21bdb5a65a7067c15a9d43d447",
+    "stage_6_candidates/completed.json": "cf0de9f23828d1c0fdb7038f2397f9fdb5e736fa01ea0ca17730498419c89f50",
+    "stage_7_isolated_replay/completed.json": "fb1b482045af2b6e85ebd5882cf26d1e836881455f3182add2c6c2b2131b5805",
+    "stage_8_combined_candidates/completed.json": "d9e45631365bf73ea3338e65f73edcb811c4be26d1b8bd1dd47d0dab3c7f16cc",
+    "stage_9_robustness/completed.json": "a1112a58239d66d70624fed7f4186b343adaff5d97a91b5d8671bb57d1f8e0d4"
+  },
+  "resume_reused": 11,
+  "snapshot": "EXIT-V1-20260923-CLOSED",
+  "stages": 11,
+  "status": "COMPLETED",
+  "unchanged_completion_markers": 711
+}

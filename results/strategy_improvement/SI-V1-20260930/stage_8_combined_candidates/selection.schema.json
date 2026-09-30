@@ -1,0 +1,24 @@
+{
+  "dtypes": {
+    "entry": "object",
+    "lifecycle": "object",
+    "module": "object",
+    "status": "object"
+  },
+  "object_none": {
+    "entry": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "lifecycle": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "module": [],
+    "status": []
+  }
+}

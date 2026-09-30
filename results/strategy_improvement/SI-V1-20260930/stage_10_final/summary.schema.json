@@ -1,0 +1,38 @@
+{
+  "dtypes": {
+    "bad_from_start": "int64",
+    "bad_share": "float64",
+    "best_entry_by_discovery": "object",
+    "best_lifecycle_by_discovery": "object",
+    "closed": "int64",
+    "combined": "object",
+    "expectancy": "float64",
+    "lifecycle_trades": "int64",
+    "loser_giveback": "float64",
+    "loser_peak_age": "float64",
+    "loser_peak_to_exit": "float64",
+    "losers": "int64",
+    "main_loss_mechanism": "object",
+    "material_first": "int64",
+    "median_loser_mfe": "float64",
+    "median_winner_mfe": "float64",
+    "module": "object",
+    "profit_factor": "float64",
+    "status": "object",
+    "win_rate": "float64",
+    "winner_giveback": "float64",
+    "winner_peak_age": "float64",
+    "winner_peak_to_exit": "float64",
+    "winners": "int64",
+    "worked_share": "float64",
+    "worked_then_failed": "int64"
+  },
+  "object_none": {
+    "best_entry_by_discovery": [],
+    "best_lifecycle_by_discovery": [],
+    "combined": [],
+    "main_loss_mechanism": [],
+    "module": [],
+    "status": []
+  }
+}

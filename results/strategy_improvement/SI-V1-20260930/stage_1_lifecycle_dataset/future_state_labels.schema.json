@@ -1,0 +1,27 @@
+{
+  "dtypes": {
+    "additional_mfe_lower": "float64",
+    "additional_mfe_upper": "float64",
+    "age": "int64",
+    "bar_time": "datetime64[ns]",
+    "bars_to_next_high": "float64",
+    "closed": "bool",
+    "final_return": "float64",
+    "giveback_before_next_high": "float64",
+    "module": "object",
+    "new_high_next_10": "boolean",
+    "new_high_next_3": "boolean",
+    "new_high_next_5": "boolean",
+    "outcome": "object",
+    "partition": "object",
+    "remaining_holding_bars": "float64",
+    "signal_time": "datetime64[ns]",
+    "symbol": "object"
+  },
+  "object_none": {
+    "module": [],
+    "outcome": [],
+    "partition": [],
+    "symbol": []
+  }
+}
