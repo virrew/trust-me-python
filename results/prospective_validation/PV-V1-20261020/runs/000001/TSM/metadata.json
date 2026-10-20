@@ -1,0 +1,12 @@
+{
+  "backfill_bars": 0,
+  "bars": 1253,
+  "data_sha256": "a4ae947ac8d37c603c4ceb1ff80e2e791f60196172f70b9f5ac6f8a0dd9a68be",
+  "latest_completed_bar": "2026-09-21T00:00:00",
+  "mode": "scan",
+  "new_decisions": 0,
+  "observed_at": "2026-10-20T13:54:55.231275+00:00",
+  "plan_sha256": "4dd6c6c687bbee0272fa7d061649c68539fbbb2107cc2ff83184d099955da1bf",
+  "symbol": "TSM",
+  "validation_bars": 0
+}

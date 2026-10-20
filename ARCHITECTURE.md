@@ -28,7 +28,7 @@ Kommentarer om parity-verifiering är därför inte bevis på fullständig parit
 | ML | Saknas: ingen modell, träning, inferens, labels eller tränings-/testsplit |
 | Backtesting | `src/backtest.py` simulerar en position åt gången för Swing och ger trade ledger, state trace och closed-trade summary; ingen kapital-/kostnadsmodell |
 | Utvärdering | Signalfrekvens, blockerare, near misses och modultillfällen i `src/diagnostics_analysis.py`; retrospektiva prisoutcomes i `src/historical_outcomes.py`; manuella paritykontroller |
-| Live-skanning | `src/live_scanner.py` är tom |
+| Paper-skanning | `src/live_scanner.py`: fryst Prospective Validation + Paper Scanner V1, Daily/Swing, research only; se avsnitt 20 |
 
 ### 1.1 Planerad utvecklingsordning
 
@@ -69,9 +69,9 @@ Trade Quality / Win Rate V1        ✅ (eight resumable research stages; no prod
       ↓
 Strategy Improvement / Lifecycle  ✅ (eleven resumable research stages; isolated scenarios)
       ↓
-Walk-forward / Out-of-sample       ← NÄSTA
+Prospective Validation + Paper V1 ✅ (frozen evidence collection; section 20)
       ↓
-Scanner / watchlist / ranking
+Walk-forward / confirmatory evaluation ← future; enough new evidence required
       ↓
 Predictive analysis / ML
 ```
@@ -110,7 +110,9 @@ positionstillstånd, kostnader och kapitalrisk.
 | `src/ab_rule_testing.py` | Deterministisk A/B-replay av baseline och en isolerad execution-konfigurationsändring, med performance-, signal/execution-, lifecycle- och paired-vyer |
 | `src/exit_research_runner.py` | Finite, resumable Pure Breakout/Squeeze exit research; immutable Yahoo snapshots, cached existing-engine executions, canonical A/B artifacts and registry append |
 | `src/exit_research_analysis.py` | Descriptive paired/arm robustness, tail concentration, year/symbol stability and preregistered conservative support screen |
-| `src/live_scanner.py` | Tom platshållare |
+| `src/live_scanner.py` | Freeze, append-only Daily paper scans, existing-engine baseline/shadow replay, recovery and CLI |
+| `src/prospective_validation_data.py` | Daily completion clocks, validation, immutable OHLCV append and Yahoo adapter |
+| `src/prospective_validation_analysis.py` | Frozen costs and separate evidence/arm metrics; no execution changes |
 | `src/__init__.py` | Tom paketmarkör |
 | `tests/test_core.py` | 13 syntetiska pytest-tester: OHLCV-validering, trend, regim, volatilitet, momentum, volym, breakout, squeeze, pullback, moduler, score, signal och session |
 | `tests/test_market_data.py` | Tom; OHLCV-validering testas i `test_core.py` |
@@ -1455,3 +1457,186 @@ leave-one-year/symbol-out results. Baseline-path trigger exposure is distinct
 from actual winner damage. Historical status labels never imply validation;
 Breakout/Squeeze cannot become ROBUST HISTORICALLY while reference exits remain
 unresolved. No strategy/ML/scanner/universe-filtering phase follows automatically.
+
+## 20. Prospective Validation + Paper Scanner V1 (2026-10-20)
+
+`src/live_scanner.py` owns a research-only Daily/Swing scanner. **Behavior change:
+YES. Existing strategy behavior changed: NO.** This adds evidence collection and
+cost accounting; no existing strategy, diagnostics, execution function, candidate,
+historical research artifact or authoritative reference is changed.
+
+The baseline is the existing broad final Long signal (current default:
+`allow_long=True`, `allow_short=False`), Dynamic ATR 2.5, trend exit ON.
+It is not the historical module-policy mix. Four separate pure module reference
+streams retain the SI/WR reference policies: MeanRev 2/trend OFF, Pullback
+1.5/trend ON, Breakout/Squeeze 2.5/trend ON. The ten exact frozen SI candidates
+are shadow arms compared to their corresponding module references, not to a
+relabelled production baseline. All streams are independent per symbol; they
+are not a portfolio. Breakout/Squeeze reference uncertainty and MeanRev low
+sample remain unresolved.
+
+### Freeze, inputs and availability
+
+The default session is `results/prospective_validation/PV-V1-20261020/`.
+`init` captures actual HEAD, working-tree status/diff, all `src/*.py` hashes,
+the Pine/research contract hashes, runtime versions, all diagnostic defaults,
+baseline/reference configurations, the existing 50-symbol universe, source
+snapshot identities, the exact SI candidate JSON/hash, metrics and costs.
+Original seed OHLCV/schema files ending strictly before **2026-09-22** are
+verified and copied, preserving the entire original indicator seed. The
+machine-readable `freeze/validation_plan.json`, SHA256 and completion inventory
+publish by atomic directory rename. Every data loader, including local import,
+is behind verification of this persisted freeze. Initialization has no provider
+call. Failed/incomplete freezes cannot authorize new data access.
+
+`src/prospective_validation_data.py` wraps the existing Yahoo data-layer function
+(`5y`, `1d`, `auto_adjust=False`) and validates Daily OHLCV. Daily index labels
+remain unchanged: unique, sorted midnight dates, timezone-naive or
+`America/New_York`. Numeric values must be finite, prices positive, volume
+nonnegative and OHLC ranges valid. Validation bars append to the original
+warm-up; no indicator seed, NaN, comparison, score or mask is changed. Overlap
+revisions (including overlapping seed data), omitted previously observed
+validation bars and late insertions fail closed. No alternative provider,
+adjustment or universe deletion is chosen automatically.
+
+V1 accepts a Daily bar only after **16:15 New York time**. This is a conservative
+normal close plus provider delay, including on early-close days. Separate UTC
+availability fields coexist with original date labels. DST uses the named
+timezone. There is no exchange calendar: V1 does not validate all missing
+sessions, infer halts/delistings, or support intraday. Fills follow the existing
+contract's next observed bar open. Corporate actions/provider revisions may
+require a separately reviewed new data/session identity rather than a silent
+repair.
+
+Evidence is assigned once, at the first persisted observation:
+
+- `TEMPORAL_OOS_LATER_UNSEEN`: validation bar availability precedes the freeze.
+  These bars are later-unseen historical observations, never live/prospective.
+- `PROSPECTIVE_PAPER`: latest completed bar, collected by `scan`, on a New York
+  session date strictly after the freeze date, before the next **calendar**
+  day's 09:30 New York. This conservative deadline may exclude otherwise usable
+  weekend/holiday observations. Freeze-day ambiguity is deliberately excluded.
+- `POST_FREEZE_BACKFILL_NOT_PROSPECTIVE`: other post-freeze bars. Diagnostics
+  and already-open trade paths are retained, but these bars cannot originate
+  new eligible trades. Catch-up/update cannot manufacture prospective signals.
+- `HISTORICAL_RESEARCH_CONTEXT`: latest snapshot when there are no validation
+  bars yet. No historical trade replay or optimization is run.
+
+Thus a missed scan cannot be reconstructed from complete future history and
+called prospective. Observation clocks are recorded after diagnostic computation.
+The plan's first-observation classification cannot be upgraded on rerun.
+`scan` also catches up eligible pre-freeze later-unseen bars. `update` follows
+existing positions and may ingest temporal OOS, but creates no new prospective
+entries. Signals while a position is open remain logged with reconciliation.
+
+### Paper replay, features and accounting
+
+All streams start flat at the validation cutoff; pre-cutoff positions are not
+carried in. Later-unseen positions may remain open into the prospective period;
+their evidence class stays anchored to the original signal. Position occupancy
+remains continuous within each arm across the two populations.
+
+The broad baseline and module references call
+`run_swing_backtest_with_reconciliation`; frozen candidates use the existing
+`research_stream` and SI `replay`. No strategy predicate or execution loop is
+copied. Paper updates replay only the accumulated validation stream, with
+persisted signal eligibility; historical research campaigns never rerun.
+All 191 diagnostics are retained at decision time. The existing `causal_path`
+supplies survived-close running return/MFE/MAE, strict new-MFE-high/stall/giveback
+and next-bar stop fields. Original stop traces and reconciliation are also saved.
+Entry/exit, final returns and lifecycle bounds stay in separate trade snapshots.
+No future labels are attached to decision features.
+
+Trade keys are `(symbol, arm, signal_time, direction)` and state keys add
+`bar_time`. Daily trade timestamps remain original bar labels; entry open
+availability gets a separate UTC clock. Intrabar exits never invent an exact
+wall-clock fill time. Open prefix trades have `status=OPEN` and retain the
+engine's `censored_at_end=True`; subsequent run snapshots may close them.
+Old snapshots remain immutable. A final-bar eligible signal stays unfilled
+until the next observed open. The Long-only lifecycle feature helper is safe
+because this protocol freezes Long-only defaults; Short is not a new V1 arm.
+
+The separate accounting layer freezes two assumptions, in basis points:
+
+| Cost scenario | Commission per side | Slippage per side |
+| --- | ---: | ---: |
+| primary | 10 | 5 |
+| stress | 10 | 15 |
+
+These are research assumptions, not calibrated brokerage quotes or Pine slippage
+parity. Fill prices/stops are unchanged. For a closed trade,
+`cost_return = (commission_bps + slippage_bps)/10000 *
+(1 + exit_price/entry_price)` and `net_return = gross_return - cost_return`.
+This is a one-share-equivalent entry-notional return debit on both sides, not
+portfolio sizing or compounded equity. Open final net returns remain missing.
+
+`src/prospective_validation_analysis.py` publishes every arm/evidence/cost
+combination even at zero sample, plus symbol and exact module-mask distributions.
+Closed finite trades define the denominator; zero returns are neither wins nor
+losses. Gross/net count, winners, losers, ties/non-loss, WR, expectancy, PF,
+winner/loser mean/median, median/worst trade, worst ceil(5% of N) expected
+shortfall, holding duration, MFE/MAE bounds and exact denominators, retention,
+top-1/3/5 positive-profit shares and expectancy after deleting those winners are
+retained. Fewer than 100 closed trades is LOW SAMPLE; larger samples are still
+DESCRIPTIVE ONLY. There is no promotion gate or threshold tuning. Historical SI
+results are linked as already-used context and never pooled with validation.
+
+### Artifacts, recovery and operation
+
+Run from the repository root with the existing environment:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner init
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner scan
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner catch-up
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner update
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner resume
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner report
+```
+
+`--input-dir PATH` imports `<symbol>.csv`/schema pairs instead of Yahoo. Imported
+data still passes the freeze and availability gates. `--session NAME` identifies
+a distinct protocol; it is not a way to relabel already-seen results as unseen.
+The CLI holds a process lock. Library callers must use `session_lock(base)` too.
+
+- `freeze/`: immutable plan/hash, source/config/universe/candidate identity,
+  working-tree diff, original seed and its manifest.
+- `runs/000001/<symbol>/`: received data (including excluded incomplete bars),
+  cumulative immutable prices/decision observations, latest scan and only newly
+  observed decisions, with per-symbol timestamps/cutoffs. No-signal symbols
+  retain full current diagnostics.
+- Each symbol's `BASELINE/`, `REFERENCE-*/`, `SHADOW-*/`: **new_signals** is the
+  deduplicated append stream; trades/states/stop_path/reconciliation are complete
+  as-of snapshots and must not be concatenated as new trades. Stable keys permit
+  update comparison without double counting.
+- Run-root `evaluation.csv` and `distributions.csv`: separate evidence/arm/cost
+  metrics, including empty schemas. Reports use the latest committed run only.
+- `.run-pending/`: resumable symbol checkpoints. Completed symbols are verified
+  and reused; unfinished symbol output is preserved under `failures/` before
+  retry. Each actual invocation is timestamped; repeated input logs a new scan
+  but adds no signal/trade identity.
+- `completed.json` inventories and a linked run hash chain protect corruption,
+  missing files and missing sequence entries. Atomic directory publication
+  precedes `head.json`; a fully verified orphan after interruption is adopted.
+  All symbols must succeed before a run is published. Pending failures remain
+  explicit. Resumption across days preserves individual symbol observation
+  clocks; coverage may have different cutoffs, visible in `report`.
+
+Typed CSV sidecars extend the existing storage format with exact object-string
+values, preserving empty strings and literal `NA` separately from NaN/None.
+Read these files with `prospective_validation_data.load_frame`.
+
+Limitations: no scheduler, alerts, broker, orders, capital/risk sizing, calibrated
+costs, exchange calendar, sector filtering, optimization, Strategy V2 or ML.
+File hashes are corruption checks, not an externally notarized timestamp or
+protection from deliberate rewriting of an entire local history. Existing
+TradingView-parity and intrabar excursion limits remain. Full immutable as-of
+snapshots trade disk space for auditability; no compaction scheme is introduced.
+Tests use synthetic new-period bars, original seed data and existing-engine
+equivalence. Live Yahoo integration and genuine prospective collection must be
+reported separately from offline verification.
+
+After enough new observations accumulate, review frozen gross/net and tail
+metrics with exact counts per evidence class and arm against the matching
+reference. Any new hypothesis needs a new protocol and a later untouched sample;
+this collector does not train ML, retune candidates or declare Strategy V2.

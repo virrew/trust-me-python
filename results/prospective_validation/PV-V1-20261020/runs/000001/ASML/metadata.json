@@ -1,0 +1,12 @@
+{
+  "backfill_bars": 0,
+  "bars": 1253,
+  "data_sha256": "b707e6f2a7d4c4f884e704b252652fc822726d40b8dca0686bc29745a61c6ff1",
+  "latest_completed_bar": "2026-09-21T00:00:00",
+  "mode": "scan",
+  "new_decisions": 0,
+  "observed_at": "2026-10-20T13:54:56.191012+00:00",
+  "plan_sha256": "4dd6c6c687bbee0272fa7d061649c68539fbbb2107cc2ff83184d099955da1bf",
+  "symbol": "ASML",
+  "validation_bars": 0
+}

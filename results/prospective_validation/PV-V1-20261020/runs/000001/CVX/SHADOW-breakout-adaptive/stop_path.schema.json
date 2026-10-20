@@ -1,0 +1,25 @@
+{
+  "dtypes": {
+    "active_stop_at_bar_start": "float64",
+    "active_stop_for_next_bar": "float64",
+    "arm": "object",
+    "bar_time": "datetime64[ns]",
+    "direction": "object",
+    "extreme_after": "float64",
+    "extreme_before": "float64",
+    "stop_hit": "bool",
+    "symbol": "object",
+    "trade_id": "int64",
+    "trend_exit_triggered_at_close": "bool"
+  },
+  "object_none": {
+    "arm": [],
+    "direction": [],
+    "symbol": []
+  },
+  "object_strings": {
+    "arm": {},
+    "direction": {},
+    "symbol": {}
+  }
+}

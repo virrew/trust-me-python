@@ -1,0 +1,12 @@
+{
+  "backfill_bars": 0,
+  "bars": 1253,
+  "data_sha256": "340cd746781c56797dd46b1dd0f17070fc12e1f47a34d758e6ec1b7065e73366",
+  "latest_completed_bar": "2026-09-21T00:00:00",
+  "mode": "scan",
+  "new_decisions": 0,
+  "observed_at": "2026-10-20T13:55:36.069376+00:00",
+  "plan_sha256": "4dd6c6c687bbee0272fa7d061649c68539fbbb2107cc2ff83184d099955da1bf",
+  "symbol": "XOM",
+  "validation_bars": 0
+}

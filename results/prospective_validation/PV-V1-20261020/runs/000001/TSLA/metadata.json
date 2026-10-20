@@ -1,0 +1,12 @@
+{
+  "backfill_bars": 0,
+  "bars": 1253,
+  "data_sha256": "8d1bb858ef4125f07735517bebac87c0745b77643b2aa2fb8d20b7593db99b93",
+  "latest_completed_bar": "2026-09-21T00:00:00",
+  "mode": "scan",
+  "new_decisions": 0,
+  "observed_at": "2026-10-20T13:55:11.602045+00:00",
+  "plan_sha256": "4dd6c6c687bbee0272fa7d061649c68539fbbb2107cc2ff83184d099955da1bf",
+  "symbol": "TSLA",
+  "validation_bars": 0
+}

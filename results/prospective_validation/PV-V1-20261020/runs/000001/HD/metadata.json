@@ -1,0 +1,12 @@
+{
+  "backfill_bars": 0,
+  "bars": 1253,
+  "data_sha256": "ecf459dd1d4e4389b5679a45be152c3ec958491ca083d9d97980a1d1c3e2ec0b",
+  "latest_completed_bar": "2026-09-21T00:00:00",
+  "mode": "scan",
+  "new_decisions": 0,
+  "observed_at": "2026-10-20T13:55:47.040940+00:00",
+  "plan_sha256": "4dd6c6c687bbee0272fa7d061649c68539fbbb2107cc2ff83184d099955da1bf",
+  "symbol": "HD",
+  "validation_bars": 0
+}

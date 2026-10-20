@@ -1,0 +1,215 @@
+{
+  "candidates": [
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 125,
+        "material_losers": 40,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.7144308535658768,
+        "winner_paths": 112,
+        "winner_stall_q75": 3.0
+      },
+      "exit_rule": {
+        "family": "giveback",
+        "giveback_fraction": 0.8,
+        "level": 0.02,
+        "lock_fraction": 0.1,
+        "stall_bars": 3
+      },
+      "family": "lifecycle",
+      "id": "giveback",
+      "module": "pullback"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 125,
+        "material_losers": 40,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.7144308535658768,
+        "winner_paths": 112,
+        "winner_stall_q75": 3.0
+      },
+      "exit_rule": {
+        "family": "stalled",
+        "giveback_fraction": 0.8,
+        "level": 0.02,
+        "lock_fraction": 0.1,
+        "stall_bars": 3
+      },
+      "family": "lifecycle",
+      "id": "stalled",
+      "module": "pullback"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 125,
+        "material_losers": 40,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.7144308535658768,
+        "winner_paths": 112,
+        "winner_stall_q75": 3.0
+      },
+      "exit_rule": {
+        "family": "adaptive",
+        "giveback_fraction": 0.8,
+        "level": 0.02,
+        "lock_fraction": 0.1,
+        "stall_bars": 3
+      },
+      "family": "lifecycle",
+      "id": "adaptive",
+      "module": "pullback"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 173,
+        "material_losers": 122,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.7232750204759109,
+        "winner_paths": 170,
+        "winner_stall_q75": 5.0
+      },
+      "exit_rule": {
+        "family": "giveback",
+        "giveback_fraction": 0.8,
+        "level": 0.03,
+        "lock_fraction": 0.1,
+        "stall_bars": 5
+      },
+      "family": "lifecycle",
+      "id": "giveback",
+      "module": "breakout"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 173,
+        "material_losers": 122,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.7232750204759109,
+        "winner_paths": 170,
+        "winner_stall_q75": 5.0
+      },
+      "exit_rule": {
+        "family": "stalled",
+        "giveback_fraction": 0.8,
+        "level": 0.03,
+        "lock_fraction": 0.1,
+        "stall_bars": 5
+      },
+      "family": "lifecycle",
+      "id": "stalled",
+      "module": "breakout"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 173,
+        "material_losers": 122,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.7232750204759109,
+        "winner_paths": 170,
+        "winner_stall_q75": 5.0
+      },
+      "exit_rule": {
+        "family": "adaptive",
+        "giveback_fraction": 0.8,
+        "level": 0.03,
+        "lock_fraction": 0.1,
+        "stall_bars": 5
+      },
+      "family": "lifecycle",
+      "id": "adaptive",
+      "module": "breakout"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 53,
+        "material_losers": 61,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.6957029362580344,
+        "winner_paths": 53,
+        "winner_stall_q75": 7.0
+      },
+      "exit_rule": {
+        "family": "giveback",
+        "giveback_fraction": 0.8,
+        "level": 0.03,
+        "lock_fraction": 0.1,
+        "stall_bars": 10
+      },
+      "family": "lifecycle",
+      "id": "giveback",
+      "module": "squeeze"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 53,
+        "material_losers": 61,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.6957029362580344,
+        "winner_paths": 53,
+        "winner_stall_q75": 7.0
+      },
+      "exit_rule": {
+        "family": "stalled",
+        "giveback_fraction": 0.8,
+        "level": 0.03,
+        "lock_fraction": 0.1,
+        "stall_bars": 10
+      },
+      "family": "lifecycle",
+      "id": "stalled",
+      "module": "squeeze"
+    },
+    {
+      "entry_rule": null,
+      "evidence": {
+        "discovery_winners": 53,
+        "material_losers": 61,
+        "quantile_capped": false,
+        "winner_giveback_q75": 0.6957029362580344,
+        "winner_paths": 53,
+        "winner_stall_q75": 7.0
+      },
+      "exit_rule": {
+        "family": "adaptive",
+        "giveback_fraction": 0.8,
+        "level": 0.03,
+        "lock_fraction": 0.1,
+        "stall_bars": 10
+      },
+      "family": "lifecycle",
+      "id": "adaptive",
+      "module": "squeeze"
+    },
+    {
+      "entry_rule": {
+        "family": "relax_price"
+      },
+      "evidence": "Entry V1 fixed 10-bar hypothesis REPLICATED; experimental strict sole blocker, not a Pure activation",
+      "exit_rule": null,
+      "family": "entry",
+      "id": "relax_price",
+      "module": "breakout"
+    }
+  ],
+  "discovery_only": true,
+  "plan_sha256": "aac3c71e8f93917ac7b77ec88073a78d80cd9df57793421722aca27c64bd5bed",
+  "prior_holdout_already_seen": true,
+  "selection_inputs": {
+    "1/decision_time_states": "fd7cdfb23f0b7dc5bdce5f48820f9da1e633b54b5b642f110f55ee6d36e712d8",
+    "1/retrospective_trade_labels": "d7b7f0f0d8e017f7a403348a56df4a110fdfe2097cdd23a92ccaf730038ddf02",
+    "2/approved_trade_bins": "1427b19877be55ef7be7b23aaecfe97300581e9a091995c7a41228d0cff73388",
+    "3/summary": "d430b79ecd7d53065c3d1800e300ea0e26fea3c3e47d67185ddd3da0a43749ca",
+    "4/summary": "b04aa0c06e723546955ab1bfd635a19eea38c4a6833cd00814a567d333caa24a",
+    "5/summary": "4661159a1002e2f5dc0de246532c2836f1cef8839f8bc1021ca984bebc359709"
+  },
+  "version": 1
+}

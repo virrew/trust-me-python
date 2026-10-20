@@ -1,0 +1,31 @@
+{
+  "dtypes": {
+    "active_module_mask": "int64",
+    "active_trade_id_at_signal_close": "Int64",
+    "arm": "object",
+    "censored_at_end": "boolean",
+    "closed": "boolean",
+    "direction": "object",
+    "entry_time": "datetime64[ns]",
+    "module_score": "int64",
+    "position_state_at_signal_close": "object",
+    "resolution": "object",
+    "signal_time": "datetime64[ns]",
+    "symbol": "object",
+    "trade_id": "Int64"
+  },
+  "object_none": {
+    "arm": [],
+    "direction": [],
+    "position_state_at_signal_close": [],
+    "resolution": [],
+    "symbol": []
+  },
+  "object_strings": {
+    "arm": {},
+    "direction": {},
+    "position_state_at_signal_close": {},
+    "resolution": {},
+    "symbol": {}
+  }
+}

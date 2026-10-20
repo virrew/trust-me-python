@@ -1,0 +1,18 @@
+{
+  "markers_unchanged": 51,
+  "coverage": 50,
+  "completed_runs": 1,
+  "baseline_counts": {
+    "PROSPECTIVE_PAPER": {
+      "closed": 0,
+      "fills": 0,
+      "signals": 0
+    },
+    "TEMPORAL_OOS_LATER_UNSEEN": {
+      "closed": 0,
+      "fills": 0,
+      "signals": 0
+    }
+  },
+  "status": "AWAITING_VALIDATION_DATA"
+}

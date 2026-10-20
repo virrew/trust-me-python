@@ -1,0 +1,1 @@
+trade_id,bar_time,direction,active_stop_at_bar_start,extreme_before,stop_hit,trend_exit_triggered_at_close,extreme_after,active_stop_for_next_bar,symbol,arm
