@@ -1802,10 +1802,10 @@ PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 report
 ```
 
 `--session` selects a distinct frozen protocol; `--input-dir` uses local typed
-symbol CSVs behind the same verification gate. First real `scan` is deferred
-until review; implementation/freeze verification uses no post-snapshot market
-retrieval or inspection. Launchd, scheduling, alerts and subsequent research
-are outside this task.
+symbol CSVs behind the same verification gate. Implementation/freeze verification
+used no post-snapshot market retrieval or inspection. A subsequent manual attempt
+is recorded below. Launchd, scheduling, alerts and subsequent research are outside
+this task.
 
 The storage adapter deliberately calls unchanged `PaperScanner._symbol` in
 temporary scratch, retaining full diagnostic and validation-stream replay CPU
@@ -1824,3 +1824,32 @@ that boundary. Local hashes are corruption checks, not external notarization;
 deleting both the entire tail and its receipt cannot be detected from the
 remaining local history alone. No profitability or TradingView parity follows
 from offline engine equivalence.
+
+### Provider normalization correction and interrupted V2 attempt (2026-10-20)
+
+The first manual V2 `scan` performed a real provider retrieval, then failed on
+NVDA before any symbol completed or any validation run was published. Request
+`40e20fa633114eb5ad024f95c97d6cab` started at `2026-10-20T15:37:14.409564+00:00`;
+the unpublished failure was recorded at `2026-10-20T15:39:41.313435+00:00`.
+The checkpoint remains at sequence 1 with no completed symbols; the latest
+published sequence remains 0. This failed fetch is not valid temporal or
+prospective validation evidence.
+
+Yahoo column flattening/renaming retained the provider's column-axis name
+`Price`, while the frozen seed's column-axis name was `None`. Strict overlap
+comparison therefore raised an axis-name assertion, wrapped as a revision error.
+`download_yahoo_data` now clears only `columns.name` after selecting canonical
+`open, high, low, close, volume`. Values, dtypes, DatetimeIndex semantics and
+availability times are unchanged. `append_daily` retains its exact comparisons
+and still rejects genuine OHLCV revisions. Offline reproduction confirms the
+metadata failure; it does not establish that every price in the failed real
+retrieval matched the seed.
+
+Behavior change: YES (canonical provider metadata and acceptance of identical
+overlapping values). Existing strategy behavior changed: NO.
+The source change intentionally invalidates the frozen V2 source identity.
+Its freeze, hashes, interrupted checkpoint and failure record remain untouched;
+V2 must not be resumed or represented as current under the changed code.
+This bugfix stage makes no provider request, creates no PV-V3 and publishes no
+validation evidence. A separately reviewed next stage must complete regression
+verification and establish a new protocol before another real scan.

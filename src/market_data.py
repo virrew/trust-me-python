@@ -94,6 +94,9 @@ def download_yahoo_data(
         ]
     ]
 
+    # Provider axis metadata (e.g. "Price") is not part of canonical OHLCV.
+    df.columns.name = None
+
     return validate_ohlcv(df)
 
 def resample_regular_session(

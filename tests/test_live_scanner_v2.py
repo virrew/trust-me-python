@@ -14,9 +14,18 @@ from test_live_scanner import synthetic, seed, force_signal
 
 
 @pytest.fixture
-def session(tmp_path):
+def parent(tmp_path):
+    # Fresh test-only identity: archived production protocols must stay frozen
+    # when source code changes. No source checks or stored hashes are bypassed.
+    base = tmp_path/"PARENT-TEST"
+    v1.freeze(base, symbols=["AAPL", "MSFT"])
+    return base
+
+
+@pytest.fixture
+def session(tmp_path, parent):
     base = tmp_path/"PV-V2-TEST"
-    v2.freeze(base, symbols=["AAPL"], clock=lambda: "2026-10-01T12:00:00Z")
+    v2.freeze(base, parent=parent, symbols=["AAPL"], clock=lambda: "2026-10-01T12:00:00Z")
     return v2.PaperScannerV2(base)
 
 
@@ -28,8 +37,8 @@ def normalized(frame, sort):
     return frame.sort_values(sort).reset_index(drop=True)
 
 
-def test_freeze_exact_parent_science_and_distinct_protocol(session):
-    parent = v1.read_json(v2.PARENT/"freeze/validation_plan.json")
+def test_freeze_exact_parent_science_and_distinct_protocol(session, parent):
+    parent = v1.read_json(parent/"freeze/validation_plan.json")
     for name in ("diagnostics_config", "baseline_execution", "module_reference_policies",
                  "candidate_sha256", "shadow_candidates", "cost_assumptions", "metrics",
                  "old_cutoff_exclusive", "data_contract", "population_contract"):
@@ -49,6 +58,15 @@ def test_freeze_gate_and_parent_drift(tmp_path):
     (parent/"freeze/candidates.json").write_text("{}")
     with pytest.raises(ValueError, match="Corrupt"):
         v2.freeze(tmp_path/"CHILD", parent=parent)
+
+
+def test_parent_source_drift_still_blocks_freeze(tmp_path, parent, monkeypatch):
+    sources = v1.source_identity()
+    sources["src/market_data.py"] = "changed-provider-source"
+    monkeypatch.setattr(v1, "source_identity", lambda: sources)
+    with pytest.raises(ValueError, match="V1 scientific implementation changed"):
+        v2.freeze(tmp_path/"CHILD", parent=parent)
+    assert not (tmp_path/"CHILD"/"freeze").exists()
 
 
 def test_empty_seed_no_evidence_and_stable_schemas(session):
@@ -231,9 +249,9 @@ def test_removed_tail_detected_by_publication_receipt(session):
         session.report()
 
 
-def test_partial_universe_resume_keeps_completed_clocks(tmp_path):
+def test_partial_universe_resume_keeps_completed_clocks(tmp_path, parent):
     base = tmp_path/"MULTI"
-    v2.freeze(base, symbols=["AAPL", "MSFT"], clock=lambda: "2026-10-01T12:00Z")
+    v2.freeze(base, parent=parent, symbols=["AAPL", "MSFT"], clock=lambda: "2026-10-01T12:00Z")
     scanner = v2.PaperScannerV2(base)
     data = synthetic(scanner)
 

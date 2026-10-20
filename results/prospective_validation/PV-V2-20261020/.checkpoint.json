@@ -1,0 +1,13 @@
+{
+  "payload": {
+    "completed": {},
+    "plan_sha256": "9abe8188ecebe7ac2758df559ab950fdcc79c82bf275ca606d9ab30466fcb6f4",
+    "request": {
+      "mode": "scan",
+      "request_id": "40e20fa633114eb5ad024f95c97d6cab",
+      "sequence": 1,
+      "started_at": "2026-10-20T15:37:14.409564+00:00"
+    }
+  },
+  "sha256": "f208f68df59f4f0c71d65fb266ef46d73932030c3d2648708ee7264ab355f251"
+}
