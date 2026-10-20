@@ -1,0 +1,9 @@
+{
+  "hashes": {
+    "cursors.json": "6999d94479fbe191e8050e33feeec0e023e1c404c50408fe661366b91cf3a8dd",
+    "latest_run.json": "b6a6f8f87a1510c99586352f828c02b528baf5418a82db7450af3bd099a3f67d",
+    "open_trades.csv": "504010b2c13d4f18f1bd8777326d71243e19232786e163257c1a1378c6581724",
+    "schemas.json": "c09b2a4e3bda146435c2e2bbe7ede80732f66a36d923872822544533e8e2dff6"
+  },
+  "identity": "9abe8188ecebe7ac2758df559ab950fdcc79c82bf275ca606d9ab30466fcb6f4"
+}

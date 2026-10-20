@@ -1,0 +1,118 @@
+{
+  "baseline": {
+    "passed": 221,
+    "seconds": 87.06,
+    "warnings": 1
+  },
+  "compile_passed": true,
+  "diff_check_passed": true,
+  "evaluation_rows": 60,
+  "first_available_at_utc": "2026-10-21T20:15:00+00:00",
+  "first_prospective_date": "2026-10-21",
+  "focused": {
+    "passed": 116,
+    "seconds": 243.65,
+    "v2_tests": 29,
+    "warnings": 1
+  },
+  "frozen_at": "2026-10-20T15:10:17.710393+00:00",
+  "full": {
+    "passed": 250,
+    "seconds": 267.16,
+    "warnings": 1
+  },
+  "plan_sha256": "9abe8188ecebe7ac2758df559ab950fdcc79c82bf275ca606d9ab30466fcb6f4",
+  "real_new_outcomes_viewed": false,
+  "real_post_snapshot_fetch": false,
+  "reports": {
+    "init": {
+      "baseline_counts": {
+        "PROSPECTIVE_PAPER": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        },
+        "TEMPORAL_OOS_LATER_UNSEEN": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        }
+      },
+      "completed_runs": 0,
+      "status": "AWAITING_VALIDATION_DATA",
+      "symbols": 50
+    },
+    "offline-scan": {
+      "baseline_counts": {
+        "PROSPECTIVE_PAPER": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        },
+        "TEMPORAL_OOS_LATER_UNSEEN": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        }
+      },
+      "completed_runs": 0,
+      "status": "AWAITING_VALIDATION_DATA",
+      "symbols": 50
+    },
+    "recover": {
+      "baseline_counts": {
+        "PROSPECTIVE_PAPER": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        },
+        "TEMPORAL_OOS_LATER_UNSEEN": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        }
+      },
+      "completed_runs": 0,
+      "status": "AWAITING_VALIDATION_DATA",
+      "symbols": 50
+    },
+    "resume": {
+      "baseline_counts": {
+        "PROSPECTIVE_PAPER": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        },
+        "TEMPORAL_OOS_LATER_UNSEEN": {
+          "closed": 0,
+          "fills": 0,
+          "signals": 0
+        }
+      },
+      "completed_runs": 0,
+      "status": "AWAITING_VALIDATION_DATA",
+      "symbols": 50
+    }
+  },
+  "source_identity_verified": true,
+  "state_files_reconstructed_exactly": 5,
+  "unchanged_scientific_fields": [
+    "symbols",
+    "universe_version",
+    "universe_sha256",
+    "candidate_sha256",
+    "shadow_candidates",
+    "diagnostics_config",
+    "baseline_execution",
+    "module_reference_policies",
+    "cost_assumptions",
+    "metrics",
+    "old_cutoff_exclusive",
+    "seed_sha256",
+    "data_contract",
+    "population_contract"
+  ],
+  "v1_completion_markers_verified": 51,
+  "v1_files_preserved": 8221,
+  "v2_freeze_files_preserved": 107
+}

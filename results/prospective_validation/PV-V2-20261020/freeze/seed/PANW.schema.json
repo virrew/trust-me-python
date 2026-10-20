@@ -1,0 +1,11 @@
+{
+  "dtypes": {
+    "close": "float64",
+    "high": "float64",
+    "low": "float64",
+    "open": "float64",
+    "timestamp": "datetime64[ns]",
+    "volume": "int64"
+  },
+  "object_none": {}
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "NVDA",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "AMD",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "MU",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "AVGO",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "MRVL",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "QCOM",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "ARM",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "SMCI",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "TSM",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "ASML",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "AAPL",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "MSFT",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "GOOGL",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "META",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "AMZN",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "NFLX",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "ORCL",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "CRM",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "NOW",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "PLTR",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "TSLA",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "COIN",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "HOOD",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "ROKU",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "SHOP",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "UBER",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "ABNB",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "CRWD",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "PANW",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "DDOG",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "JPM",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "GS",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "MS",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "BAC",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "V",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "MA",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "CAT",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "GE",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "DE",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "ETN",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "HON",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "RTX",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "XOM",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "CVX",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "COP",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "LLY",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "COST",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "WMT",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "HD",
+    "universe_version": "PV-UNIVERSE-V1"
+  },
+  {
+    "first_eligible_validation_date": "2026-09-22",
+    "inclusion_source": "EXIT-V1-20260923-CLOSED: existing research universe, no performance selection",
+    "symbol": "NKE",
+    "universe_version": "PV-UNIVERSE-V1"
+  }
+]

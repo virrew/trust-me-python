@@ -1,0 +1,215 @@
+diff --git a/ARCHITECTURE.md b/ARCHITECTURE.md
+index 8eaf20b..5fa05f3 100644
+--- a/ARCHITECTURE.md
++++ b/ARCHITECTURE.md
+@@ -28,7 +28,7 @@ Kommentarer om parity-verifiering är därför inte bevis på fullständig parit
+ | ML | Saknas: ingen modell, träning, inferens, labels eller tränings-/testsplit |
+ | Backtesting | `src/backtest.py` simulerar en position åt gången för Swing och ger trade ledger, state trace och closed-trade summary; ingen kapital-/kostnadsmodell |
+ | Utvärdering | Signalfrekvens, blockerare, near misses och modultillfällen i `src/diagnostics_analysis.py`; retrospektiva prisoutcomes i `src/historical_outcomes.py`; manuella paritykontroller |
+-| Paper-skanning | `src/live_scanner.py`: fryst Prospective Validation + Paper Scanner V1, Daily/Swing, research only; se avsnitt 20 |
++| Paper-skanning | Bevarad V1 i `src/live_scanner.py`; kompakt operativ V2 i `src/live_scanner_v2.py`, Daily/Swing, research only; se avsnitt 20–21 |
+ 
+ ### 1.1 Planerad utvecklingsordning
+ 
+@@ -71,6 +71,8 @@ Strategy Improvement / Lifecycle  ✅ (eleven resumable research stages; isolate
+       ↓
+ Prospective Validation + Paper V1 ✅ (frozen evidence collection; section 20)
+       ↓
++Operational storage V2           ✅ (same research semantics; section 21)
++      ↓
+ Walk-forward / confirmatory evaluation ← future; enough new evidence required
+       ↓
+ Predictive analysis / ML
+@@ -113,6 +115,8 @@ positionstillstånd, kostnader och kapitalrisk.
+ | `src/live_scanner.py` | Freeze, append-only Daily paper scans, existing-engine baseline/shadow replay, recovery and CLI |
+ | `src/prospective_validation_data.py` | Daily completion clocks, validation, immutable OHLCV append and Yahoo adapter |
+ | `src/prospective_validation_analysis.py` | Frozen costs and separate evidence/arm metrics; no execution changes |
++| `src/live_scanner_v2.py` | Separate V2 freeze, compact event publication, checkpoint/recovery and CLI; reuses V1 computation unchanged |
++| `src/prospective_validation_storage.py` | Long-format event projection and consolidated typed CSV schemas; no trading rules |
+ | `src/__init__.py` | Tom paketmarkör |
+ | `tests/test_core.py` | 13 syntetiska pytest-tester: OHLCV-validering, trend, regim, volatilitet, momentum, volym, breakout, squeeze, pullback, moduler, score, signal och session |
+ | `tests/test_market_data.py` | Tom; OHLCV-validering testas i `test_core.py` |
+@@ -1640,3 +1644,183 @@ After enough new observations accumulate, review frozen gross/net and tail
+ metrics with exact counts per evidence class and arm against the matching
+ reference. Any new hypothesis needs a new protocol and a later untouched sample;
+ this collector does not train ML, retune candidates or declare Strategy V2.
++
++## 21. Prospective Validation Storage / Operational V2 (2026-10-20)
++
++**Behavior change: YES. Existing strategy behavior changed: NO.** This is an
++operational/storage protocol, not Strategy V2 or another research campaign.
++V1's full immutable snapshots multiply files by symbol × arm × run. V2 retains
++the same scientific inputs and computation, publishing only new observations
++in long tables. No new dependency, strategy predicate, execution loop, lifecycle
++formula, candidate, metric or cost calculation is introduced.
++
++### Preserved V1 and new freeze
++
++`results/prospective_validation/PV-V1-20261020/` remains byte-for-byte unchanged,
++including its hashes and offline evidence. It is an immutable infrastructure
++proof with no real validation observations. Its reproduction commit is
++`4ddd33c050273fec587e1172adffae4d6b1bd188`. Even adding source modules changes
++V1's glob-based source identity, so reproduce V1 at that original commit; do
++not rewrite its freeze to accept V2.
++
++`src/live_scanner_v2.py` owns the distinct `PV-V2-20261020` protocol.
++Initialization verifies and copies V1's exact universe, candidates and original
++seed. Baseline settings, four reference policies, ten shadow candidates, metrics,
++costs, exclusion rules and old cutoff are inherited verbatim. Existing V1 source
++hashes must still match. V2 records current HEAD, working-tree diff/status,
++all current source hashes, runtime, actual freeze timestamp and storage schemas.
++The timestamp is finalized after an old-seed-only schema probe and before atomic
++publication. No provider call is possible through initialization. The full seed
++is copied once, not into daily partitions.
++
++The old snapshot remains strictly before 2026-09-22. The authoritative V2
++prospective boundary is its own `frozen_at`, not V1's. Availability and evidence
++classification reuse V1 unchanged: Daily completion after 16:15 New York;
++pre-freeze availability is `TEMPORAL_OOS_LATER_UNSEEN`; a scan's latest completed
++bar is `PROSPECTIVE_PAPER` only on a date strictly after the V2 freeze's NY date
++and before next calendar day 09:30 NY. Other post-freeze bars remain
++`POST_FREEZE_BACKFILL_NOT_PROSPECTIVE`, unable to originate eligible trades.
++First persisted classification never upgrades. Trade population follows signal
++origin even when its lifetime crosses the prospective boundary.
++
++### Source of truth and schemas
++
++The hierarchy is frozen protocol/seed → verified immutable events → derived
++mutable state/reports. The public Daily OHLCV index, timezone, full indicator
++warm-up, all 191 diagnostics, module masks and signal predicates remain unchanged.
++Five CSVs use `symbol`/`arm` columns; there are no published symbol/arm folders:
++
++| Table | Rows and availability |
++| --- | --- |
++| `bars.csv` | Only first-observed completed validation OHLCV, `timestamp`, `symbol`, `observed_at`, `available_at_utc`, evidence class |
++| `decisions.csv` | All 191 original diagnostic fields plus first-observation metadata, once per symbol/new bar, including no-signal bars; bar-close features only |
++| `signals.csv` | New eligible arm signals, mask/score, direction and provenance; eligible signals are not assertions of fills or scheduled orders |
++| `trade_events.csv` | Sparse typed union of `ENTRY_FILLED`, `EXIT_FILLED` and `EXECUTION_BAR`; copied from authoritative engine outputs |
++| `lifecycle_states.csv` | New survived-close `causal_path` observations: running return/MFE/MAE, strict high/stall, giveback/retention, age, ATR and stops |
++
++`ENTRY_FILLED` stores only entry-known fields, with next-observed-open
++availability; it never includes a future exit or final return. `EXIT_FILLED`
++stores the closed lifecycle record and frozen primary/stress accounting, marked
++as retrospective. Open exits are available at that open; intrabar stops and
++their excursion bounds are confirmed by the completed Daily bar, without an
++invented exact intrabar clock. `EXECUTION_BAR` copies the engine's active stop,
++next stop, stop-hit and trend-close flags. Next stops apply to the following
++bar. The trace does not invent a new explicit shadow pending-exit field.
++Pending entry/reconciliation and shadow pending-exit state remain reconstructible
++by the existing replay from frozen inputs. No terminal `CENSORED` event is
++invented for an ordinary daily prefix; mutable open trades retain V1's
++`closed=False`, `censored_at_end=True`, missing final returns.
++
++Signal keys are `session|symbol|arm|signal_time|direction`; trade keys use the
++same provenance. Event keys add type and event bar; state keys add `bar_time`.
++Bars/decisions use `(symbol, timestamp)`. The protocol hash in run metadata
++binds source/config identity for every row. `event_observed_at` and
++`event_available_at_utc` separate actual collection from model availability.
++First-observed states stay immutable even after a later trade closes.
++Operational trade snapshots retain V1's session-local key representation.
++
++`schemas.json` consolidates per-table columns, dtypes and exact object-string/
++None locations. Read event tables with `live_scanner_v2.read_table`, not a bare
++CSV inference. It preserves literal `NA`, empty strings, NaNs, nullable fields,
++float fidelity and timezones. Empty tables retain their frozen schema. V2
++explicitly types empty `research_signal_source` as object (V1's empty map inferred
++float); this is a storage representation correction, not a strategy change.
++
++### Layout, publication and recovery
++
++```text
++PV-V2-20261020/
++  freeze/                         immutable protocol, original seed and schemas
++  events/YYYY/MM/YYYY-MM-DD/NNNNNN/
++    run.json
++    bars.csv
++    decisions.csv
++    signals.csv
++    trade_events.csv
++    lifecycle_states.csv
++    schemas.json
++    completed.json                inventory/checksums and previous run hash
++  publication.jsonl               append-only publication receipts
++  state/
++    open_trades.csv
++    schemas.json
++    cursors.json
++    latest_run.json
++    completed.json
++  reports/latest/                 derived evaluation/distributions/report
++  failures/                       compact explicit attempt errors
++  verification/                   offline verification record
++```
++
++Date folders describe the invocation's NY date; row timestamps describe actual
++market sessions. Sequence suffixes permit explicit catch-up or a later new-bar
++run on the same date without overwriting evidence. A repeated input with no new
++completed bars publishes no partition, no duplicate signals, and no unrecorded
++as-of clock in state. The first historical-seed-only run also creates no event
++partition and remains `AWAITING_VALIDATION_DATA`.
++
++The CLI holds the existing process lock; library callers must hold
++`session_lock(base)` too. One atomic checksummed `.checkpoint.json` contains
++only each completed symbol's new evidence, open positions and observation clock.
++It does not contain full historical prices/diagnostics. Partial calculation is
++discarded; completed symbol checkpoints are retained and reused on `resume`,
++including their original clocks across dates. No partial universe can publish.
++A compact `.event-pending` directory is assembled, sealed, then atomically
++renamed. A verified orphan after rename is adopted; matching pending work is
++retired without another data fetch. Hash chains, sequence checks and the small
++publication receipt detect corrupt/missing evidence and a deleted published
++tail. Corrupt pending evidence fails closed.
++
++State is never a replay input. A corrupt, missing or stale state cache is
++reconstructed offline from the original seed and verified bars/decisions through
++the unchanged V1 computation. Closed evaluation records come from immutable
++exit events; only currently open trades are cached. `recover` rebuilds this
++cache explicitly. Evaluation overwrites `reports/latest` and still separates
++both eligible evidence classes, every baseline/reference/shadow arm and both
++cost scenarios, including zero-sample rows. No monthly snapshots are automatic.
++
++Each new-data run publishes **8 files**, independent of symbols/arms, plus an
++append to one publication receipt. State uses 5 files and latest reports use 5
++files, reused in place. At one run per 252 trading days this is approximately
++**2,016 new evidence files/year**, plus the one-time freeze, constant caches,
++verification and exceptional failures. A normal fully covered day has 50 bar
++rows, 50 diagnostic rows, 0–750 eligible signal rows, up to roughly 750 survived
++state rows and up to roughly 2,250 entry/exit/execution events across 50 × 15
++independent streams. Catch-up scales rows with newly observed bars, not file
++count. These maxima are structural bounds, not forecasts of signal frequency.
++
++### Operation and limits
++
++```sh
++PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 init
++PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 scan
++PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 catch-up
++PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 update
++PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 resume
++PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 recover
++PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m src.live_scanner_v2 report
++```
++
++`--session` selects a distinct frozen protocol; `--input-dir` uses local typed
++symbol CSVs behind the same verification gate. First real `scan` is deferred
++until review; implementation/freeze verification uses no post-snapshot market
++retrieval or inspection. Launchd, scheduling, alerts and subsequent research
++are outside this task.
++
++The storage adapter deliberately calls unchanged `PaperScanner._symbol` in
++temporary scratch, retaining full diagnostic and validation-stream replay CPU
++cost. This eliminates retained snapshot/file multiplication, not replay cost.
++Temporary computation is one symbol at a time and is removed afterward; an OS
++kill may leave temporary scratch for normal temp cleanup. Startup verifies the
++ledger and builds in-memory history, so time/memory still grow with history.
++No incremental indicator/execution engine or heavy storage dependency is added.
++
++V1's Daily/Long-only, exchange-calendar, next-observed-open, provider revision,
++fixed-universe, intrabar uncertainty, independent-stream and uncalibrated-cost
++limitations remain. Changed, duplicate, omitted or late-inserted observations
++fail closed. The provider's rolling five-year window eventually cannot supply
++all validation overlap; a reviewed retrieval extension will be needed before
++that boundary. Local hashes are corruption checks, not external notarization;
++deleting both the entire tail and its receipt cannot be detected from the
++remaining local history alone. No profitability or TradingView parity follows
++from offline engine equivalence.
